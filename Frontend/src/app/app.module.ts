@@ -14,12 +14,21 @@ import { RouterModule, Routes } from '@angular/router';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { LoginComponent } from './login/login.component';
 import { LoginformComponent } from './login/loginform/loginform.component';
+import { ApplicationsComponent } from './applications/applications.component';
+import { ApplicationstableComponent } from './applications/applicationstable/applicationstable.component';
+import { SelectionComponent } from './selection/selection.component';
+import { SelectionstableComponent } from './selection/selectionstable/selectionstable.component';
+import { EditorsComponent } from './editors/editors.component';
+import { EditorsformComponent } from './editors/editorsform/editorsform.component';
 
 const appRoutes: Routes = [
   { path: '', component: ApplyforinternshipComponent },
   { path: 'applyjap', component: ApplyformComponent },
   { path: 'dashboard', component: DashboardComponent },
   { path: 'login', component: LoginComponent },
+  { path: 'applications', component: ApplicationsComponent },
+  { path: 'selections', component: SelectionComponent },
+  { path: 'editors', component: EditorsComponent },
 ];
 
 @NgModule({
@@ -33,7 +42,13 @@ const appRoutes: Routes = [
     ApplyformComponent,
     DashboardComponent,
     LoginComponent,
-    LoginformComponent
+    LoginformComponent,
+    ApplicationsComponent,
+    ApplicationstableComponent,
+    SelectionComponent,
+    SelectionstableComponent,
+    EditorsComponent,
+    EditorsformComponent
   ],
   imports: [
     BrowserModule,
