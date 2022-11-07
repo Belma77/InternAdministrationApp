@@ -1,0 +1,18 @@
+.btnsearch {
+    background-color: rgba(134, 207, 235, 1);
+}
+
+.btnsort {
+    background-color: rgba(134, 207, 235, 1);
+}
+
+.pagination a:hover,
+.pagination .active a {
+    background-color: #60b4d4;
+    color: #ffffff;
+    border-color: #60b4d4
+}
+
+.pagination a {
+    color: rgba(134, 207, 235, 1);
+}

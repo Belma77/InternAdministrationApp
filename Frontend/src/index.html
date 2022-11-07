@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="utf-8">
-  <title>Frontend</title>
+  <title>Internship Administration</title>
   <base href="/">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
@@ -11,8 +11,49 @@
   <link rel="stylesheet" href="fonts/linearicons/style.css">
 </head>
 
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Add new Editor</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form id="signup-form">
+          <div class="mb-3">
+            <label class="form-label text-black">First Name</label>
+            <input type="text" class="form-control" name="firstname" placeholder="Enter first name" />
+          </div>
+          <div class="mb-3">
+            <label class="form-label text-black">Last Name</label>
+            <input type="text" class="form-control" name="lastname" placeholder="Enter last name" />
+          </div>
+          <div class="mb-3">
+            <label class="form-label text-black">Username</label>
+            <input type="text" class="form-control" name="username" placeholder="Enter username" />
+          </div>
+          <div class="mb-3">
+            <label class="form-label text-black">Email</label>
+            <input type="text" class="form-control" name="email" placeholder="Enter email" />
+          </div>
+          <div class="mb-3">
+            <label class="form-label text-black">Password</label>
+            <input type="password" class="form-control" name="password" placeholder="Enter password" />
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-info" (click)="addEditor()">Add Editor</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 <body>
   <app-root></app-root>
+  <script type="text/javascript" src="../node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+  <script src="https://kit.fontawesome.com/8681719d81.js" crossorigin="anonymous"></script>
 </body>
 
 </html>

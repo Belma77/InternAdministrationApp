@@ -1,4 +1,4 @@
-<div id="sidebar" class="d-flex flex-column flex-shrink-0 p-3 bg-light" style="width: 300px;">
+<!-- <div id="sidebar" class="d-flex flex-column flex-shrink-0 p-3 bg-light" style="width: 300px;">
     <ul class="nav nav-pills flex-column mb-auto">
         <li class="h4">
             <a routerLink="/applications" class="nav-link link-dark">
@@ -25,6 +25,28 @@
                 </svg>
                 Editors
             </a>
+        </li>
+    </ul>
+</div> -->
+<div class="side-nav-content">
+    <ul class="nav-list" [ngClass]="{'nav-list-open': sideNavStatus}">
+        <li class="nav-list-item">
+            <i class="fa-solid fa-window-maximize"></i>
+            <span>
+                <a routerLink="/applications">Application</a>
+            </span>
+        </li>
+        <li class="nav-list-item">
+            <i class="fa-solid fa-list-check"></i>
+            <span>
+                <a routerLink="/selections">Selection</a>
+            </span>
+        </li>
+        <li class="nav-list-item">
+            <i class="fa-solid fa-users"></i>
+            <span>
+                <a routerLink="/editors">Editors</a>
+            </span>
         </li>
     </ul>
 </div>
