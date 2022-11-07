@@ -11,9 +11,16 @@ namespace Backend.Repository.SelectionRepo
         {
             _dbContext = dataContext;
         }
-        public async Task<List<Selection>> GetAllSelections()
+        public IQueryable<Selection> GetAllSelections()
         {
-            return await _dbContext.Selections.ToListAsync();
+            return  _dbContext.Selections.AsQueryable();
         }
+        public async Task<Selection> GetSelectionById(int id)
+        {
+            return await _dbContext.Selections.Where(x => x.Id == id).
+                Include(x => x.Applications)
+                .FirstOrDefaultAsync();
+        }
+
     }
 }

@@ -1,8 +1,11 @@
 ﻿using AutoMapper;
+using AutoMapper.QueryableExtensions;
 using Backend.Dtos;
+using Backend.Helpers;
 using Backend.Models.Enums;
 using Backend.Repository.SelectionRepo;
 using Microsoft.AspNetCore.Mvc;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
 namespace Backend.Services.SelectionService
 {
@@ -15,10 +18,20 @@ namespace Backend.Services.SelectionService
             _selectionRepository = selectionRepository;
             _mapper = mapper;
         }
-        public async Task<List<GetSelectionDto>> GetAllSelections()
+        public async Task<PagedList<GetSelectionsDto>> GetAllSelections(UserParams userParams)
         {
-            var selections=await _selectionRepository.GetAllSelections();
-            return _mapper.Map<List<GetSelectionDto>>(selections);
+            var query=_selectionRepository.GetAllSelections();
+            query = FilterSelections.FilterData(query, userParams.filterSelections);
+            query = SelectionsSorting.SortBy(query, userParams.OrderBy);
+            var selections = query.ProjectTo<GetSelectionsDto>(_mapper.ConfigurationProvider);
+            return await PagedList<GetSelectionsDto>.CreateAsync(selections, userParams.PageNumber, userParams.pageSize);
         }
+        public async Task<GetSelectionDto> GetSelectionById(int id)
+        {
+            var selection= await _selectionRepository.GetSelectionById(id);
+            return _mapper.Map<GetSelectionDto>(selection);
+            
+        }
+
     }
 }

@@ -8,8 +8,8 @@ namespace Backend.Services.ApplicationService
 {
     public interface IApplicationService
     {
-        public Task<PagedList<GetApplicationDto>> GetAllApplications(UserParams userParams);
-        Task<GetApplicationDto> GetApplicationById(int id);
+        public Task<PagedList<GetApplicationsDto>> GetAllApplications(UserParams userParams);
+        Task<GetAppDto> GetApplicationById(int id);
         
     }
 }

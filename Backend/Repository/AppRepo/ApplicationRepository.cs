@@ -29,7 +29,10 @@ namespace Backend.Repository.AppRepo
         }
         public async Task<Applications> GetById(int id)
         {
-            return await _dataContext.Applications.FirstOrDefaultAsync(x=>x.Id==id);
+            return await _dataContext.Applications.
+                Include(x=>x.Selections).
+                Include(x=>x.AppComments).
+                FirstOrDefaultAsync(x=>x.Id==id);
            
         }
         public async Task Update(Applications application)

@@ -22,7 +22,7 @@ namespace Backend.Controllers
             _applicationService = applicationService;
         }
         [HttpGet("GetAll")]
-        public async Task<ActionResult<List<GetApplicationDto>>> GetAllApplications([FromQuery] UserParams userParams)
+        public async Task<ActionResult<List<GetApplicationsDto>>> GetAllApplications([FromQuery] UserParams userParams)
         {
             var apps = await _applicationService.GetAllApplications(userParams);
             Response.AddPaginationHeader(apps.CurrentPage, apps.PageSize, apps.TotalCount, apps.TotalPages);
@@ -31,7 +31,7 @@ namespace Backend.Controllers
         }
         [HttpGet("{id}")]
         
-        public async Task<ActionResult<GetApplicationDto>> GetApplicationById(int id)
+        public async Task<ActionResult<GetAppDto>> GetApplicationById(int id)
         {
             return Ok(await _applicationService.GetApplicationById(id));
         }

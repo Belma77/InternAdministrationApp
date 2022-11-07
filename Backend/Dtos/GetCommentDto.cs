@@ -3,7 +3,7 @@
     public class GetCommentDto
     {
         public string Description { get; set; }
-        public UserDto Editor { get; set; }
+        public UserDto User { get; set; }
 
 
     }

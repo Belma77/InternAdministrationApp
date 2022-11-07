@@ -8,8 +8,12 @@ namespace Backend.Profiles
     {
         public AutoMapperProfile()
         {
-            CreateMap<Applications, GetApplicationDto>();
+            CreateMap<Applications, GetApplicationsDto>();
+            CreateMap<Applications, GetAppDto>();
             CreateMap<Selection, GetSelectionDto>();
+            CreateMap<Selection, GetSelectionsDto>();
+            CreateMap<Comment, GetCommentDto>();
+
 
         }
     }
