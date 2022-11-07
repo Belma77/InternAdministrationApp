@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using AutoMapper.QueryableExtensions;
 using Backend.Dtos;
 using Backend.Helpers;
 using Backend.Models;
@@ -22,17 +23,19 @@ namespace Backend.Services.ApplicationService
             _mapper = mapper;
 
         }
-        public async Task<PagedList<GetApplicationDto>> GetAllApplications(UserParams userParams)
+        public async Task<PagedList<GetApplicationsDto>> GetAllApplications(UserParams userParams)
         {
-            var query=_applicationRepository.GetAll(userParams);
-            var apps=query.Select(c=>_mapper.Map<GetApplicationDto>(c));
-            return await PagedList<GetApplicationDto>.CreateAsync(apps, userParams.PageNumber, userParams.pageSize);
-           // return _mapper.Map<List<GetApplicationDto>>(apps);
+            var query = _applicationRepository.GetAll(userParams);
+           query=FilterApplications.FilterData(query, userParams.filter);
+            query = AppsSorting.SortBy(query, userParams.OrderBy);
+            var apps = query.ProjectTo<GetApplicationsDto>(_mapper.ConfigurationProvider);
+            return await PagedList<GetApplicationsDto>.CreateAsync(apps, userParams.PageNumber, userParams.pageSize);
+       
         }
-        public async Task<GetApplicationDto> GetApplicationById(int id)
+        public async Task<GetAppDto> GetApplicationById(int id)
         {
             var app= await _applicationRepository.GetById(id);
-            return _mapper.Map<GetApplicationDto>(app);
+            return _mapper.Map<GetAppDto>(app);
             
         }
        
