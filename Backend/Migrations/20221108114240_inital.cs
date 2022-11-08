@@ -48,14 +48,12 @@ namespace Backend.Migrations
                     Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     FirstName = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     LastName = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Email = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: false),
-                    PasswordHash = table.Column<byte[]>(type: "varbinary(max)", nullable: false),
-                    PasswordSalt = table.Column<byte[]>(type: "varbinary(max)", nullable: false),
-                    UserRole = table.Column<int>(type: "int", nullable: false),
                     UserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     NormalizedUserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
+                    Email = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     NormalizedEmail = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     EmailConfirmed = table.Column<bool>(type: "bit", nullable: false),
+                    PasswordHash = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     SecurityStamp = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     ConcurrencyStamp = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     PhoneNumber = table.Column<string>(type: "nvarchar(max)", nullable: true),
@@ -246,6 +244,27 @@ namespace Backend.Migrations
                         column: x => x.SelectionId,
                         principalTable: "Selections",
                         principalColumn: "Id");
+                });
+
+            migrationBuilder.InsertData(
+                table: "Applications",
+                columns: new[] { "Id", "CoverLetter", "EducationLevel", "Email", "FirstName", "LastName", "Status" },
+                values: new object[,]
+                {
+                    { 1, "", 0, "test@hotmail.com", "test", "test", 0 },
+                    { 2, "", 2, "test2@hotmail.com", "test2", "test2", 2 },
+                    { 3, "", 0, "test3@hotmail.com", "test3", "test3", 0 },
+                    { 4, "", 2, "novi@hotmail.com", "novi", "prezime", 2 }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Selections",
+                columns: new[] { "Id", "Description", "EndDate", "Name", "StartDate" },
+                values: new object[,]
+                {
+                    { 1, "desc", new DateTime(2022, 3, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "internship/1", new DateTime(2022, 2, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { 2, "desc2", new DateTime(2022, 3, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "internship/2", new DateTime(2022, 2, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { 3, "desc3", new DateTime(2022, 3, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "internship/3", new DateTime(2022, 2, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) }
                 });
 
             migrationBuilder.CreateIndex(

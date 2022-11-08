@@ -13,6 +13,8 @@ namespace Backend.Profiles
             CreateMap<Selection, GetSelectionDto>();
             CreateMap<Selection, GetSelectionsDto>();
             CreateMap<Comment, GetCommentDto>();
+            CreateMap<AddApplicationDto,Applications>();
+
 
 
         }

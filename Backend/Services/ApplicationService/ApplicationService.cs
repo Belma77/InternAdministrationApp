@@ -5,6 +5,7 @@ using Backend.Helpers;
 using Backend.Models;
 using Backend.Models.Enums;
 using Backend.Repository.AppRepo;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore.Query.Internal;
 using System.Drawing.Text;
@@ -23,6 +24,7 @@ namespace Backend.Services.ApplicationService
             _mapper = mapper;
 
         }
+        [Authorize]
         public async Task<PagedList<GetApplicationsDto>> GetAllApplications(UserParams userParams)
         {
             var query = _applicationRepository.GetAll(userParams);
@@ -38,7 +40,12 @@ namespace Backend.Services.ApplicationService
             return _mapper.Map<GetAppDto>(app);
             
         }
-       
+         public async Task AddApplication(AddApplicationDto app)
+        {
+         
+            await _applicationRepository.Add(_mapper.Map<Applications>(app));
+           
+        }
 
     }
 }
