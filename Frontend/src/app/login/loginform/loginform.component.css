@@ -39,7 +39,7 @@ a {
 }
 
 .wrapper {
-    min-height: 90vh;
+    height: calc(100vh - 4rem);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -54,14 +54,14 @@ a {
 .image-1 {
     position: absolute;
     bottom: -12px;
-    left: -370px;
+    left: -390px;
     z-index: 99;
 }
 
 .image-2 {
     position: absolute;
     bottom: 0;
-    right: -185px;
+    right: -181px;
     max-height: 180px;
 }
 

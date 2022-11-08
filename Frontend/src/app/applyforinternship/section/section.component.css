@@ -1,3 +1,7 @@
 #promotext {
     margin-top: 42%;
 }
+
+.main-section {
+    height: calc(100vh - 4rem);
+}

@@ -1,0 +1,172 @@
+<div class="p-4">
+    <div class="row text-center">
+        <div class="col">
+            <p class="h4 font-weight-bold mb-3">Selection Details</p>
+        </div>
+    </div>
+    <table class="table table-striped table-hover text-center mb-4">
+        <thead class="table-dark">
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Name</th>
+                <th scope="col">Start Date</th>
+                <th scope="col">End Date</th>
+                <th scope="col">Description</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <th scope="row">1</th>
+                <td>Internship</td>
+                <td>17/10/2022</td>
+                <td>17/11/2022</td>
+                <td>Angular + .NET</td>
+            </tr>
+        </tbody>
+    </table>
+    <div class="row text-center">
+        <div class="col">
+            <p class="h4 font-weight-bold mb-3 mt-5">Add Applicant to Selection</p>
+        </div>
+    </div>
+    <div class="row text-center mb-3">
+        <div class="col-3">
+            <form class="d-flex"> <input class="form-control mr-2" type="search" placeholder="Name" aria-label="Search">
+                <button class="btn btnsearch" type="submit">Search</button>
+            </form>
+        </div>
+        <div class="col-9"></div>
+    </div>
+    <table class="table table-striped table-hover text-center mb-4">
+        <thead class="table-dark">
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">First</th>
+                <th scope="col">Last</th>
+                <th scope="col">Email</th>
+                <th scope="col">Education</th>
+                <th scope="col">Add to Selection</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <th scope="row">1</th>
+                <td>Tarik</td>
+                <td>Lilic</td>
+                <td>tl@test.com</td>
+                <td>Bachelor</td>
+                <td>
+                    <button type="button" class="btn btn-success">Add</button>
+                </td>
+            </tr>
+        </tbody>
+        <tbody>
+            <tr>
+                <th scope="row">1</th>
+                <td>Sandi</td>
+                <td>Stokanovic</td>
+                <td>sl@test.com</td>
+                <td>Bachelor</td>
+                <td>
+                    <button type="button" class="btn btn-success">Add</button>
+                </td>
+            </tr>
+        </tbody>
+        <tbody>
+            <tr>
+                <th scope="row">1</th>
+                <td>Emina</td>
+                <td>Sirbubalo</td>
+                <td>es@test.com</td>
+                <td>Bachelor</td>
+                <td>
+                    <button type="button" class="btn btn-success">Add</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <nav aria-label="Page navigation example">
+        <ul class="pagination justify-content-center">
+            <li class="page-item disabled">
+                <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a>
+            </li>
+            <li class="page-item active"><a class="page-link" href="#">1</a></li>
+            <li class="page-item"><a class="page-link" href="#">2</a></li>
+            <li class="page-item"><a class="page-link" href="#">3</a></li>
+            <li class="page-item">
+                <a class="page-link" href="#">Next</a>
+            </li>
+        </ul>
+    </nav>
+    <div class="row text-center">
+        <div class="col">
+            <p class="h4 font-weight-bold mb-3 mt-5">Applicants in this Selection</p>
+        </div>
+    </div>
+    <table class="table table-striped table-hover text-center">
+        <thead class="table-dark">
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">First</th>
+                <th scope="col">Last</th>
+                <th scope="col">Email</th>
+                <th scope="col">Education</th>
+                <th scope="col">Remove from Selection</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <th scope="row">1</th>
+                <td>Tarik</td>
+                <td>Lilic</td>
+                <td>tl@test.com</td>
+                <td>Bachelor</td>
+                <td>
+                    <button type="button" class="btn btn-danger">Remove</button>
+                </td>
+            </tr>
+            <tr>
+                <th scope="row">1</th>
+                <td>Belma</td>
+                <td>Aliman</td>
+                <td>ba@test.com</td>
+                <td>Bachelor</td>
+                <td>
+                    <button type="button" class="btn btn-danger">Remove</button>
+                </td>
+            </tr>
+            <tr>
+                <th scope="row">1</th>
+                <td>Nejla</td>
+                <td>Sabotic</td>
+                <td>na@test.com</td>
+                <td>Bachelor</td>
+                <td>
+                    <button type="button" class="btn btn-danger">Remove</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <div class="card text-center mt-5">
+        <div class="card-header card-title">
+            <div class="h5 mt-1">Editor:</div>
+        </div>
+        <div class="card-body p-4">
+            <p class="card-text">Editors comment is here</p>
+        </div>
+    </div>
+    <div class="row text-center mt-3">
+        <div class="col text-center">
+            <button type="button" class="btn btnaddnewcomment" (click)="openCommentSection()"><i
+                    class="fa-solid fa-plus me-2"></i>Add Comment</button>
+        </div>
+    </div>
+    <div *ngIf="visible">
+        <form>
+            <div class="form-group mt-2 comment">
+                <label for="exampleFormControlTextarea1">Enter a comment:</label>
+                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+            </div>
+        </form>
+    </div>
+</div>
