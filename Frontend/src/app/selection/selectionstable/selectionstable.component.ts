@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Selections } from 'src/app/models/selections';
 
+declare var window: any;
+
 @Component({
   selector: 'app-selectionstable',
   templateUrl: './selectionstable.component.html',
@@ -45,9 +47,23 @@ export class SelectionstableComponent implements OnInit {
     }
   ]
 
+  formModal: any;
+
+
   constructor() { }
 
   ngOnInit(): void {
+    this.formModal = new window.bootstrap.Modal(
+      document.getElementById("exampleModal1")
+    );
   }
 
+  openModal() {
+    this.formModal.show();
+
+  }
+
+  addSelection() {
+    this.formModal.hide();
+  }
 }
