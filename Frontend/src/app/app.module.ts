@@ -22,6 +22,7 @@ import { EditorsComponent } from './editors/editors.component';
 import { EditorsformComponent } from './editors/editorsform/editorsform.component';
 import { ApplicantComponent } from './applications/applicationstable/applicant/applicant.component';
 import { SelectioninformationComponent } from './selection/selectionstable/selectioninformation/selectioninformation.component';
+import { HttpClientModule } from '@angular/common/http';
 
 const appRoutes: Routes = [
   { path: '', component: ApplyforinternshipComponent },
@@ -60,7 +61,8 @@ const appRoutes: Routes = [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    RouterModule.forRoot(appRoutes)
+    RouterModule.forRoot(appRoutes),
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

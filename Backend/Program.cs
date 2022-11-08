@@ -32,7 +32,7 @@ internal static class Program
         // Add services to the container.
         builder.Services.AddDbContext<DataContext>(options =>
         options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
-        
+
         builder.Services.AddControllers();
         // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
         builder.Services.AddEndpointsApiExplorer();
@@ -46,6 +46,10 @@ internal static class Program
         builder.Services.AddScoped<IUserRepository, UserRepository>();
         builder.Services.AddScoped<ISelectionRepository, SelectionRepository>();
         builder.Services.AddScoped<IMapper, Mapper>();
+        builder.Services.AddCors(options => options.AddPolicy(name: "ApplicationOrigins", policy =>
+        {
+            policy.WithOrigins("http://localhost:4200").AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader();
+        }));
         builder.Services.AddAuthorization(options =>
        options.AddPolicy("AdminRolePolicy", policy => policy.RequireRole("Admin", "Editor")));
         builder.Services.Configure<IdentityOptions>(options =>
@@ -57,7 +61,7 @@ internal static class Program
             options.Password.RequireUppercase = true;
             options.Password.RequiredLength = 6;
             options.User.AllowedUserNameCharacters = null;
-           
+
             // Lockout settings.
             options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(5);
             options.Lockout.MaxFailedAccessAttempts = 5;
@@ -76,9 +80,9 @@ internal static class Program
             options.ExpireTimeSpan = TimeSpan.FromMinutes(5);
             options.SlidingExpiration = true;
         });
-        
+
         var app = builder.Build();
-        
+
         // Configure the HTTP request pipeline.
         if (app.Environment.IsDevelopment())
         {
@@ -86,7 +90,9 @@ internal static class Program
             app.UseSwaggerUI();
         }
 
-       // builder.Services.ConfigureIdentity();
+
+        // builder.Services.ConfigureIdentity();
+        app.UseCors("ApplicationOrigins");
         app.UseHttpsRedirection();
         app.UseAuthentication();
         app.UseAuthorization();
@@ -94,8 +100,8 @@ internal static class Program
         app.MapControllers();
 
         app.Run();
-        
-        
+
+
     }
     public static void ConfigureJWT(IServiceCollection services, IConfiguration configuration)
     {
@@ -129,7 +135,7 @@ internal static class Program
             {
                 Title = "Internship project",
                 Version = "v1"
-              
+
             });
             c.ResolveConflictingActions(apiDescriptions => apiDescriptions.First());
             c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme

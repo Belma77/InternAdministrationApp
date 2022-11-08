@@ -70,11 +70,11 @@
         </thead>
         <tbody>
             <tr style="cursor: pointer;" routerLink="/applicant" *ngFor="let applicant of applicants">
-                <th scope="row">{{ applicant.id }}</th>
-                <td>{{ applicant.first }}</td>
-                <td>{{ applicant.last }}</td>
+                <th scope="row">{{ applicants.id }}</th>
+                <td>{{ applicant.firstName }}</td>
+                <td>{{ applicant.lastName }}</td>
                 <td>{{ applicant.email }}</td>
-                <td>{{ applicant.education }}</td>
+                <td>{{ applicant.educationLevel }}</td>
                 <td>{{ applicant.status }}</td>
             </tr>
         </tbody>
