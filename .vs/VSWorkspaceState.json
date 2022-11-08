@@ -1,6 +1,11 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\Backend\\Areas\\Identity",
+    "\\Backend\\Extensions",
+    "\\Backend\\obj",
+    "\\Backend\\obj\\Debug"
   ],
+  "SelectedNode": "\\Backend",
   "PreviewInSolutionExplorer": false
 }

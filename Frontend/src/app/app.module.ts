@@ -20,6 +20,8 @@ import { SelectionComponent } from './selection/selection.component';
 import { SelectionstableComponent } from './selection/selectionstable/selectionstable.component';
 import { EditorsComponent } from './editors/editors.component';
 import { EditorsformComponent } from './editors/editorsform/editorsform.component';
+import { ApplicantComponent } from './applications/applicationstable/applicant/applicant.component';
+import { SelectioninformationComponent } from './selection/selectionstable/selectioninformation/selectioninformation.component';
 
 const appRoutes: Routes = [
   { path: '', component: ApplyforinternshipComponent },
@@ -29,6 +31,8 @@ const appRoutes: Routes = [
   { path: 'applications', component: ApplicationsComponent },
   { path: 'selections', component: SelectionComponent },
   { path: 'editors', component: EditorsComponent },
+  { path: 'applicant', component: ApplicantComponent },
+  { path: 'selection', component: SelectioninformationComponent },
 ];
 
 @NgModule({
@@ -48,7 +52,9 @@ const appRoutes: Routes = [
     SelectionComponent,
     SelectionstableComponent,
     EditorsComponent,
-    EditorsformComponent
+    EditorsformComponent,
+    ApplicantComponent,
+    SelectioninformationComponent
   ],
   imports: [
     BrowserModule,

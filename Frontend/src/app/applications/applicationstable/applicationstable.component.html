@@ -21,8 +21,8 @@
                     Sort
                 </button>
                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                    <li><a class="dropdown-item" href="#">BY ASC A-Z</a></li>
-                    <li><a class="dropdown-item" href="#">BY DESC Z-A</a></li>
+                    <li><a class="dropdown-item" href="#">BY A-Z</a></li>
+                    <li><a class="dropdown-item" href="#">BY Z-A</a></li>
                 </ul>
             </div>
         </div>
@@ -33,7 +33,7 @@
                     Education
                 </button>
                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                    <li><a class="dropdown-item" href="#">High School</a></li>
+                    <li><a class="dropdown-item" href="#">Highschool</a></li>
                     <li><a class="dropdown-item" href="#">Bachelor</a></li>
                     <li><a class="dropdown-item" href="#">Master</a></li>
                     <li><a class="dropdown-item" href="#">PhD</a></li>
@@ -48,8 +48,8 @@
                 </button>
                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                     <li><a class="dropdown-item" href="#">Applied</a></li>
-                    <li><a class="dropdown-item" href="#">Pre-Selection</a></li>
-                    <li><a class="dropdown-item" href="#">In-Selection</a></li>
+                    <li><a class="dropdown-item" href="#">PreSelection</a></li>
+                    <li><a class="dropdown-item" href="#">InSelection</a></li>
                     <li><a class="dropdown-item" href="#">Completed</a></li>
                     <li><a class="dropdown-item" href="#">Rejected</a></li>
                 </ul>
@@ -69,7 +69,7 @@
             </tr>
         </thead>
         <tbody>
-            <tr *ngFor="let applicant of applicants">
+            <tr style="cursor: pointer;" routerLink="/applicant" *ngFor="let applicant of applicants">
                 <th scope="row">{{ applicant.id }}</th>
                 <td>{{ applicant.first }}</td>
                 <td>{{ applicant.last }}</td>

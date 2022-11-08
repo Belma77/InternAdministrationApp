@@ -1,52 +1,28 @@
-<!-- <div id="sidebar" class="d-flex flex-column flex-shrink-0 p-3 bg-light" style="width: 300px;">
-    <ul class="nav nav-pills flex-column mb-auto">
-        <li class="h4">
-            <a routerLink="/applications" class="nav-link link-dark">
-                <svg class="bi me-2" width="16" height="16">
-                    <use xlink:href="#speedometer2"></use>
-                </svg>
-                Application
-            </a>
-        </li>
-        <hr>
-        <li class="h4">
-            <a routerLink="/selections" class="nav-link link-dark">
-                <svg class="bi me-2" width="16" height="16">
-                    <use xlink:href="#table"></use>
-                </svg>
-                Selection
-            </a>
-        </li>
-        <hr>
-        <li class="h4">
-            <a routerLink="/editors" class="nav-link link-dark">
-                <svg class="bi me-2" width="16" height="16">
-                    <use xlink:href="#grid"></use>
-                </svg>
-                Editors
-            </a>
-        </li>
-    </ul>
-</div> -->
 <div class="side-nav-content">
     <ul class="nav-list" [ngClass]="{'nav-list-open': sideNavStatus}">
-        <li class="nav-list-item">
-            <i class="fa-solid fa-window-maximize"></i>
-            <span>
-                <a routerLink="/applications">Application</a>
-            </span>
-        </li>
-        <li class="nav-list-item">
-            <i class="fa-solid fa-list-check"></i>
-            <span>
-                <a routerLink="/selections">Selection</a>
-            </span>
-        </li>
-        <li class="nav-list-item">
-            <i class="fa-solid fa-users"></i>
-            <span>
-                <a routerLink="/editors">Editors</a>
-            </span>
-        </li>
+        <div routerLink="/applications" style="cursor: pointer;">
+            <li class="nav-list-item">
+                <i class="fa-solid fa-window-maximize"></i>
+                <span>
+                    <a>Application</a>
+                </span>
+            </li>
+        </div>
+        <div routerLink="/selections" style="cursor: pointer;">
+            <li class="nav-list-item">
+                <i class="fa-solid fa-list-check"></i>
+                <span>
+                    <a>Selection</a>
+                </span>
+            </li>
+        </div>
+        <div routerLink="/editors" style="cursor: pointer;">
+            <li class="nav-list-item">
+                <i class="fa-solid fa-users"></i>
+                <span>
+                    <a>Editors</a>
+                </span>
+            </li>
+        </div>
     </ul>
 </div>

@@ -45,7 +45,7 @@
             </tr>
         </thead>
         <tbody>
-            <tr *ngFor="let selection of selections">
+            <tr routerLink="/selection" style="cursor: pointer;" *ngFor="let selection of selections">
                 <th scope="row">{{ selection.id }}</th>
                 <td>{{ selection.name }}</td>
                 <td>{{ selection.startDate }}</td>
