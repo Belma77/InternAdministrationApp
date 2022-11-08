@@ -1,11 +1,13 @@
 ﻿using Backend.Models;
+using Backend.Models.Enums;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using System.Xml.Linq;
 
 namespace Backend.Data
 {
-    public class DataContext:IdentityDbContext<User>
+    public class DataContext:IdentityDbContext<User,IdentityRole, string>
     {
         public DataContext(DbContextOptions<DataContext> options) : base(options)
         {
@@ -16,9 +18,9 @@ namespace Backend.Data
             base.OnModelCreating(modelBuilder);
             modelBuilder.Entity<Applications>().HasData(
              new Applications { Id = 1, FirstName = "test", LastName = "test", EducationLevel = 0, Email = "test@hotmail.com", Status = 0, CoverLetter = "" },
-             new Applications { Id = 2, FirstName = "test2", LastName = "test2", EducationLevel = Models.Enums.EducationLevel.MASTER, Email = "test2@hotmail.com", Status = Models.Enums.Status.INSELECTION, CoverLetter = "" },
+             new Applications { Id = 2, FirstName = "test2", LastName = "test2", EducationLevel = Models.Enums.EducationLevel.Master, Email = "test2@hotmail.com", Status = Models.Enums.Status.INSELECTION, CoverLetter = "" },
              new Applications { Id = 3, FirstName = "test3", LastName = "test3", EducationLevel = 0, Email = "test3@hotmail.com", Status = 0, CoverLetter = "" },
-             new Applications { Id = 4, FirstName = "novi", LastName = "prezime", EducationLevel = Models.Enums.EducationLevel.MASTER, Email = "novi@hotmail.com", Status = Models.Enums.Status.INSELECTION, CoverLetter = "" }
+             new Applications { Id = 4, FirstName = "novi", LastName = "prezime", EducationLevel = Models.Enums.EducationLevel.Master, Email = "novi@hotmail.com", Status = Models.Enums.Status.INSELECTION, CoverLetter = "" }
 
             ); 
             modelBuilder.Entity<Selection>().HasData(

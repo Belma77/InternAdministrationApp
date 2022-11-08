@@ -6,9 +6,9 @@ namespace Backend.Models.Enums
 
     public enum EducationLevel
     {
-        HIGHSCHOOL,
-        BACHELOR,
-        MASTER,
-        PHD
+        Highschool,
+        Bachelor,
+        Master,
+        PhD
     }
 }

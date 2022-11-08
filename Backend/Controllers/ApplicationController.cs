@@ -4,6 +4,7 @@ using Backend.Helpers;
 using Backend.Models;
 using Backend.Models.Enums;
 using Backend.Services.ApplicationService;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Linq;
@@ -12,8 +13,8 @@ using System.Net.WebSockets;
 namespace Backend.Controllers
 {
     [Route("Application")]
-    //[Route("api/[controller]")]
     [ApiController]
+    //[Authorize(Roles = "Editor")]
     public class ApplicationController : ControllerBase
     {
         IApplicationService _applicationService;
@@ -21,6 +22,14 @@ namespace Backend.Controllers
         {
             _applicationService = applicationService;
         }
+        [HttpPost]
+        public async Task<ActionResult> AddApplication(AddApplicationDto app)
+        {
+           await  _applicationService.AddApplication(app);
+            return Ok();
+        }
+        
+
         [HttpGet("GetAll")]
         public async Task<ActionResult<List<GetApplicationsDto>>> GetAllApplications([FromQuery] UserParams userParams)
         {

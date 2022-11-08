@@ -10,5 +10,6 @@ namespace Backend.Repository.AppRepo
         public IQueryable<Applications> GetAll(UserParams userParams);
         Task<Applications> GetById(int id);
         Task Update(Applications application);
+        Task Add(Applications app);
     }
 }

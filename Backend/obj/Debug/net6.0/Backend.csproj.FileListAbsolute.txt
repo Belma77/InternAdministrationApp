@@ -270,10 +270,11 @@ C:\Users\BelmaAliman\Desktop\intern_project\InternshipProject\Backend\bin\Debug\
 C:\Users\BelmaAliman\Desktop\intern_project\InternshipProject\Backend\bin\Debug\net6.0\runtimes\win\lib\net6.0\System.Drawing.Common.dll
 C:\Users\BelmaAliman\Desktop\intern_project\InternshipProject\Backend\bin\Debug\net6.0\runtimes\win\lib\net6.0\System.Security.Cryptography.ProtectedData.dll
 C:\Users\BelmaAliman\Desktop\intern_project\InternshipProject\Backend\bin\Debug\net6.0\runtimes\win\lib\net6.0\System.Windows.Extensions.dll
-C:\Users\BelmaAliman\Desktop\intern_project\InternshipProject\Backend\obj\Debug\net6.0\Backend.RazorAssemblyInfo.cache
-C:\Users\BelmaAliman\Desktop\intern_project\InternshipProject\Backend\obj\Debug\net6.0\Backend.RazorAssemblyInfo.cs
 C:\Users\BelmaAliman\Desktop\intern_project\InternshipProject\Backend\bin\Debug\net6.0\AutoMapper.dll
 C:\Users\BelmaAliman\Desktop\intern_project\InternshipProject\Backend\bin\Debug\net6.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
+<<<<<<< HEAD
+C:\Users\BelmaAliman\Desktop\intern_project\InternshipProject\Backend\bin\Debug\net6.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+=======
 C:\Users\dina3\Desktop\Internship\InternshipProject\Backend\bin\Debug\net6.0\appsettings.Development.json
 C:\Users\dina3\Desktop\Internship\InternshipProject\Backend\bin\Debug\net6.0\appsettings.json
 C:\Users\dina3\Desktop\Internship\InternshipProject\Backend\bin\Debug\net6.0\Backend.staticwebassets.runtime.json
@@ -567,3 +568,23 @@ C:\Users\dina3\Desktop\Internship\InternshipProject\Backend\bin\Debug\net6.0\Sys
 C:\Users\dina3\Desktop\Internship\InternshipProject\Backend\bin\Debug\net6.0\System.Text.Encodings.Web.dll
 C:\Users\dina3\Desktop\Internship\InternshipProject\Backend\bin\Debug\net6.0\System.Text.Json.dll
 C:\Users\dina3\Desktop\Internship\InternshipProject\Backend\bin\Debug\net6.0\runtimes\browser\lib\net6.0\System.Text.Encodings.Web.dll
+>>>>>>> 2b35643260129b9107eee90423f511ff4ceaa31b
+C:\Users\BelmaAliman\Desktop\intern_project\InternshipProject\Backend\bin\Debug\net6.0\Azure.Core.dll
+C:\Users\BelmaAliman\Desktop\intern_project\InternshipProject\Backend\bin\Debug\net6.0\Azure.Identity.dll
+C:\Users\BelmaAliman\Desktop\intern_project\InternshipProject\Backend\bin\Debug\net6.0\Microsoft.Extensions.Caching.Abstractions.dll
+C:\Users\BelmaAliman\Desktop\intern_project\InternshipProject\Backend\bin\Debug\net6.0\Microsoft.Extensions.Configuration.Abstractions.dll
+C:\Users\BelmaAliman\Desktop\intern_project\InternshipProject\Backend\bin\Debug\net6.0\Microsoft.Extensions.DependencyInjection.Abstractions.dll
+C:\Users\BelmaAliman\Desktop\intern_project\InternshipProject\Backend\bin\Debug\net6.0\Microsoft.Extensions.DependencyModel.dll
+C:\Users\BelmaAliman\Desktop\intern_project\InternshipProject\Backend\bin\Debug\net6.0\Microsoft.Extensions.Logging.dll
+C:\Users\BelmaAliman\Desktop\intern_project\InternshipProject\Backend\bin\Debug\net6.0\Microsoft.Extensions.Logging.Abstractions.dll
+C:\Users\BelmaAliman\Desktop\intern_project\InternshipProject\Backend\bin\Debug\net6.0\Microsoft.Extensions.Options.dll
+C:\Users\BelmaAliman\Desktop\intern_project\InternshipProject\Backend\bin\Debug\net6.0\Microsoft.Extensions.Primitives.dll
+C:\Users\BelmaAliman\Desktop\intern_project\InternshipProject\Backend\bin\Debug\net6.0\Microsoft.Identity.Client.Extensions.Msal.dll
+C:\Users\BelmaAliman\Desktop\intern_project\InternshipProject\Backend\bin\Debug\net6.0\Microsoft.IdentityModel.Abstractions.dll
+C:\Users\BelmaAliman\Desktop\intern_project\InternshipProject\Backend\bin\Debug\net6.0\Microsoft.SqlServer.Server.dll
+C:\Users\BelmaAliman\Desktop\intern_project\InternshipProject\Backend\bin\Debug\net6.0\Mono.TextTemplating.dll
+C:\Users\BelmaAliman\Desktop\intern_project\InternshipProject\Backend\bin\Debug\net6.0\System.CodeDom.dll
+C:\Users\BelmaAliman\Desktop\intern_project\InternshipProject\Backend\bin\Debug\net6.0\System.Memory.Data.dll
+C:\Users\BelmaAliman\Desktop\intern_project\InternshipProject\Backend\bin\Debug\net6.0\System.Text.Encodings.Web.dll
+C:\Users\BelmaAliman\Desktop\intern_project\InternshipProject\Backend\bin\Debug\net6.0\System.Text.Json.dll
+C:\Users\BelmaAliman\Desktop\intern_project\InternshipProject\Backend\bin\Debug\net6.0\runtimes\browser\lib\net6.0\System.Text.Encodings.Web.dll

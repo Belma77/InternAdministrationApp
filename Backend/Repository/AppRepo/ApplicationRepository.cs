@@ -41,7 +41,13 @@ namespace Backend.Repository.AppRepo
             await _dataContext.SaveChangesAsync();
             
         }
-
+        public async Task Add(Applications app)
+        {
+            app.Status=Status.APPLIED;
+           _dataContext.Applications.Add(app);
+           await _dataContext.SaveChangesAsync();
+           
+        }
        
        
     }
