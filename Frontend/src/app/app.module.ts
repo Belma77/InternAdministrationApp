@@ -22,6 +22,9 @@ import { EditorsComponent } from './editors/editors.component';
 import { EditorsformComponent } from './editors/editorsform/editorsform.component';
 import { ApplicantComponent } from './applications/applicationstable/applicant/applicant.component';
 import { SelectioninformationComponent } from './selection/selectionstable/selectioninformation/selectioninformation.component';
+import { HttpClientModule } from '@angular/common/http';
+import { NgxPaginationModule } from 'ngx-pagination';
+import { PaginationModule } from 'ngx-bootstrap/pagination'
 
 const appRoutes: Routes = [
   { path: '', component: ApplyforinternshipComponent },
@@ -54,13 +57,19 @@ const appRoutes: Routes = [
     EditorsComponent,
     EditorsformComponent,
     ApplicantComponent,
-    SelectioninformationComponent
+    SelectioninformationComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    RouterModule.forRoot(appRoutes)
+    RouterModule.forRoot(appRoutes),
+    HttpClientModule,
+    NgxPaginationModule,
+    PaginationModule.forRoot()
+  ],
+  exports: [
+    PaginationModule
   ],
   providers: [],
   bootstrap: [AppComponent]
