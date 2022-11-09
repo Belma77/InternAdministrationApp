@@ -69,8 +69,9 @@
             </tr>
         </thead>
         <tbody>
-            <tr style="cursor: pointer;" routerLink="/applicant" *ngFor="let applicant of applicants">
-                <th scope="row">{{ applicants.id }}</th>
+            <tr style="cursor: pointer;" routerLink="/applicant" *ngFor="let applicant of applicants; let i = index">
+                <th scope="row">{{ (pagination.ItemsPerPage * pagination.CurrentPage ) + i - pagination.ItemsPerPage + 1
+                    }}</th>
                 <td>{{ applicant.firstName }}</td>
                 <td>{{ applicant.lastName }}</td>
                 <td>{{ applicant.email }}</td>
