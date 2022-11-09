@@ -45,6 +45,10 @@ namespace Backend.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<string>("CV")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("CoverLetter")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -75,6 +79,7 @@ namespace Backend.Migrations
                         new
                         {
                             Id = 1,
+                            CV = "",
                             CoverLetter = "",
                             EducationLevel = 0,
                             Email = "test@hotmail.com",
@@ -85,6 +90,7 @@ namespace Backend.Migrations
                         new
                         {
                             Id = 2,
+                            CV = "",
                             CoverLetter = "",
                             EducationLevel = 2,
                             Email = "test2@hotmail.com",
@@ -95,6 +101,7 @@ namespace Backend.Migrations
                         new
                         {
                             Id = 3,
+                            CV = "",
                             CoverLetter = "",
                             EducationLevel = 0,
                             Email = "test3@hotmail.com",
@@ -105,6 +112,7 @@ namespace Backend.Migrations
                         new
                         {
                             Id = 4,
+                            CV = "",
                             CoverLetter = "",
                             EducationLevel = 2,
                             Email = "novi@hotmail.com",

@@ -3,6 +3,7 @@ using Backend.Models;
 using Backend.Models.Enums;
 using Backend.Services.AuthService;
 using Backend.Services.UserService;
+//using Microsoft.AspNet.Identity;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
@@ -34,6 +35,7 @@ namespace Backend.Controllers
         public async Task<ActionResult> AddEditor(AddEditorDto user)
         {
             IdentityResult result;
+            
             if (ModelState.IsValid)
             {
                 var editor = new User { FirstName = user.FirstName, LastName = user.LastName, Email = user.Email, UserName = user.UserName };
@@ -63,7 +65,14 @@ namespace Backend.Controllers
         {
             return Ok(await _authService.Login(user));
         }
+        [HttpGet]
+        public string getUser()
+        {
+            //var identity = HttpContext.User.Claims;
+            string userId = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Name).Value;
 
+            return userId;
+        }
         
     }
 }

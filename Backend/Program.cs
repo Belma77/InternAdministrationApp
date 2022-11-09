@@ -1,34 +1,69 @@
-using Backend.Data;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.AspNetCore.Identity;
-using Backend.Areas.Identity.Data;
-using Backend.Models;
-using Backend.Models.Enums;
-using Microsoft.OpenApi.Models;
-using Microsoft.Extensions.Options;
-using Backend.Services.ApplicationService;
-using Backend.Repository.AppRepo;
 using AutoMapper;
+using Backend.Data;
+using Backend.Models;
+using Backend.Repository.AppRepo;
 using Backend.Repository.SelectionRepo;
-using Backend.Services.SelectionService;
-using Backend.Helpers;
-using System.Security.Cryptography.X509Certificates;
-using Microsoft.CodeAnalysis.CSharp.Syntax;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.IdentityModel.Tokens;
-using System.Text;
-using Backend.Services.UserService;
 using Backend.Repository.UserRepo;
+using Backend.Services.ApplicationService;
 using Backend.Services.AuthService;
-using Microsoft.AspNetCore.Builder;
+using Backend.Services.SelectionService;
+using Backend.Services.UserService;
+//using JWTAuthentication.NET6._0.Auth;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
+using Microsoft.OpenApi.Models;
+using System.Text;
 
-internal static class Program
+var builder = WebApplication.CreateBuilder(args);
+ConfigurationManager configuration = builder.Configuration;
+
+// Add services to the container.
+
+// For Entity Framework
+builder.Services.AddDbContext<DataContext>(options => options.UseSqlServer(configuration.GetConnectionString("DefaultConnection")));
+
+// For Identity
+builder.Services.AddIdentity<User, IdentityRole>()
+    .AddEntityFrameworkStores<DataContext>()
+    .AddDefaultTokenProviders();
+
+// Adding Authentication
+builder.Services.AddAuthentication(options =>
 {
-    private static void Main(string[] args)
-    {
-        var builder = WebApplication.CreateBuilder(args);
-        builder.Services.AddAutoMapper(typeof(Program).Assembly);
+    options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+    options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+    options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
+})
 
+// Adding Jwt Bearer
+.AddJwtBearer(options =>
+{
+    options.SaveToken = true;
+    options.RequireHttpsMetadata = false;
+    var jwt = configuration.GetSection("jwtConfig");
+    var secretKey = jwt["secretKey"];
+    options.TokenValidationParameters = new TokenValidationParameters()
+    {
+        ValidateIssuer = true,
+        ValidateAudience = true,
+        ValidateLifetime = true,
+        ValidateIssuerSigningKey = true,
+        ValidIssuer = jwt["validIssuer"],
+        ValidAudience = jwt["validAudience"],
+        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(secretKey)),
+    };
+});
+builder.Services.AddScoped<IApplicationService, ApplicationService>();
+builder.Services.AddScoped<IApplicationRepository, ApplicationRepository>();
+builder.Services.AddScoped<ISelectionService, SelectionService>();
+builder.Services.AddScoped<IAuthService, AuthService>();
+builder.Services.AddScoped<ISelectionRepository, SelectionRepository>();
+
+<<<<<<< HEAD
+builder.Services.AddScoped<IUserRepository, UserRepository>();
+=======
         // Add services to the container.
         builder.Services.AddDbContext<DataContext>(options =>
         options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
@@ -66,11 +101,21 @@ internal static class Program
             options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(5);
             options.Lockout.MaxFailedAccessAttempts = 5;
             options.Lockout.AllowedForNewUsers = true;
+>>>>>>> 078bafeb0608d521b4d8d579c0ef89fa63c856b4
 
-            // User settings.
-            options.User.AllowedUserNameCharacters = null;
-            options.User.AllowedUserNameCharacters = "";
+builder.Services.AddScoped<IUserService, UserService>();
+builder.Services.AddAutoMapper(typeof(Program).Assembly);
 
+<<<<<<< HEAD
+builder.Services.AddScoped<IMapper, Mapper>();
+builder.Services.AddControllers();
+// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+builder.Services.AddEndpointsApiExplorer();
+//builder.Services.AddSwaggerGen();
+builder.Services.AddSwaggerGen(c =>
+{
+    c.SwaggerDoc("v1", new OpenApiInfo
+=======
             options.User.RequireUniqueEmail = true;
         });
         builder.Services.ConfigureApplicationCookie(options =>
@@ -104,31 +149,24 @@ internal static class Program
 
     }
     public static void ConfigureJWT(IServiceCollection services, IConfiguration configuration)
+>>>>>>> 078bafeb0608d521b4d8d579c0ef89fa63c856b4
     {
-        var jwt = configuration.GetSection("jwtConfig");
-        var secretKey = jwt["secret"];
-        services.AddAuthentication(opt =>
-        {
-            opt.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-            opt.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-        })
-        .AddJwtBearer(options =>
-        {
-            options.TokenValidationParameters = new TokenValidationParameters
-            {
-                ValidateIssuer = true,
-                ValidateAudience = true,
-                ValidateLifetime = true,
-                ValidateIssuerSigningKey = true,
-                ValidIssuer = jwt["validIssuer"],
-                ValidAudience = jwt["validAudience"],
-                IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(secretKey)),
+        Title = "Internship project",
+        Version = "v1"
 
-            };
-        });
-    }
-    public static void ConfigureSwagger(this IServiceCollection services)
+    });
+    c.ResolveConflictingActions(apiDescriptions => apiDescriptions.First());
+    c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
     {
+<<<<<<< HEAD
+        Name = "Authorization",
+        Type = SecuritySchemeType.ApiKey,
+        Scheme = "Bearer",
+        BearerFormat = "JWT",
+        In = ParameterLocation.Header,
+        Description = "JWT Authorization header using the Bearer scheme."
+    });
+=======
         services.AddSwaggerGen(c =>
         {
             c.SwaggerDoc("v1", new OpenApiInfo
@@ -147,8 +185,9 @@ internal static class Program
                 In = ParameterLocation.Header,
                 Description = "JWT Authorization header using the Bearer scheme."
             });
+>>>>>>> 078bafeb0608d521b4d8d579c0ef89fa63c856b4
 
-            c.AddSecurityRequirement(new OpenApiSecurityRequirement
+    c.AddSecurityRequirement(new OpenApiSecurityRequirement
             {
                 {
                     new OpenApiSecurityScheme
@@ -162,7 +201,22 @@ internal static class Program
                     new string[] {}
                 }
             });
-        });
-    }
+});
+var app = builder.Build();
+
+// Configure the HTTP request pipeline.
+if (app.Environment.IsDevelopment())
+{
+    app.UseSwagger();
+    app.UseSwaggerUI();
 }
 
+app.UseHttpsRedirection();
+
+// Authentication & Authorization
+app.UseAuthentication();
+app.UseAuthorization();
+
+app.MapControllers();
+
+app.Run();
