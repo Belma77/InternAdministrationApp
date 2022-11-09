@@ -3,10 +3,14 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
+#pragma warning disable CA1814 // Prefer jagged arrays over multidimensional
+
 namespace Backend.Migrations
 {
-    public partial class inital : Migration
+    /// <inheritdoc />
+    public partial class migracija : Migration
     {
+        /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
@@ -20,6 +24,7 @@ namespace Backend.Migrations
                     Email = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     EducationLevel = table.Column<int>(type: "int", nullable: false),
                     CoverLetter = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    CV = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Status = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
@@ -248,13 +253,13 @@ namespace Backend.Migrations
 
             migrationBuilder.InsertData(
                 table: "Applications",
-                columns: new[] { "Id", "CoverLetter", "EducationLevel", "Email", "FirstName", "LastName", "Status" },
+                columns: new[] { "Id", "CV", "CoverLetter", "EducationLevel", "Email", "FirstName", "LastName", "Status" },
                 values: new object[,]
                 {
-                    { 1, "", 0, "test@hotmail.com", "test", "test", 0 },
-                    { 2, "", 2, "test2@hotmail.com", "test2", "test2", 2 },
-                    { 3, "", 0, "test3@hotmail.com", "test3", "test3", 0 },
-                    { 4, "", 2, "novi@hotmail.com", "novi", "prezime", 2 }
+                    { 1, "", "", 0, "test@hotmail.com", "test", "test", 0 },
+                    { 2, "", "", 2, "test2@hotmail.com", "test2", "test2", 2 },
+                    { 3, "", "", 0, "test3@hotmail.com", "test3", "test3", 0 },
+                    { 4, "", "", 2, "novi@hotmail.com", "novi", "prezime", 2 }
                 });
 
             migrationBuilder.InsertData(
@@ -327,6 +332,7 @@ namespace Backend.Migrations
                 column: "SelectionId");
         }
 
+        /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(

@@ -11,6 +11,7 @@ namespace Backend.Services.ApplicationService
         public Task<PagedList<GetApplicationsDto>> GetAllApplications(UserParams userParams);
         Task<GetAppDto> GetApplicationById(int id);
         Task AddApplication(AddApplicationDto app);
+        Task<GetCommentDto> AddAppComment(int id, string comment);
 
 
     }

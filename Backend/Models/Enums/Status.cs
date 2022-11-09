@@ -6,10 +6,10 @@ namespace Backend.Models.Enums
 
     public enum Status
     {
-        APPLIED, 
-        PRESELECTION,
-        INSELECTION,
-        COMPLETED,
-        REJECTED
+        Applied, 
+        Preselection,
+        Inselection,
+        Completed,
+        Rejected
     }
 }

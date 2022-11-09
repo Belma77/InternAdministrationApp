@@ -16,8 +16,8 @@ namespace Backend.Dtos
         public EducationLevel EducationLevel { get; set; }
         [Required]
         public string CoverLetter { get; set; }
-        //[Required]
-       // public string CV { get; set; }
+        [Required]
+        public string CV { get; set; }
     
 
 

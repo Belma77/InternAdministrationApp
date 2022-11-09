@@ -54,6 +54,7 @@ namespace Backend.Services.UserService
         {
             if (!await ValidateUserAsync(user))
                 throw new Exception("User not found");
+            
             return await CreateTokenAsync();
         }
         private SigningCredentials GetSigningCredentials()
@@ -71,6 +72,10 @@ namespace Backend.Services.UserService
             new Claim(ClaimTypes.Name, _user.UserName),
 
         };
+            var rola = await _userManager.GetUsersInRoleAsync("Editor");
+            Console.WriteLine(rola);
+            var isRole = await _userManager.IsInRoleAsync(_user, "Editor");
+            Console.WriteLine(isRole);
             var roles = await _userManager.GetRolesAsync(_user);
             foreach (var role in roles)
             {

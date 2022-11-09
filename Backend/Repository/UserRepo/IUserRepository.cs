@@ -1,12 +1,11 @@
 ﻿using Backend.Dtos;
+using Backend.Models;
 using Microsoft.AspNetCore.Identity;
 
 namespace Backend.Repository.UserRepo
 {
     public interface IUserRepository
     {
-        Task<IdentityResult> RegisterUserAsync(AddEditorDto userForRegistration);
-        Task<bool> ValidateUserAsync(UserLoginDto loginDto);
-        Task<string> CreateTokenAsync();
+        Task<User> GetByUserName(string username);
     }
 }
