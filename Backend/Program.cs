@@ -69,7 +69,6 @@ builder.Services.AddScoped<IUserService, UserService>();
 // Add services to the container.
 
 builder.Services.AddControllers();
-<<<<<<< HEAD
         // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
         builder.Services.AddEndpointsApiExplorer();
         builder.Services.AddScoped<IMapper, Mapper>();
@@ -79,7 +78,7 @@ builder.Services.AddControllers();
         }));
         builder.Services.AddAuthorization(options =>
        options.AddPolicy("AdminRolePolicy", policy => policy.RequireRole("Admin", "Editor")));
-=======
+
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddScoped<IMapper, Mapper>();
@@ -89,7 +88,6 @@ builder.Services.AddCors(options => options.AddPolicy(name: "ApplicationOrigins"
 }));
 builder.Services.AddAuthorization(options =>
 options.AddPolicy("AdminRolePolicy", policy => policy.RequireRole("Admin", "Editor")));
->>>>>>> 09b45b1e04f99431862fcbbe71067ae92da2d2b2
 builder.Services.Configure<IdentityOptions>(options =>
 {
     // Password settings.
@@ -117,7 +115,6 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(c =>
 {
 
-<<<<<<< HEAD
         c.SwaggerDoc("v1", new OpenApiInfo
         {
             Title = "Internship project",
@@ -134,8 +131,7 @@ builder.Services.AddSwaggerGen(c =>
             In = ParameterLocation.Header,
             Description = "JWT Authorization header using the Bearer scheme."
         });
-        c.AddSecurityRequirement(new OpenApiSecurityRequirement
-=======
+
     c.SwaggerDoc("v1", new OpenApiInfo
     {
         Title = "Internship project",
@@ -153,7 +149,6 @@ builder.Services.AddSwaggerGen(c =>
         Description = "JWT Authorization header using the Bearer scheme."
     });
     c.AddSecurityRequirement(new OpenApiSecurityRequirement
->>>>>>> 09b45b1e04f99431862fcbbe71067ae92da2d2b2
             {
                 {
                     new OpenApiSecurityScheme
@@ -167,8 +162,7 @@ builder.Services.AddSwaggerGen(c =>
                     new string[] {}
                 }
             });
-<<<<<<< HEAD
-=======
+
 
 });
 builder.Services.ConfigureApplicationCookie(options =>
@@ -180,9 +174,7 @@ builder.Services.ConfigureApplicationCookie(options =>
 });
 
 var app = builder.Build();
->>>>>>> 09b45b1e04f99431862fcbbe71067ae92da2d2b2
 
-    });
     builder.Services.ConfigureApplicationCookie(options =>
     {
         // Cookie settings
@@ -191,8 +183,7 @@ var app = builder.Build();
         options.SlidingExpiration = true;
     });
 
-<<<<<<< HEAD
-    var app = builder.Build();
+
 
     // Configure the HTTP request pipeline.
     if (app.Environment.IsDevelopment())
@@ -211,20 +202,13 @@ var app = builder.Build();
 
     app.Run();
 
-=======
 
-// builder.Services.ConfigureIdentity();
 app.UseCors("ApplicationOrigins");
 app.UseHttpsRedirection();
 app.UseAuthentication();
 app.UseAuthorization();
->>>>>>> 09b45b1e04f99431862fcbbe71067ae92da2d2b2
 
-
-<<<<<<< HEAD
-=======
 app.Run();
 
 
 
->>>>>>> 09b45b1e04f99431862fcbbe71067ae92da2d2b2

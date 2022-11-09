@@ -8,11 +8,8 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Backend.Migrations
 {
     /// <inheritdoc />
-<<<<<<<< HEAD:Backend/Migrations/20221109140329_seedData.cs
     public partial class seedData : Migration
-========
-    public partial class nova : Migration
->>>>>>>> 09b45b1e04f99431862fcbbe71067ae92da2d2b2:Backend/Migrations/20221109114106_nova.cs
+
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)

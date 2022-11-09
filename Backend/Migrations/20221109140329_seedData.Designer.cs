@@ -11,14 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Backend.Migrations
 {
-    [DbContext(typeof(DataContext))]
-<<<<<<<< HEAD:Backend/Migrations/20221109140329_seedData.Designer.cs
-    [Migration("20221109140329_seedData")]
+   // [DbContext(typeof(DataContext))]
     partial class seedData
-========
-    [Migration("20221109114106_nova")]
-    partial class nova
->>>>>>>> 09b45b1e04f99431862fcbbe71067ae92da2d2b2:Backend/Migrations/20221109114106_nova.Designer.cs
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
