@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ApplicationService } from 'src/app/services/application.service';
 
 @Component({
   selector: 'app-applyform',
@@ -7,9 +8,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ApplyformComponent implements OnInit {
 
-  constructor() { }
+  constructor(private appService: ApplicationService) { }
 
   ngOnInit(): void {
+  }
+
+  onSubmit(applicationData: { firstName: string, lastName: string, email: string, educationLevel: string, coverLetter: string, cv: string }) {
+    this.appService.storeApplication(applicationData);
   }
 
 }

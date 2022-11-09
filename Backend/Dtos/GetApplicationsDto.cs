@@ -5,7 +5,7 @@ namespace Backend.Dtos
 {
     public class GetApplicationsDto
     {
-        public int Id { get; set; }
+        public int id { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string Email { get; set; }

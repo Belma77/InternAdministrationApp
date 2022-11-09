@@ -25,6 +25,7 @@ import { SelectioninformationComponent } from './selection/selectionstable/selec
 import { HttpClientModule } from '@angular/common/http';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { PaginationModule } from 'ngx-bootstrap/pagination'
+import { FormsModule } from '@angular/forms';
 
 const appRoutes: Routes = [
   { path: '', component: ApplyforinternshipComponent },
@@ -66,7 +67,8 @@ const appRoutes: Routes = [
     RouterModule.forRoot(appRoutes),
     HttpClientModule,
     NgxPaginationModule,
-    PaginationModule.forRoot()
+    PaginationModule.forRoot(),
+    FormsModule
   ],
   exports: [
     PaginationModule
