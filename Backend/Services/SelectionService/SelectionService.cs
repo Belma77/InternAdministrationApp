@@ -32,6 +32,6 @@ namespace Backend.Services.SelectionService
             return _mapper.Map<GetSelectionDto>(selection);
             
         }
-
+        
     }
 }

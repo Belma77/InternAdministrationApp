@@ -66,11 +66,23 @@ namespace Backend.Services.ApplicationService
             //var user = GetCurrentUser();
             var app = await _applicationRepository.GetById(id);
             var commmentModel = new Comment();
-            commmentModel.Editor = user;
+            commmentModel.User = user;
             commmentModel.Description = comment;
             app.AppComments.Add(commmentModel);
             await _applicationRepository.Update(app);
             return _mapper.Map<GetCommentDto>(commmentModel);
+
+        }
+        public async Task<GetAppDto> UpdateStatus(int id, Status status)
+        {
+
+            string username = _contextAccessor.HttpContext.User.Identity.Name;
+            var user = await _userService.GetByUsername(username);
+            //var user = GetCurrentUser();
+            var app = await _applicationRepository.GetById(id);
+            app.Status = status;
+            await _applicationRepository.Update(app);
+            return _mapper.Map<GetAppDto>(app);
 
         }
 

@@ -21,6 +21,12 @@ namespace Backend.Repository.SelectionRepo
                 Include(x => x.Applications)
                 .FirstOrDefaultAsync();
         }
+        public async Task<Selection> AddSelection(Selection selection)
+        {
+             _dbContext.Selections.Add(selection);
+            await  _dbContext.SaveChangesAsync();
+            return selection;
+        }
 
     }
 }
