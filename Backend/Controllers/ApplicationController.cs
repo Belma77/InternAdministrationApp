@@ -56,9 +56,8 @@ namespace Backend.Controllers
         public async Task<ActionResult<GetAppDto>> UpdateStatus(int id, Status status)
         {
             return Ok(await _applicationService.UpdateStatus(id, status));
-            
+
         }
-<<<<<<< HEAD
         //[HttpPatch("AddComment")]
         //public async Task<ActionResult<GetCommentDto>> AddAppComment(int id, string comment)
         //{
@@ -71,9 +70,6 @@ namespace Backend.Controllers
         //    await _applicationService.AddAppComment(id, comment);
         //    return Ok();
         //}
-=======
-
->>>>>>> 2c0b113c213ad8ae36d2e5ea72bddd6c99608249
 
     }
 }
