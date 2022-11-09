@@ -11,10 +11,10 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Backend.Repository.AppRepo
 {
-    public class ApplicationRepository:IApplicationRepository
+    public class ApplicationRepository : IApplicationRepository
     {
         private readonly DataContext _dataContext;
-       private readonly IMapper _mapper;
+        private readonly IMapper _mapper;
 
         public ApplicationRepository(DataContext dataContext, IMapper mapper)
         {
@@ -25,30 +25,28 @@ namespace Backend.Repository.AppRepo
         {
             var query = _dataContext.Applications.AsQueryable();
             return query;
-                
+
         }
         public async Task<Applications> GetById(int id)
         {
             return await _dataContext.Applications.
-                Include(x=>x.Selections).
-                Include(x=>x.AppComments).
-                FirstOrDefaultAsync(x=>x.Id==id);
-           
+                Include(x => x.Selections).
+                Include(x => x.AppComments).
+                FirstOrDefaultAsync(x => x.Id == id);
+
         }
         public async Task Update(Applications application)
         {
             _dataContext.Applications.Update(application);
             await _dataContext.SaveChangesAsync();
-            
+
         }
         public async Task Add(Applications app)
         {
-            app.Status=Status.APPLIED;
-           _dataContext.Applications.Add(app);
-           await _dataContext.SaveChangesAsync();
-           
+            app.Status = Status.APPLIED;
+            _dataContext.Applications.Add(app);
+            await _dataContext.SaveChangesAsync();
+
         }
-       
-       
     }
 }
