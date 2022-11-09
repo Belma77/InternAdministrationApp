@@ -1,4 +1,6 @@
-﻿namespace Backend.Dtos
+﻿using Backend.Models;
+
+namespace Backend.Dtos
 {
     public class GetCommentDto
     {

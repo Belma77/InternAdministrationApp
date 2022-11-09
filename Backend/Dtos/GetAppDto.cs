@@ -12,7 +12,7 @@ namespace Backend.Dtos
         public string CoverLetter { get; set; }
          public string? CV { get; set; }
         public Status Status { get; set; }
-        public List<GetCommentDto>? Comments { get; set; }
+        public List<GetCommentDto>? AppComments { get; set; }
         public List<GetSelectionDto>? Selections { get; set; }
     }
 }

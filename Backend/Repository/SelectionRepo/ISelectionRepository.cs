@@ -7,5 +7,6 @@ namespace Backend.Repository.SelectionRepo
     {
         IQueryable<Selection> GetAllSelections();
         Task<Selection> GetSelectionById(int id);
+        Task<Selection> AddSelection(Selection selection);
     }
 }

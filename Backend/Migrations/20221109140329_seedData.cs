@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Backend.Migrations
 {
     /// <inheritdoc />
-    public partial class migracija : Migration
+    public partial class seedData : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -226,7 +226,7 @@ namespace Backend.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    EditorId = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    UserId = table.Column<string>(type: "nvarchar(450)", nullable: true),
                     ApplicationsId = table.Column<int>(type: "int", nullable: true),
                     SelectionId = table.Column<int>(type: "int", nullable: true)
                 },
@@ -239,11 +239,10 @@ namespace Backend.Migrations
                         principalTable: "Applications",
                         principalColumn: "Id");
                     table.ForeignKey(
-                        name: "FK_Comments_AspNetUsers_EditorId",
-                        column: x => x.EditorId,
+                        name: "FK_Comments_AspNetUsers_UserId",
+                        column: x => x.UserId,
                         principalTable: "AspNetUsers",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                     table.ForeignKey(
                         name: "FK_Comments_Selections_SelectionId",
                         column: x => x.SelectionId,
@@ -263,6 +262,20 @@ namespace Backend.Migrations
                 });
 
             migrationBuilder.InsertData(
+                table: "AspNetRoles",
+                columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
+                values: new object[,]
+                {
+                    { "c7b013f0-5201-4317-abd8-c211f91b7330", "2", "Editor", "Editor" },
+                    { "fab4fac1-c546-41de-aebc-a14da6895711", "1", "Admin", "Admin" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "AspNetUsers",
+                columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "FirstName", "LastName", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
+                values: new object[] { "b74ddd14-6340-4840-95c2-db12554843e5", 0, "9bfb4278-662f-46c8-9699-76ab0c94e290", "admin@gmail.com", false, "admin", "admin", false, null, "ADMIN@GMAIL.COM", "ADMIN", "AQAAAAEAACcQAAAAEK8V3WPlPthNwvK5vHdjpf1SCXRcczHRR4KB/8O0b7Vb/6kbWMFVnvk8O1Fe1fuTyg==", "1234567890", false, "4d319923-d915-4bf3-8430-5c2d08186c2e", false, "Admin" });
+
+            migrationBuilder.InsertData(
                 table: "Selections",
                 columns: new[] { "Id", "Description", "EndDate", "Name", "StartDate" },
                 values: new object[,]
@@ -271,6 +284,11 @@ namespace Backend.Migrations
                     { 2, "desc2", new DateTime(2022, 3, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "internship/2", new DateTime(2022, 2, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
                     { 3, "desc3", new DateTime(2022, 3, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "internship/3", new DateTime(2022, 2, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) }
                 });
+
+            migrationBuilder.InsertData(
+                table: "AspNetUserRoles",
+                columns: new[] { "RoleId", "UserId" },
+                values: new object[] { "fab4fac1-c546-41de-aebc-a14da6895711", "b74ddd14-6340-4840-95c2-db12554843e5" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_ApplicationsSelection_SelectionsId",
@@ -322,14 +340,14 @@ namespace Backend.Migrations
                 column: "ApplicationsId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Comments_EditorId",
-                table: "Comments",
-                column: "EditorId");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_Comments_SelectionId",
                 table: "Comments",
                 column: "SelectionId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Comments_UserId",
+                table: "Comments",
+                column: "UserId");
         }
 
         /// <inheritdoc />

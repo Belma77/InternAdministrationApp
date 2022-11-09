@@ -65,14 +65,7 @@ namespace Backend.Controllers
         {
             return Ok(await _authService.Login(user));
         }
-        [HttpGet]
-        public string getUser()
-        {
-            //var identity = HttpContext.User.Claims;
-            string userId = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Name).Value;
-
-            return userId;
-        }
+       
         
     }
 }
