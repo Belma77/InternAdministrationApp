@@ -10,24 +10,33 @@
 <div class="p-4">
     <div class="row text-center mb-3">
         <div class="col-3">
-            <form class="d-flex"> <input class="form-control mr-2" type="search" placeholder="Name" aria-label="Search">
-                <button class="btn btnsearch" type="submit">Search</button>
-            </form>
+            <!-- <form class="d-flex"> </form> -->
+            <div class="d-flex">
+                <input class="form-control mr-2" type="search" placeholder="Name" aria-label="Search"
+                    [(ngModel)]="search">
+                <button class="btn btnsearch" type="button" (click)="onSearch()">Search</button>
+            </div>
         </div>
         <div class="col-1">
-            <div class="dropdown">
+            <!-- <div class="dropdown">
                 <button class="btn btnsort dropdown-toggle" type="button" id="dropdownMenuButton1"
                     data-bs-toggle="dropdown" aria-expanded="false">
                     Sort
                 </button>
                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                    <li><a class="dropdown-item" href="#">BY A-Z</a></li>
-                    <li><a class="dropdown-item" href="#">BY Z-A</a></li>
+                    <li><a [(ngModel)]="value" class="dropdown-item" href="#">BY A-Z</a></li>
+                    <li><a [(ngModel)]="value" class="dropdown-item" href="#">BY Z-A</a></li>
                 </ul>
-            </div>
+            </div> -->
+            <select (ngModelChange)="onSelect($event)" [(ngModel)]="value" id="inputState" class="form-control"
+                id="educationLevel" name="educationLevel" required ngModel>
+                <option value="" disabled selected hidden>Sort</option>
+                <option>Ascending</option>
+                <option>Descending</option>
+            </select>
         </div>
         <div class="col-1">
-            <div class="dropdown">
+            <!-- <div class="dropdown">
                 <button class="btn btnsort dropdown-toggle" type="button" id="dropdownMenuButton1"
                     data-bs-toggle="dropdown" aria-expanded="false">
                     Education
@@ -38,10 +47,18 @@
                     <li><a class="dropdown-item" href="#">Master</a></li>
                     <li><a class="dropdown-item" href="#">PhD</a></li>
                 </ul>
-            </div>
+            </div> -->
+            <select (ngModelChange)="onSelectEducation($event)" [(ngModel)]="education" id="inputState"
+                class="form-control" id="educationLevel" name="educationLevel" placeholder="Education Level" required
+                ngModel>
+                <option>Highschool</option>
+                <option>Bachelor</option>
+                <option>Master</option>
+                <option>PhD</option>
+            </select>
         </div>
         <div class="col-1">
-            <div class="dropdown">
+            <!-- <div class="dropdown">
                 <button class="btn btnsort dropdown-toggle" type="button" id="dropdownMenuButton1"
                     data-bs-toggle="dropdown" aria-expanded="false">
                     Status
@@ -53,7 +70,15 @@
                     <li><a class="dropdown-item" href="#">Completed</a></li>
                     <li><a class="dropdown-item" href="#">Rejected</a></li>
                 </ul>
-            </div>
+            </div> -->
+            <select (ngModelChange)="onSelectStatus($event)" [(ngModel)]="status" id="inputState" class="form-control"
+                id="educationLevel" name="educationLevel" placeholder="Education Level" required ngModel>
+                <option>Applied</option>
+                <option>Preselection</option>
+                <option>Inselection</option>
+                <option>Completed</option>
+                <option>Rejected</option>
+            </select>
         </div>
         <div class="col-6"></div>
     </div>

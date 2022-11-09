@@ -1,7 +1,7 @@
-export interface Selections {
-    id: number,
-    name: String,
-    startDate: String,
-    endDate: String,
-    description: String
+export class Selections {
+    id?: number;
+    name = "";
+    startDate = "";
+    endDate = "";
+    description = "";
 }

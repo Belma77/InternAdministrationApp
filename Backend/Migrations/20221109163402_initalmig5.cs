@@ -8,11 +8,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Backend.Migrations
 {
     /// <inheritdoc />
-<<<<<<<< HEAD:Backend/Migrations/20221109140329_seedData.cs
-    public partial class seedData : Migration
-========
-    public partial class nova : Migration
->>>>>>>> 09b45b1e04f99431862fcbbe71067ae92da2d2b2:Backend/Migrations/20221109114106_nova.cs
+    public partial class initalmig5 : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -277,7 +273,7 @@ namespace Backend.Migrations
             migrationBuilder.InsertData(
                 table: "AspNetUsers",
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "FirstName", "LastName", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
-                values: new object[] { "b74ddd14-6340-4840-95c2-db12554843e5", 0, "9bfb4278-662f-46c8-9699-76ab0c94e290", "admin@gmail.com", false, "admin", "admin", false, null, "ADMIN@GMAIL.COM", "ADMIN", "AQAAAAEAACcQAAAAEK8V3WPlPthNwvK5vHdjpf1SCXRcczHRR4KB/8O0b7Vb/6kbWMFVnvk8O1Fe1fuTyg==", "1234567890", false, "4d319923-d915-4bf3-8430-5c2d08186c2e", false, "Admin" });
+                values: new object[] { "b74ddd14-6340-4840-95c2-db12554843e5", 0, "5cde6deb-055a-4f0a-8a6f-90c353c23983", "admin@gmail.com", false, "admin", "admin", false, null, "ADMIN@GMAIL.COM", "ADMIN", "AQAAAAEAACcQAAAAEBeCjb7KDsW1O8OjgBVff81dFxon6oXwhdUVOeIdKtOBLL0c523xZ5P8w1pcMR97Tg==", "1234567890", false, "11a183ae-31bb-4b30-ab18-05913fcddd94", false, "Admin" });
 
             migrationBuilder.InsertData(
                 table: "Selections",

@@ -12,13 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Backend.Migrations
 {
     [DbContext(typeof(DataContext))]
-<<<<<<<< HEAD:Backend/Migrations/20221109140329_seedData.Designer.cs
-    [Migration("20221109140329_seedData")]
-    partial class seedData
-========
-    [Migration("20221109114106_nova")]
-    partial class nova
->>>>>>>> 09b45b1e04f99431862fcbbe71067ae92da2d2b2:Backend/Migrations/20221109114106_nova.Designer.cs
+    [Migration("20221109163402_initalmig5")]
+    partial class initalmig5
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -292,7 +287,7 @@ namespace Backend.Migrations
                         {
                             Id = "b74ddd14-6340-4840-95c2-db12554843e5",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "9bfb4278-662f-46c8-9699-76ab0c94e290",
+                            ConcurrencyStamp = "5cde6deb-055a-4f0a-8a6f-90c353c23983",
                             Email = "admin@gmail.com",
                             EmailConfirmed = false,
                             FirstName = "admin",
@@ -300,10 +295,10 @@ namespace Backend.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "ADMIN@GMAIL.COM",
                             NormalizedUserName = "ADMIN",
-                            PasswordHash = "AQAAAAEAACcQAAAAEK8V3WPlPthNwvK5vHdjpf1SCXRcczHRR4KB/8O0b7Vb/6kbWMFVnvk8O1Fe1fuTyg==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEBeCjb7KDsW1O8OjgBVff81dFxon6oXwhdUVOeIdKtOBLL0c523xZ5P8w1pcMR97Tg==",
                             PhoneNumber = "1234567890",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "4d319923-d915-4bf3-8430-5c2d08186c2e",
+                            SecurityStamp = "11a183ae-31bb-4b30-ab18-05913fcddd94",
                             TwoFactorEnabled = false,
                             UserName = "Admin"
                         });

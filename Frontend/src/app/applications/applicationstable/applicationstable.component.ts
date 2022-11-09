@@ -14,6 +14,10 @@ export class ApplicationstableComponent implements OnInit {
   pagination: Pagination;
   PageNumber = 1;
   PageSize = 10;
+  value: string;
+  education: string;
+  status: string;
+  search: string;
 
   constructor(private applicantService: ApplicantsService) {
 
@@ -28,7 +32,7 @@ export class ApplicationstableComponent implements OnInit {
   }
 
   loadApplicants() {
-    this.applicantService.getApplicants(this.PageNumber, this.PageSize).subscribe(response => {
+    this.applicantService.getApplicants(this.PageNumber, this.PageSize, this.value, this.education, this.status, this.search).subscribe(response => {
       this.applicants = response.result;
       this.pagination = response.pagination;
     });
@@ -36,6 +40,25 @@ export class ApplicationstableComponent implements OnInit {
 
   pageChanged(event: any) {
     this.PageNumber = event.page;
+    this.loadApplicants();
+  }
+
+  onSelect(event) {
+    this.value = event;
+    this.loadApplicants();
+  }
+
+  onSelectEducation(event) {
+    this.education = event;
+    this.loadApplicants();
+  }
+
+  onSelectStatus(event) {
+    this.status = event;
+    this.loadApplicants();
+  }
+
+  onSearch() {
     this.loadApplicants();
   }
 

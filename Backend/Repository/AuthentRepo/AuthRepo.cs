@@ -4,11 +4,8 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Backend.Repository.Auth
 {
-<<<<<<< HEAD
-    public class AuthRepo:IAuthRepo
-=======
     public class AuthRepo : IAuthRepo
->>>>>>> 09b45b1e04f99431862fcbbe71067ae92da2d2b2
+
     {
         private DataContext _dbContext;
         public AuthRepo(DataContext dbContext)
