@@ -132,22 +132,9 @@ builder.Services.AddSwaggerGen(c =>
             Description = "JWT Authorization header using the Bearer scheme."
         });
 
-    c.SwaggerDoc("v1", new OpenApiInfo
-    {
-        Title = "Internship project",
-        Version = "v1"
-
-    });
+   
     c.ResolveConflictingActions(apiDescriptions => apiDescriptions.First());
-    c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
-    {
-        Name = "Authorization",
-        Type = SecuritySchemeType.ApiKey,
-        Scheme = "Bearer",
-        BearerFormat = "JWT",
-        In = ParameterLocation.Header,
-        Description = "JWT Authorization header using the Bearer scheme."
-    });
+   
     c.AddSecurityRequirement(new OpenApiSecurityRequirement
             {
                 {
@@ -174,16 +161,6 @@ builder.Services.ConfigureApplicationCookie(options =>
 });
 
 var app = builder.Build();
-
-    builder.Services.ConfigureApplicationCookie(options =>
-    {
-        // Cookie settings
-        options.Cookie.HttpOnly = true;
-        options.ExpireTimeSpan = TimeSpan.FromMinutes(5);
-        options.SlidingExpiration = true;
-    });
-
-
 
     // Configure the HTTP request pipeline.
     if (app.Environment.IsDevelopment())
