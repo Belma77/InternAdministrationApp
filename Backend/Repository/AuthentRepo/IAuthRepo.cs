@@ -4,7 +4,7 @@ namespace Backend.Repository.Auth
 {
     public interface IAuthRepo
     {
-        public Models.User findByUsername(string username);
+        Task<Models.User> findByUsername(string username);
 
     }
 }
