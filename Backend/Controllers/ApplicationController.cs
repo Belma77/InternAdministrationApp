@@ -20,7 +20,6 @@ namespace Backend.Controllers
     public class ApplicationController : ControllerBase
     {
         IApplicationService _applicationService;
-        // UserManager<User> _userManager;
         public ApplicationController(IApplicationService applicationService)
         {
             _applicationService = applicationService;
@@ -59,6 +58,7 @@ namespace Backend.Controllers
             return Ok(await _applicationService.UpdateStatus(id, status));
             
         }
+<<<<<<< HEAD
         //[HttpPatch("AddComment")]
         //public async Task<ActionResult<GetCommentDto>> AddAppComment(int id, string comment)
         //{
@@ -71,6 +71,9 @@ namespace Backend.Controllers
         //    await _applicationService.AddAppComment(id, comment);
         //    return Ok();
         //}
+=======
+
+>>>>>>> 2c0b113c213ad8ae36d2e5ea72bddd6c99608249
 
     }
 }

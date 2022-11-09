@@ -46,10 +46,15 @@ namespace Backend.Repository.AppRepo
             app.Status=Status.Applied;
            _dataContext.Applications.Add(app);
            await _dataContext.SaveChangesAsync();
+<<<<<<< HEAD
 
             app.Status=Status.Applied;
            _dataContext.Applications.Add(app);
            await _dataContext.SaveChangesAsync();
+=======
+            
+
+>>>>>>> 2c0b113c213ad8ae36d2e5ea72bddd6c99608249
         }
     }
 }
