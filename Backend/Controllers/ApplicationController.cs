@@ -58,18 +58,7 @@ namespace Backend.Controllers
             return Ok(await _applicationService.UpdateStatus(id, status));
 
         }
-        //[HttpPatch("AddComment")]
-        //public async Task<ActionResult<GetCommentDto>> AddAppComment(int id, string comment)
-        //{
-
-        //    return Ok(await _applicationService.AddAppComment(id, comment));
-        //}
-        //[HttpPost("UpdateStatus")]
-        //public async Task<ActionResult<GetAppDto>> AddAppComment(int id, string comment)
-        //{
-        //    await _applicationService.AddAppComment(id, comment);
-        //    return Ok();
-        //}
+        
 
     }
 }

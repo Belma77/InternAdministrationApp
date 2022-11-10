@@ -23,5 +23,19 @@ namespace Backend.Repository.UserRepo
         {
             return await _dataContext.Users.FirstOrDefaultAsync(x => x.UserName == username);
         }
+        public async Task<User> GetById(string Id)
+        {
+            return await _dataContext.Users.FirstOrDefaultAsync(x =>x.Id==Id);
+        }
+        public async Task<List<User>> GetAll()
+        {
+            return await _dataContext.Users.ToListAsync();
+        }
+        public async Task<List<User>> Remove(User u)
+        {
+             _dataContext.Remove(u);
+            await _dataContext.SaveChangesAsync();
+            return await _dataContext.Users.ToListAsync();
+        }
     }
 }
