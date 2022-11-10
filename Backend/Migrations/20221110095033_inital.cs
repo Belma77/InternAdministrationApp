@@ -8,8 +8,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Backend.Migrations
 {
     /// <inheritdoc />
-    public partial class seedData : Migration
-
+    public partial class inital : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -83,6 +82,8 @@ namespace Backend.Migrations
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     StartDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     EndDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    EditedAt = table.Column<DateTime>(type: "datetime2", nullable: true),
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
@@ -274,16 +275,16 @@ namespace Backend.Migrations
             migrationBuilder.InsertData(
                 table: "AspNetUsers",
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "FirstName", "LastName", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
-                values: new object[] { "b74ddd14-6340-4840-95c2-db12554843e5", 0, "9bfb4278-662f-46c8-9699-76ab0c94e290", "admin@gmail.com", false, "admin", "admin", false, null, "ADMIN@GMAIL.COM", "ADMIN", "AQAAAAEAACcQAAAAEK8V3WPlPthNwvK5vHdjpf1SCXRcczHRR4KB/8O0b7Vb/6kbWMFVnvk8O1Fe1fuTyg==", "1234567890", false, "4d319923-d915-4bf3-8430-5c2d08186c2e", false, "Admin" });
+                values: new object[] { "b74ddd14-6340-4840-95c2-db12554843e5", 0, "f1205d44-0b26-4b47-b330-4f53df51f9ad", "admin@gmail.com", false, "admin", "admin", false, null, "ADMIN@GMAIL.COM", "ADMIN", "AQAAAAEAACcQAAAAEAuAcPpZM2WAVjy+zsja86dVZESjM5is0FZwdgeaDN3WjNd+6iLEGQ5T/umtbRc5iA==", "1234567890", false, "751fb1c9-787b-46f2-a329-6eca78846dc1", false, "Admin" });
 
             migrationBuilder.InsertData(
                 table: "Selections",
-                columns: new[] { "Id", "Description", "EndDate", "Name", "StartDate" },
+                columns: new[] { "Id", "CreatedAt", "Description", "EditedAt", "EndDate", "Name", "StartDate" },
                 values: new object[,]
                 {
-                    { 1, "desc", new DateTime(2022, 3, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "internship/1", new DateTime(2022, 2, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
-                    { 2, "desc2", new DateTime(2022, 3, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "internship/2", new DateTime(2022, 2, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
-                    { 3, "desc3", new DateTime(2022, 3, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "internship/3", new DateTime(2022, 2, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) }
+                    { 1, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "desc", null, new DateTime(2022, 3, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "internship/1", new DateTime(2022, 2, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { 2, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "desc2", null, new DateTime(2022, 3, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "internship/2", new DateTime(2022, 2, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { 3, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "desc3", null, new DateTime(2022, 3, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "internship/3", new DateTime(2022, 2, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) }
                 });
 
             migrationBuilder.InsertData(

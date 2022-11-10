@@ -13,7 +13,7 @@ namespace Backend.Models
         public string CoverLetter { get; set; }
         public string CV { get; set; }
         public Status Status { get; set; }
-        public List<Comment>? AppComments  { get; set; }
+        public List<Comment>? Comments  { get; set; }
         public List<Selection>? Selections { get; set; }
 
 

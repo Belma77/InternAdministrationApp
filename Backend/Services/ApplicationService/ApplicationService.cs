@@ -43,6 +43,8 @@ namespace Backend.Services.ApplicationService
         public async Task<GetAppDto> GetApplicationById(int id)
         {
             var app= await _applicationRepository.GetById(id);
+            if (app == null)
+                throw new Exception("Application not found");
             return _mapper.Map<GetAppDto>(app);
             
         }
@@ -58,7 +60,7 @@ namespace Backend.Services.ApplicationService
         //    var user = _userService.GetByUsername(username);
         //    return user;
         //}
-        public async Task<GetCommentDto> AddAppComment(int id, string comment)
+        public async Task<GetAppDto> AddAppComment(int id, string comment)
         {
 
             string username = _contextAccessor.HttpContext.User.Identity.Name;
@@ -68,9 +70,9 @@ namespace Backend.Services.ApplicationService
             var commmentModel = new Comment();
             commmentModel.User = user;
             commmentModel.Description = comment;
-            app.AppComments.Add(commmentModel);
+            app.Comments.Add(commmentModel);
             await _applicationRepository.Update(app);
-            return _mapper.Map<GetCommentDto>(commmentModel);
+            return _mapper.Map<GetAppDto>(app);
 
         }
         public async Task<GetAppDto> UpdateStatus(int id, Status status)
