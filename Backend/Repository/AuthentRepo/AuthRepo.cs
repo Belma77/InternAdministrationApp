@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Backend.Repository.Auth
 {
-    public class AuthRepo:IAuthRepo
+    public class AuthRepo : IAuthRepo
 
     {
         private DataContext _dbContext;
@@ -14,7 +14,7 @@ namespace Backend.Repository.Auth
         }
         public async Task<Models.User> findByUsername(string username)
         {
-            return  await _dbContext.Users.FirstOrDefaultAsync(u => u.UserName.ToLower() == username.ToLower());
+            return await _dbContext.Users.FirstOrDefaultAsync(u => u.UserName.ToLower() == username.ToLower());
 
         }
     }

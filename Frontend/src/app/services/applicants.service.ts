@@ -17,11 +17,23 @@ export class ApplicantsService {
 
   constructor(private http: HttpClient) { }
 
-  public getApplicants(page?: number, ItemsPerPage?: number) {
+  public getApplicants(page?: number, ItemsPerPage?: number, sort?: string, educationSort?: string, status?: string, search?: string) {
     let params = new HttpParams();
     if (page != null && ItemsPerPage !== null) {
       params = params.append('pageNumber', page.toString());
       params = params.append('pageSize', ItemsPerPage.toString());
+    }
+    if (sort) {
+      params = params.append('OrderBy', sort);
+    }
+    if (educationSort) {
+      params = params.append('filter.EducationLevel', educationSort);
+    }
+    if (status) {
+      params = params.append('filter.Status', status);
+    }
+    if (search) {
+      params = params.append('filter.Name', search);
     }
     return this.http.get<Applicants[]>(this.baseUrl + '/GetAll', { observe: 'response', params }).pipe(
       map(response => {

@@ -16,3 +16,8 @@
 .pagination a {
     color: rgba(134, 207, 235, 1);
 }
+
+.custom-select select {
+    display: none;
+    /*hide original SELECT element: */
+}

@@ -69,15 +69,15 @@ builder.Services.AddScoped<IUserService, UserService>();
 // Add services to the container.
 
 builder.Services.AddControllers();
-        // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-        builder.Services.AddEndpointsApiExplorer();
-        builder.Services.AddScoped<IMapper, Mapper>();
-        builder.Services.AddCors(options => options.AddPolicy(name: "ApplicationOrigins", policy =>
-        {
-            policy.WithOrigins("http://localhost:4200").AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader();
-        }));
-        builder.Services.AddAuthorization(options =>
-       options.AddPolicy("AdminRolePolicy", policy => policy.RequireRole("Admin", "Editor")));
+// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddScoped<IMapper, Mapper>();
+builder.Services.AddCors(options => options.AddPolicy(name: "ApplicationOrigins", policy =>
+{
+    policy.WithOrigins("http://localhost:4200").AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader();
+}));
+builder.Services.AddAuthorization(options =>
+options.AddPolicy("AdminRolePolicy", policy => policy.RequireRole("Admin", "Editor")));
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
@@ -115,26 +115,26 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(c =>
 {
 
-        c.SwaggerDoc("v1", new OpenApiInfo
-        {
-            Title = "Internship project",
-            Version = "v1"
+    c.SwaggerDoc("v1", new OpenApiInfo
+    {
+        Title = "Internship project",
+        Version = "v1"
 
-        });
-        c.ResolveConflictingActions(apiDescriptions => apiDescriptions.First());
-        c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
-        {
-            Name = "Authorization",
-            Type = SecuritySchemeType.ApiKey,
-            Scheme = "Bearer",
-            BearerFormat = "JWT",
-            In = ParameterLocation.Header,
-            Description = "JWT Authorization header using the Bearer scheme."
-        });
-
-   
+    });
     c.ResolveConflictingActions(apiDescriptions => apiDescriptions.First());
-   
+    c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
+    {
+        Name = "Authorization",
+        Type = SecuritySchemeType.ApiKey,
+        Scheme = "Bearer",
+        BearerFormat = "JWT",
+        In = ParameterLocation.Header,
+        Description = "JWT Authorization header using the Bearer scheme."
+    });
+
+
+    c.ResolveConflictingActions(apiDescriptions => apiDescriptions.First());
+
     c.AddSecurityRequirement(new OpenApiSecurityRequirement
             {
                 {
@@ -162,22 +162,22 @@ builder.Services.ConfigureApplicationCookie(options =>
 
 var app = builder.Build();
 
-    // Configure the HTTP request pipeline.
-    if (app.Environment.IsDevelopment())
-    {
-        app.UseSwagger();
-        app.UseSwaggerUI();
-    }
+// Configure the HTTP request pipeline.
+if (app.Environment.IsDevelopment())
+{
+    app.UseSwagger();
+    app.UseSwaggerUI();
+}
 
 
-    app.UseCors("ApplicationOrigins");
-    app.UseHttpsRedirection();
-    app.UseAuthentication();
-    app.UseAuthorization();
+app.UseCors("ApplicationOrigins");
+app.UseHttpsRedirection();
+app.UseAuthentication();
+app.UseAuthorization();
 
-    app.MapControllers();
+app.MapControllers();
 
-    app.Run();
+app.Run();
 
 
 app.UseCors("ApplicationOrigins");
@@ -186,6 +186,3 @@ app.UseAuthentication();
 app.UseAuthorization();
 
 app.Run();
-
-
-
