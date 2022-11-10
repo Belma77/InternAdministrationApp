@@ -1,12 +1,20 @@
 <div class="p-4">
     <div class="row text-center mb-3">
         <div class="col-3">
-            <form class="d-flex"> <input class="form-control mr-2" type="search" placeholder="Name" aria-label="Search">
-                <button class="btn btnsearch" type="submit">Search</button>
-            </form>
+            <div class="d-flex"> <input class="form-control mr-2" type="search" placeholder="Name" aria-label="Search"
+                    [(ngModel)]="searchName">
+                <button class="btn btnsearch" type="submit" (click)="searchSelectionName()">Search</button>
+            </div>
+        </div>
+        <div class=" col-1">
+            <select (ngModelChange)="onNameSelect($event)" [(ngModel)]="selectionName" id="inputState"
+                class="form-control" id="educationLevel" name="educationLevel" required ngModel>
+                <option>Ascending</option>
+                <option>Descending</option>
+            </select>
         </div>
         <div class="col-1">
-            <div class="dropdown">
+            <!-- <div class="dropdown">
                 <button class="btn btnsort dropdown-toggle" type="button" id="dropdownMenuButton1"
                     data-bs-toggle="dropdown" aria-expanded="false">
                     Start Date
@@ -15,10 +23,17 @@
                     <li><a class="dropdown-item" href="#">Newest</a></li>
                     <li><a class="dropdown-item" href="#">Oldest</a></li>
                 </ul>
-            </div>
+            </div> -->
+
+
+            <!-- <select id="inputState" class="form-control" id="educationLevel" name="educationLevel" required ngModel>
+                <option value="" disabled selected hidden>Sort</option>
+                <option>Ascending</option>
+                <option>Descending</option>
+            </select> -->
         </div>
         <div class="col-1">
-            <div class="dropdown">
+            <!-- <div class="dropdown">
                 <button class="btn btnsort dropdown-toggle" type="button" id="dropdownMenuButton1"
                     data-bs-toggle="dropdown" aria-expanded="false">
                     End Date
@@ -27,9 +42,16 @@
                     <li><a class="dropdown-item" href="#">Newest</a></li>
                     <li><a class="dropdown-item" href="#">Oldest</a></li>
                 </ul>
-            </div>
+            </div> -->
+
+
+            <!-- <select id="inputState" class="form-control" id="educationLevel" name="educationLevel" required ngModel>
+                <option value="" disabled selected hidden>Sort</option>
+                <option>Ascending</option>
+                <option>Descending</option>
+            </select> -->
         </div>
-        <div class="col-5"></div>
+        <div class="col-4"></div>
         <div class="col-2">
             <button type="button" class="btn btn-dark" (click)="openModal()"><i
                     class="fa-solid fa-plus me-2"></i>Selection</button>

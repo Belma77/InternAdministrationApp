@@ -29,9 +29,9 @@ namespace Backend.Data
 
             ); 
             modelBuilder.Entity<Selection>().HasData(
-            new Selection { Id = 1, StartDate =new DateTime(2022, 2,1), EndDate = new DateTime(2022, 3, 1), Name="internship/1", Description="desc" },
-            new Selection { Id = 2, StartDate = new DateTime(2022, 2, 1), EndDate = new DateTime(2022, 3, 1), Name = "internship/2", Description = "desc2" },
-            new Selection { Id = 3, StartDate = new DateTime(2022, 2, 1), EndDate = new DateTime(2022, 3, 1), Name = "internship/3", Description = "desc3" }
+            new Selection { Id = 1, StartDate =new DateTime(2022, 3,10), EndDate = new DateTime(2022, 5, 10), Name="JAP Development", Description="desc" },
+            new Selection { Id = 2, StartDate = new DateTime(2022, 2, 1), EndDate = new DateTime(2022, 3, 1), Name = "JAP QA", Description = "desc2" },
+            new Selection { Id = 3, StartDate = new DateTime(2022, 3, 20), EndDate = new DateTime(2022, 6, 20), Name = "JAP Devops", Description = "desc3" }
 
             );
            

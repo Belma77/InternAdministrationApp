@@ -35,7 +35,7 @@ export class ApplicantsService {
     if (search) {
       params = params.append('filter.Name', search);
     }
-    return this.http.get<Applicants[]>(this.baseUrl + '/GetAll', { observe: 'response', params }).pipe(
+    return this.http.get<Applicants[]>(this.baseUrl + 'GetAll', { observe: 'response', params }).pipe(
       map(response => {
         this.paginatedResult.result = response.body;
         if (response.headers.get('Pagination') !== null) {
@@ -44,5 +44,9 @@ export class ApplicantsService {
         return this.paginatedResult;
       })
     )
+  }
+
+  public getApplicant(id: number) {
+    return this.http.get<Applicants[]>(this.baseUrl + id);
   }
 }

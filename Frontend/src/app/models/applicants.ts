@@ -5,4 +5,6 @@ export class Applicants {
     email = "";
     educationLevel = "";
     status = "";
+    coverLetter = "";
+    cv = "";
 }

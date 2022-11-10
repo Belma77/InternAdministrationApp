@@ -9,20 +9,26 @@ import { PaginatedResult } from '../models/pagination';
   providedIn: 'root'
 })
 export class SelectionsService {
-  baseUrl = environment.selectionUrl;
+  selectionUrl = environment.selectionUrl;
   private url = "GetAll";
   selections: Selections[] = [];
   paginatedResult: PaginatedResult<Selections[]> = new PaginatedResult<Selections[]>();
 
   constructor(private http: HttpClient) { }
 
-  public getSelections(page?: number, ItemsPerPage?: number) {
+  public getSelections(page?: number, ItemsPerPage?: number, selectionName?: string, searchName?: string) {
     let params = new HttpParams();
     if (page != null && ItemsPerPage !== null) {
       params = params.append('pageNumber', page.toString());
       params = params.append('pageSize', ItemsPerPage.toString());
     }
-    return this.http.get<Selections[]>(this.baseUrl + '/GetAll', { observe: 'response', params }).pipe(
+    if (selectionName) {
+      params = params.append('OrderBy', selectionName);
+    }
+    if (searchName) {
+      params = params.append('filterSelections.Name', searchName);
+    }
+    return this.http.get<Selections[]>(this.selectionUrl + '/GetAll', { observe: 'response', params }).pipe(
       map(response => {
         this.paginatedResult.result = response.body;
         if (response.headers.get('Pagination') !== null) {
