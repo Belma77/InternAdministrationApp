@@ -3,7 +3,7 @@
         <div class="col-9">
         </div>
         <div class="col-3">
-            <button type="button" class="btn btn-success">Save Changes</button>
+            <button type="button" class="btn btn-success" form="commentar-form">Save Changes</button>
         </div>
     </div>
     <div class="row text-center mb-5">
@@ -13,7 +13,7 @@
                     <div class="mt-1">First Name</div>
                 </div>
                 <div class="card-body p-4">
-                    <p class="card-text h4">Tarik</p>
+                    <p class="card-text h4">{{ applicant.firstName }}</p>
                 </div>
             </div>
         </div>
@@ -23,7 +23,7 @@
                     <div class="mt-1">Last Name</div>
                 </div>
                 <div class="card-body p-4">
-                    <p class="card-text h4">Lilic</p>
+                    <p class="card-text h4">{{ applicant.lastName }}</p>
                 </div>
             </div>
         </div>
@@ -33,7 +33,7 @@
                     <div class="mt-1">Email</div>
                 </div>
                 <div class="card-body p-4">
-                    <p class="card-text h4">ts@test.com</p>
+                    <p class="card-text h4">{{ applicant.email }}</p>
                 </div>
             </div>
         </div>
@@ -43,7 +43,7 @@
                     <div class="mt-1">Education</div>
                 </div>
                 <div class="card-body p-4">
-                    <p class="card-text h4">Bachelor</p>
+                    <p class="card-text h4">{{ applicant.educationLevel }}</p>
                 </div>
             </div>
         </div>
@@ -75,7 +75,7 @@
             <div class="card">
                 <div class="card-body">
                     <h5 class="card-title">Curriculum Vitae</h5>
-                    <p class="card-text">Curriculum Vitae is here</p>
+                    <p class="card-text">{{ applicant.cv }}</p>
                 </div>
             </div>
         </div>
@@ -83,7 +83,7 @@
             <div class="card">
                 <div class="card-body">
                     <h5 class="card-title">Cover Letter</h5>
-                    <p class="card-text">Cover letter is here</p>
+                    <p class="card-text">{{ applicant.coverLetter }}</p>
                 </div>
             </div>
         </div>

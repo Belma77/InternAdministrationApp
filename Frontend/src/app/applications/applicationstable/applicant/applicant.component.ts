@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { ApplicantsService } from 'src/app/services/applicants.service';
+import { Application } from 'src/app/models/application';
+import { Applicants } from 'src/app/models/applicants';
 
 @Component({
   selector: 'app-applicant',
@@ -6,12 +9,14 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./applicant.component.css']
 })
 export class ApplicantComponent implements OnInit {
+  @Input() applicant: Applicants;
   addComment: boolean = true;
   visible: boolean = false;
 
-  constructor() { }
+  constructor(private applicantService: ApplicantsService) { }
 
   ngOnInit(): void {
+    console.log(this.applicant);
   }
 
   openCommentSection() {

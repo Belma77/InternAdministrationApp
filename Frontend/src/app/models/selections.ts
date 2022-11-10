@@ -1,7 +1,7 @@
 export class Selections {
     id?: number;
     name = "";
-    startDate = "";
-    endDate = "";
+    startDate: Date;
+    endDate: Date;
     description = "";
 }

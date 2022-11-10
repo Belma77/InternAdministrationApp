@@ -15,6 +15,9 @@ export class SelectionstableComponent implements OnInit {
   pagination: Pagination;
   PageNumber = 1;
   PageSize = 10;
+  selectionName: string;
+  searchName: string;
+
 
   formModal: any;
 
@@ -30,7 +33,7 @@ export class SelectionstableComponent implements OnInit {
   }
 
   loadSelections() {
-    this.selectionsService.getSelections(this.PageNumber, this.PageSize).subscribe(response => {
+    this.selectionsService.getSelections(this.PageNumber, this.PageSize, this.selectionName, this.searchName).subscribe(response => {
       this.selections = response.result;
       this.pagination = response.pagination;
     });
@@ -46,7 +49,21 @@ export class SelectionstableComponent implements OnInit {
 
   }
 
+  onNameSelect(event) {
+    this.selectionName = event;
+    this.loadSelections();
+  }
+
   addSelection() {
     this.formModal.hide();
   }
+
+  onSearch() {
+    this.loadSelections();
+  }
+
+  searchSelectionName() {
+    this.loadSelections();
+  }
+
 }

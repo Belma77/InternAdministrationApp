@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Applicants } from 'src/app/models/applicants';
+import { Application } from 'src/app/models/application';
+import { ApplicationComment } from 'src/app/models/applicationComment.model';
 import { Pagination } from 'src/app/models/pagination';
 import { ApplicantsService } from 'src/app/services/applicants.service';
+
 
 @Component({
   selector: 'app-applicationstable',
@@ -10,6 +13,7 @@ import { ApplicantsService } from 'src/app/services/applicants.service';
 })
 export class ApplicationstableComponent implements OnInit {
   // applicants: Applicants[] = [];
+  applicant: Application;
   applicants: Applicants[];
   pagination: Pagination;
   PageNumber = 1;
@@ -18,6 +22,8 @@ export class ApplicationstableComponent implements OnInit {
   education: string;
   status: string;
   search: string;
+  id: number;
+  rowSelected: Boolean = false;
 
   constructor(private applicantService: ApplicantsService) {
 
@@ -60,6 +66,14 @@ export class ApplicationstableComponent implements OnInit {
 
   onSearch() {
     this.loadApplicants();
+  }
+
+  onSelectApplicant(applicant: Application) {
+    this.applicant = applicant;
+    this.applicantService.getApplicant(applicant.id).subscribe(response => {
+      this.applicants = response;
+      this.rowSelected = true;
+    })
   }
 
 
