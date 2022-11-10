@@ -41,13 +41,13 @@ namespace Backend.Controllers
             return Ok(apps);
         }
         [HttpGet("{id}")]
-
-        public async Task<ActionResult<GetAppDto>> GetApplicationById(int id)
+        public async Task<ActionResult<Applications>> GetApplicationById(int id)
         {
+
             return Ok(await _applicationService.GetApplicationById(id));
         }
         [HttpPatch("AddComment")]
-        public async Task<ActionResult<GetCommentDto>> AddAppComment(int id, string comment)
+        public async Task<ActionResult<GetAppDto>> AddAppComment(int id, string comment)
         {
 
             return Ok(await _applicationService.AddAppComment(id, comment));

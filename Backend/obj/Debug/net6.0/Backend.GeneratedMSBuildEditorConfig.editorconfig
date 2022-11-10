@@ -8,9 +8,17 @@ build_property.PlatformNeutralAssembly =
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = Backend
 build_property.RootNamespace = Backend
+<<<<<<< HEAD
 build_property.ProjectDir = c:\Users\dina3\Desktop\Internship\InternshipProject\Backend\
 build_property.RazorLangVersion = 6.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
 build_property.MSBuildProjectDirectory = c:\Users\dina3\Desktop\Internship\InternshipProject\Backend
+=======
+build_property.ProjectDir = C:\Users\BelmaAliman\Desktop\intern_project\InternshipProject\Backend\
+build_property.RazorLangVersion = 6.0
+build_property.SupportLocalizedComponentNames = 
+build_property.GenerateRazorMetadataSourceChecksumAttributes = 
+build_property.MSBuildProjectDirectory = C:\Users\BelmaAliman\Desktop\intern_project\InternshipProject\Backend
+>>>>>>> 1a1b3c622738fbcbd736280603d26d77f92f6e8a
 build_property._RazorSourceGeneratorDebug = 

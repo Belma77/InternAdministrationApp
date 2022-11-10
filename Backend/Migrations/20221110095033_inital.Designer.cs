@@ -11,8 +11,9 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Backend.Migrations
 {
-   // [DbContext(typeof(DataContext))]
-    partial class seedData
+    [DbContext(typeof(DataContext))]
+    [Migration("20221110095033_inital")]
+    partial class inital
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -164,9 +165,15 @@ namespace Backend.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
                     b.Property<string>("Description")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("EditedAt")
+                        .HasColumnType("datetime2");
 
                     b.Property<DateTime>("EndDate")
                         .HasColumnType("datetime2");
@@ -186,6 +193,7 @@ namespace Backend.Migrations
                         new
                         {
                             Id = 1,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "desc",
                             EndDate = new DateTime(2022, 3, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "internship/1",
@@ -194,6 +202,7 @@ namespace Backend.Migrations
                         new
                         {
                             Id = 2,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "desc2",
                             EndDate = new DateTime(2022, 3, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "internship/2",
@@ -202,6 +211,7 @@ namespace Backend.Migrations
                         new
                         {
                             Id = 3,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "desc3",
                             EndDate = new DateTime(2022, 3, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "internship/3",
@@ -286,7 +296,7 @@ namespace Backend.Migrations
                         {
                             Id = "b74ddd14-6340-4840-95c2-db12554843e5",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "9bfb4278-662f-46c8-9699-76ab0c94e290",
+                            ConcurrencyStamp = "f1205d44-0b26-4b47-b330-4f53df51f9ad",
                             Email = "admin@gmail.com",
                             EmailConfirmed = false,
                             FirstName = "admin",
@@ -294,10 +304,10 @@ namespace Backend.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "ADMIN@GMAIL.COM",
                             NormalizedUserName = "ADMIN",
-                            PasswordHash = "AQAAAAEAACcQAAAAEK8V3WPlPthNwvK5vHdjpf1SCXRcczHRR4KB/8O0b7Vb/6kbWMFVnvk8O1Fe1fuTyg==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEAuAcPpZM2WAVjy+zsja86dVZESjM5is0FZwdgeaDN3WjNd+6iLEGQ5T/umtbRc5iA==",
                             PhoneNumber = "1234567890",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "4d319923-d915-4bf3-8430-5c2d08186c2e",
+                            SecurityStamp = "751fb1c9-787b-46f2-a329-6eca78846dc1",
                             TwoFactorEnabled = false,
                             UserName = "Admin"
                         });
@@ -477,11 +487,11 @@ namespace Backend.Migrations
             modelBuilder.Entity("Backend.Models.Comment", b =>
                 {
                     b.HasOne("Backend.Models.Applications", null)
-                        .WithMany("AppComments")
+                        .WithMany("Comments")
                         .HasForeignKey("ApplicationsId");
 
                     b.HasOne("Backend.Models.Selection", null)
-                        .WithMany("SelectionComment")
+                        .WithMany("Comments")
                         .HasForeignKey("SelectionId");
 
                     b.HasOne("Backend.Models.User", "User")
@@ -544,12 +554,12 @@ namespace Backend.Migrations
 
             modelBuilder.Entity("Backend.Models.Applications", b =>
                 {
-                    b.Navigation("AppComments");
+                    b.Navigation("Comments");
                 });
 
             modelBuilder.Entity("Backend.Models.Selection", b =>
                 {
-                    b.Navigation("SelectionComment");
+                    b.Navigation("Comments");
                 });
 #pragma warning restore 612, 618
         }

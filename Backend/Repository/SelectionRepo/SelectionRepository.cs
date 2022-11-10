@@ -17,15 +17,29 @@ namespace Backend.Repository.SelectionRepo
         }
         public async Task<Selection> GetSelectionById(int id)
         {
-            return await _dbContext.Selections.Where(x => x.Id == id).
-                Include(x => x.Applications)
-                .FirstOrDefaultAsync();
+            return await _dbContext.Selections.
+                Include(x => x.Applications).Include(x=>x.Comments).ThenInclude(x=>x.User)
+                .FirstOrDefaultAsync(x=>x.Id==id);
         }
         public async Task<Selection> AddSelection(Selection selection)
         {
              _dbContext.Selections.Add(selection);
             await  _dbContext.SaveChangesAsync();
             return selection;
+        }
+        public async Task<Selection> EditSelection(Selection selection)
+        {
+            _dbContext.Selections.Update(selection);
+            await _dbContext.SaveChangesAsync();
+            return selection;
+        }
+        public async Task<Selection> RemoveApplicant(Selection selection, Applications applicant) 
+        {
+           
+           selection.Applications.Remove(applicant);
+            await _dbContext.SaveChangesAsync();
+            return selection;
+
         }
 
     }

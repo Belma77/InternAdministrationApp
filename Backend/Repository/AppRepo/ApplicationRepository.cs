@@ -31,7 +31,8 @@ namespace Backend.Repository.AppRepo
         {
             return await _dataContext.Applications.
                 Include(x => x.Selections).
-                Include(x => x.AppComments).
+                Include(y => y.Comments).
+                ThenInclude(y=>y.User).
                 FirstOrDefaultAsync(x => x.Id == id);
 
         }

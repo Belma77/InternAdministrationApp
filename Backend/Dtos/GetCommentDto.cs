@@ -7,6 +7,8 @@ namespace Backend.Dtos
         public string Description { get; set; }
         public UserDto User { get; set; }
 
+        //public string Username { get; set; }    
+
 
     }
 }
