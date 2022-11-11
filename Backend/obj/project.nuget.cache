@@ -1,13 +1,18 @@
 {
   "version": 2,
 <<<<<<< HEAD
+<<<<<<< HEAD
   "dgSpecHash": "7PB4eVwYvKg8MrFMssx7ncCU4VOOWJi6sTHihV/TAUnDGKBnE4yfLhOJdCzJECuNjDlsrS8m3RCQ4/Oi4ZMT9w==",
+=======
+  "dgSpecHash": "BL3DeP9MdKZwq0c3nu5uzTxOEIQxvDTBJeTZV30cirVAgSkivnnXGYFKzboeF+ZuobuNTbMHpXF/sLE/OaJgwQ==",
+>>>>>>> ea993a3addc9d16b826ea7238f1a7a83dc35e435
 =======
   "dgSpecHash": "BL3DeP9MdKZwq0c3nu5uzTxOEIQxvDTBJeTZV30cirVAgSkivnnXGYFKzboeF+ZuobuNTbMHpXF/sLE/OaJgwQ==",
 >>>>>>> ea993a3addc9d16b826ea7238f1a7a83dc35e435
   "success": true,
   "projectFilePath": "C:\\Users\\dina3\\Desktop\\Internship\\InternshipProject\\Backend\\Backend.csproj",
   "expectedPackageFiles": [
+<<<<<<< HEAD
 <<<<<<< HEAD
     "C:\\Users\\dina3\\.nuget\\packages\\automapper\\12.0.0\\automapper.12.0.0.nupkg.sha512",
     "C:\\Users\\dina3\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\12.0.0\\automapper.extensions.microsoft.dependencyinjection.12.0.0.nupkg.sha512",
@@ -227,6 +232,8 @@
     "C:\\Users\\dina3\\.nuget\\packages\\system.xml.readerwriter\\4.3.0\\system.xml.readerwriter.4.3.0.nupkg.sha512",
     "C:\\Users\\dina3\\.nuget\\packages\\system.xml.xdocument\\4.3.0\\system.xml.xdocument.4.3.0.nupkg.sha512"
 =======
+=======
+>>>>>>> ea993a3addc9d16b826ea7238f1a7a83dc35e435
     "C:\\Users\\BelmaAliman\\.nuget\\packages\\abp\\7.4.0\\abp.7.4.0.nupkg.sha512",
     "C:\\Users\\BelmaAliman\\.nuget\\packages\\abp.mailkit\\7.4.0\\abp.mailkit.7.4.0.nupkg.sha512",
     "C:\\Users\\BelmaAliman\\.nuget\\packages\\automapper\\12.0.0\\automapper.12.0.0.nupkg.sha512",
@@ -484,6 +491,9 @@
     "C:\\Users\\BelmaAliman\\.nuget\\packages\\system.xml.xpath\\4.3.0\\system.xml.xpath.4.3.0.nupkg.sha512",
     "C:\\Users\\BelmaAliman\\.nuget\\packages\\system.xml.xpath.xmldocument\\4.3.0\\system.xml.xpath.xmldocument.4.3.0.nupkg.sha512",
     "C:\\Users\\BelmaAliman\\.nuget\\packages\\timezoneconverter\\6.0.1\\timezoneconverter.6.0.1.nupkg.sha512"
+<<<<<<< HEAD
+>>>>>>> ea993a3addc9d16b826ea7238f1a7a83dc35e435
+=======
 >>>>>>> ea993a3addc9d16b826ea7238f1a7a83dc35e435
   ],
   "logs": [

@@ -292,6 +292,7 @@ C:\Users\BelmaAliman\Desktop\intern_project\InternshipProject\Backend\obj\Debug\
 C:\Users\BelmaAliman\Desktop\intern_project\InternshipProject\Backend\obj\Debug\net6.0\Backend.genruntimeconfig.cache
 C:\Users\BelmaAliman\Desktop\intern_project\InternshipProject\Backend\obj\Debug\net6.0\ref\Backend.dll
 <<<<<<< HEAD
+<<<<<<< HEAD
 C:\Users\dina3\Desktop\Internship\InternshipProject\Backend\bin\Debug\net6.0\appsettings.Development.json
 C:\Users\dina3\Desktop\Internship\InternshipProject\Backend\bin\Debug\net6.0\appsettings.json
 C:\Users\dina3\Desktop\Internship\InternshipProject\Backend\bin\Debug\net6.0\Backend.staticwebassets.runtime.json
@@ -586,6 +587,8 @@ C:\Users\dina3\Desktop\Internship\InternshipProject\Backend\obj\Debug\net6.0\Bac
 C:\Users\dina3\Desktop\Internship\InternshipProject\Backend\obj\Debug\net6.0\Backend.genruntimeconfig.cache
 C:\Users\dina3\Desktop\Internship\InternshipProject\Backend\obj\Debug\net6.0\ref\Backend.dll
 =======
+=======
+>>>>>>> ea993a3addc9d16b826ea7238f1a7a83dc35e435
 C:\Users\BelmaAliman\Desktop\intern_project\InternshipProject\Backend\bin\Debug\net6.0\Abp.dll
 C:\Users\BelmaAliman\Desktop\intern_project\InternshipProject\Backend\bin\Debug\net6.0\Abp.MailKit.dll
 C:\Users\BelmaAliman\Desktop\intern_project\InternshipProject\Backend\bin\Debug\net6.0\Castle.Core.dll
@@ -607,4 +610,7 @@ C:\Users\BelmaAliman\Desktop\intern_project\InternshipProject\Backend\bin\Debug\
 C:\Users\BelmaAliman\Desktop\intern_project\InternshipProject\Backend\bin\Debug\net6.0\System.Linq.Dynamic.Core.dll
 C:\Users\BelmaAliman\Desktop\intern_project\InternshipProject\Backend\bin\Debug\net6.0\System.Xml.XPath.XmlDocument.dll
 C:\Users\BelmaAliman\Desktop\intern_project\InternshipProject\Backend\bin\Debug\net6.0\TimeZoneConverter.dll
+<<<<<<< HEAD
+>>>>>>> ea993a3addc9d16b826ea7238f1a7a83dc35e435
+=======
 >>>>>>> ea993a3addc9d16b826ea7238f1a7a83dc35e435
