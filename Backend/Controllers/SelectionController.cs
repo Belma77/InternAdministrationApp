@@ -31,22 +31,22 @@ namespace Backend.Controllers
             return Ok(await _selectionService.GetSelectionById(id));
 
         }
-        [HttpPost("AddSelection")]
+        [HttpPost("Add")]
         public async Task<ActionResult<GetSelectionsDto>> AddSelection (AddSelectionDto selectionDto)
         {
             return Ok(await _selectionService.AddSelection(selectionDto));
         }
-        [HttpPatch("EditSelection")]
+        [HttpPatch("Edit")]
         public async Task<ActionResult<GetSelectionsDto>> EditSelection(int id, AddSelectionDto selectionDto)
         {
             return Ok(await _selectionService.EditSelection(id, selectionDto));
         }
-        [HttpPatch("AddAppsToSelection")]
+        [HttpPatch("AddApplication")]
         public async Task<ActionResult<GetSelectionDto>> AddApplicantsToSelection(int selectionId, int applicationId)
         {
             return Ok(await _selectionService.AddApplicantsToSelection(selectionId, applicationId));
         }
-        [HttpPatch("RemoveAppsToSelection")]
+        [HttpDelete("RemoveApplication")]
         public async Task<ActionResult<GetSelectionDto>> RemoveApplicantsToSelection(int selectionId, int applicationId)
         {
             return Ok(await _selectionService.RemoveApplicantToSelection(selectionId, applicationId));

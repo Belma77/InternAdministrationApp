@@ -22,6 +22,9 @@ namespace Backend.Profiles
             CreateMap<GetCommentDto, Comment>();
             CreateMap<User, UserDto>();
             CreateMap<UserDto, User>();
+            CreateMap<User, GetUsersDto>();
+
+
 
 
 

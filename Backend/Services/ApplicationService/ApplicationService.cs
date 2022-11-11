@@ -6,10 +6,14 @@ using Backend.Models;
 using Backend.Models.Enums;
 using Backend.Repository.AppRepo;
 using Backend.Services.UserService;
+using MailKit.Net.Smtp;
+using MailKit.Security;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore.Query.Internal;
+using MimeKit;
+using MimeKit.Text;
 using System.Drawing.Text;
 using System.Security.Claims;
 using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
@@ -54,19 +58,15 @@ namespace Backend.Services.ApplicationService
             await _applicationRepository.Add(_mapper.Map<Applications>(app));
            
         }
-        //private User GetCurrentUser()
-        //{
-        //    string username = _contextAccessor.HttpContext.User.Identity.Name;
-        //    var user = _userService.GetByUsername(username);
-        //    return user;
-        //}
+       
         public async Task<GetAppDto> AddAppComment(int id, string comment)
         {
 
             string username = _contextAccessor.HttpContext.User.Identity.Name;
             var user = await _userService.GetByUsername(username);
-            //var user = GetCurrentUser();
             var app = await _applicationRepository.GetById(id);
+            if (app == null)
+                throw new Exception("Application not found");
             var commmentModel = new Comment();
             commmentModel.User = user;
             commmentModel.Description = comment;
@@ -78,13 +78,32 @@ namespace Backend.Services.ApplicationService
         public async Task<GetAppDto> UpdateStatus(int id, Status status)
         {
 
-            string username = _contextAccessor.HttpContext.User.Identity.Name;
-            var user = await _userService.GetByUsername(username);
-            //var user = GetCurrentUser();
             var app = await _applicationRepository.GetById(id);
+            if (app == null)
+                throw new Exception("Application not found");
             app.Status = status;
             await _applicationRepository.Update(app);
+            if (status == Status.Inselection)
+                SendEmail();
             return _mapper.Map<GetAppDto>(app);
+
+        }
+        private void SendEmail()
+        {
+            var text = "Welcome to internship!";
+            var email = new MimeMessage();
+            email.From.Add(MailboxAddress.Parse("otha.kuhlman@ethereal.email"));
+            email.To.Add(MailboxAddress.Parse("otha.kuhlman@ethereal.email"));
+            email.Subject = "Welcome to internship";
+            email.Body = new TextPart(TextFormat.Text)
+            {
+                Text = text
+            };
+            using var smtp = new SmtpClient();
+            smtp.Connect("smtp.ethereal.email", 587, SecureSocketOptions.StartTls);
+            smtp.Authenticate("otha.kuhlman@ethereal.email", "tvdDh4bdRbvd6eJwYb");
+            smtp.Send(email);
+            smtp.Disconnect(true);
 
         }
 
