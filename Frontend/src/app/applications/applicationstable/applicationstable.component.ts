@@ -4,6 +4,7 @@ import { Application } from 'src/app/models/application';
 import { ApplicationComment } from 'src/app/models/applicationComment.model';
 import { Pagination } from 'src/app/models/pagination';
 import { ApplicantsService } from 'src/app/services/applicants.service';
+import { CommentApplicationServiceService } from 'src/app/services/comment-application-service.service';
 
 
 @Component({
@@ -25,7 +26,7 @@ export class ApplicationstableComponent implements OnInit {
   id: number;
   rowSelected: Boolean = false;
 
-  constructor(private applicantService: ApplicantsService) {
+  constructor(private applicantService: ApplicantsService, private service: CommentApplicationServiceService) {
 
   }
 
@@ -75,6 +76,4 @@ export class ApplicationstableComponent implements OnInit {
       this.rowSelected = true;
     })
   }
-
-
 }

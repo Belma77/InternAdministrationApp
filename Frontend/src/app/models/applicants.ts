@@ -1,5 +1,7 @@
+import { ApplicationComment } from "./applicationComment.model";
+
 export class Applicants {
-    id?: number;
+    id: number;
     firstName = "";
     lastName = "";
     email = "";
@@ -7,4 +9,5 @@ export class Applicants {
     status = "";
     coverLetter = "";
     cv = "";
+    comments: Comment[] = [];
 }

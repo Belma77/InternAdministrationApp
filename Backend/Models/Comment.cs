@@ -5,7 +5,7 @@ namespace Backend.Models
 {
     public class Comment
     {
-        public int Id { get; set; } 
+        public int Id { get; set; }
         public string Description { get; set; }
         //[ForeignKey("UserId")]
         //public string UserId { get; set; }

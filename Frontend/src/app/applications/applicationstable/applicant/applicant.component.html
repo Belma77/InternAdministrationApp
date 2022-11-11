@@ -13,7 +13,7 @@
                     <div class="mt-1">First Name</div>
                 </div>
                 <div class="card-body p-4">
-                    <p class="card-text h4">{{ applicant.firstName }}</p>
+                    <p class="card-text h4">{{ applicants.firstName }}</p>
                 </div>
             </div>
         </div>
@@ -23,7 +23,7 @@
                     <div class="mt-1">Last Name</div>
                 </div>
                 <div class="card-body p-4">
-                    <p class="card-text h4">{{ applicant.lastName }}</p>
+                    <p class="card-text h4">{{ applicants.lastName }}</p>
                 </div>
             </div>
         </div>
@@ -33,7 +33,7 @@
                     <div class="mt-1">Email</div>
                 </div>
                 <div class="card-body p-4">
-                    <p class="card-text h4">{{ applicant.email }}</p>
+                    <p class="card-text h4">{{ applicants.email }}</p>
                 </div>
             </div>
         </div>
@@ -43,7 +43,7 @@
                     <div class="mt-1">Education</div>
                 </div>
                 <div class="card-body p-4">
-                    <p class="card-text h4">{{ applicant.educationLevel }}</p>
+                    <p class="card-text h4">{{ applicants.educationLevel }}</p>
                 </div>
             </div>
         </div>
@@ -75,7 +75,7 @@
             <div class="card">
                 <div class="card-body">
                     <h5 class="card-title">Curriculum Vitae</h5>
-                    <p class="card-text">{{ applicant.cv }}</p>
+                    <p class="card-text">{{ applicants.cv }}</p>
                 </div>
             </div>
         </div>
@@ -83,17 +83,19 @@
             <div class="card">
                 <div class="card-body">
                     <h5 class="card-title">Cover Letter</h5>
-                    <p class="card-text">{{ applicant.coverLetter }}</p>
+                    <p class="card-text">{{ applicants.coverLetter }}</p>
                 </div>
             </div>
         </div>
     </div>
-    <div class="card text-center mt-5">
-        <div class="card-header card-title">
-            <div class="h5 mt-1">Editor:</div>
-        </div>
-        <div class="card-body p-4">
-            <p class="card-text">Editors comment is here</p>
+    <div id="comments" *ngFor="let comment of applicants.comments">
+        <div class="card text-center mt-5">
+            <div class="card-header card-title">
+                <div class="h5 mt-1"> {{ comment.user.username }} </div>
+            </div>
+            <div class="card-body p-4">
+                <p class="card-text"> {{ comment.description }} </p>
+            </div>
         </div>
     </div>
     <div class="row text-center mt-3">
@@ -103,11 +105,14 @@
         </div>
     </div>
     <div *ngIf="visible">
-        <form>
+        <form class="commentForm" #commentForm="ngForm" (ngSubmit)="onComment( commentInput.value )">
             <div class="form-group mt-2 comment">
                 <label for="exampleFormControlTextarea1">Enter a comment:</label>
-                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                <input #commentInput type="text" class="form-control" id="exampleFormControlTextarea1" rows="3" required
+                    ngModel>
             </div>
+            <button type="submit" class="btn btn-success">Add Comment</button>
+
         </form>
     </div>
 </div>

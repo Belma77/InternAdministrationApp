@@ -1,6 +1,8 @@
+import { User } from "./user";
+
 export class ApplicationComment {
-    id?: number;
-    applicationId: number;
-    description: string;
-    user?: string;
+    Id: number;
+    ApplicationId: number;
+    Description: string;
+    User?: User;
 }

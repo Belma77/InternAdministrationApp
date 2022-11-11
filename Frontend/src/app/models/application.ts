@@ -1,4 +1,5 @@
 import { educationLevels } from "../services/educationLevelEnum";
+import { ApplicationComment } from "./applicationComment.model";
 
 export class Application {
     id?: number;
@@ -9,4 +10,5 @@ export class Application {
     status: string;
     coverLetter: string;
     cv: string;
+    comments: ApplicationComment[];
 }
