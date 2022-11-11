@@ -44,6 +44,16 @@ namespace Backend.Services.ApplicationService
             return await PagedList<GetApplicationsDto>.CreateAsync(apps, userParams.PageNumber, userParams.pageSize);
        
         }
+        public async Task<PagedList<GetApplicationsDto>> GetAppsForSelection(UserParams userParams)
+        {
+            var query = _applicationRepository.GetAll(userParams);
+            query = query.Where(x => x.Status == Status.Preselection);
+            query = FilterApplications.FilterData(query, userParams.filter);
+            query = AppsSorting.SortBy(query, userParams.OrderBy);
+            var apps = query.ProjectTo<GetApplicationsDto>(_mapper.ConfigurationProvider);
+            return await PagedList<GetApplicationsDto>.CreateAsync(apps, userParams.PageNumber, userParams.pageSize);
+
+        }
         public async Task<GetAppDto> GetApplicationById(int id)
         {
             var app= await _applicationRepository.GetById(id);

@@ -40,13 +40,22 @@ namespace Backend.Controllers
 
             return Ok(apps);
         }
+        [HttpGet("GetAppsForSelection")]
+        public async Task<ActionResult<PagedList<GetApplicationsDto>>> GetAppsForSelection([FromQuery] UserParams userParams)
+        {
+            var apps = await _applicationService.GetAppsForSelection(userParams);
+            Response.AddPaginationHeader(apps.CurrentPage, apps.PageSize, apps.TotalCount, apps.TotalPages);
+
+            return Ok(apps);
+        }
         [HttpGet("{id}")]
         public async Task<ActionResult<Applications>> GetApplicationById(int id)
         {
 
             return Ok(await _applicationService.GetApplicationById(id));
         }
-        [HttpPatch("AddComment")]
+        [HttpPatch("AddAppComment")]
+  
         public async Task<ActionResult<GetAppDto>> AddAppComment(int id, string comment)
         {
 
