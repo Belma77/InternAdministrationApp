@@ -293,11 +293,7 @@ namespace Backend.Migrations
                         {
                             Id = "b74ddd14-6340-4840-95c2-db12554843e5",
                             AccessFailedCount = 0,
-<<<<<<< HEAD
-                            ConcurrencyStamp = "bb4b9080-d87d-4945-8aad-17aed65afd39",
-=======
-                            ConcurrencyStamp = "f1205d44-0b26-4b47-b330-4f53df51f9ad",
->>>>>>> 1a1b3c622738fbcbd736280603d26d77f92f6e8a
+                            ConcurrencyStamp = "ef4de086-caab-47e2-b623-15334bbb0ab8",
                             Email = "admin@gmail.com",
                             EmailConfirmed = false,
                             FirstName = "admin",
@@ -305,17 +301,10 @@ namespace Backend.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "ADMIN@GMAIL.COM",
                             NormalizedUserName = "ADMIN",
-<<<<<<< HEAD
-                            PasswordHash = "AQAAAAEAACcQAAAAEPQLRh0Vo5Ug8oL5bCeOAOat8iHFHAgQiERq1ovEWTYGv32MagfCQzODZ9fVk/X6rA==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEGASxusaQwDyulviCrWvZ0e/3M9LfaDZcs7dtxaCfrFwwo+PZEHjBYDP3DwNjPEycQ==",
                             PhoneNumber = "1234567890",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "1df3c2a4-9de7-4157-9d61-aba7121ccbf1",
-=======
-                            PasswordHash = "AQAAAAEAACcQAAAAEAuAcPpZM2WAVjy+zsja86dVZESjM5is0FZwdgeaDN3WjNd+6iLEGQ5T/umtbRc5iA==",
-                            PhoneNumber = "1234567890",
-                            PhoneNumberConfirmed = false,
-                            SecurityStamp = "751fb1c9-787b-46f2-a329-6eca78846dc1",
->>>>>>> 1a1b3c622738fbcbd736280603d26d77f92f6e8a
+                            SecurityStamp = "8d595dc7-4c74-461b-8db9-9dd6079a88cb",
                             TwoFactorEnabled = false,
                             UserName = "Admin"
                         });
