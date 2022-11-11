@@ -49,4 +49,9 @@ export class ApplicantsService {
   public getApplicant(id: number) {
     return this.http.get<Applicants[]>(this.baseUrl + id);
   }
+
+  public changeStatus(status: Application) {
+    console.log(status);
+    return this.http.patch<Application>('https://localhost:7156/Application/UpdateStatus', status).subscribe();
+  }
 }

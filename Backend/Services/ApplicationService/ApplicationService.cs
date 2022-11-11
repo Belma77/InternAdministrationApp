@@ -19,51 +19,51 @@ using System.Security.Claims;
 using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 namespace Backend.Services.ApplicationService
 {
-    public class ApplicationService:IApplicationService
+    public class ApplicationService : IApplicationService
     {
         IApplicationRepository _applicationRepository;
         private readonly IMapper _mapper;
         private readonly IHttpContextAccessor _contextAccessor;
-        private  IUserService _userService;
+        private IUserService _userService;
         private UserManager<User> _userManager;
         public ApplicationService(IApplicationRepository applicationRepository, IMapper mapper, IHttpContextAccessor contextAccessor, IUserService userService, UserManager<User> userManager)
         {
             _applicationRepository = applicationRepository;
             _mapper = mapper;
-            _contextAccessor = contextAccessor; 
+            _contextAccessor = contextAccessor;
             _userService = userService;
             _userManager = userManager;
         }
-        
+
         public async Task<PagedList<GetApplicationsDto>> GetAllApplications(UserParams userParams)
         {
             var query = _applicationRepository.GetAll(userParams);
-           query=FilterApplications.FilterData(query, userParams.filter);
+            query = FilterApplications.FilterData(query, userParams.filter);
             query = AppsSorting.SortBy(query, userParams.OrderBy);
             var apps = query.ProjectTo<GetApplicationsDto>(_mapper.ConfigurationProvider);
             return await PagedList<GetApplicationsDto>.CreateAsync(apps, userParams.PageNumber, userParams.pageSize);
-       
+
         }
         public async Task<GetAppDto> GetApplicationById(int id)
         {
-            var app= await _applicationRepository.GetById(id);
+            var app = await _applicationRepository.GetById(id);
             if (app == null)
                 throw new Exception("Application not found");
             return _mapper.Map<GetAppDto>(app);
-            
+
         }
-         public async Task AddApplication(AddApplicationDto app)
+        public async Task AddApplication(AddApplicationDto app)
         {
-         
+
             await _applicationRepository.Add(_mapper.Map<Applications>(app));
-           
+
         }
-       
+
         public async Task<GetAppDto> AddAppComment(int id, string comment)
         {
 
-            string username = _contextAccessor.HttpContext.User.Identity.Name;
-            var user = await _userService.GetByUsername(username);
+            //string username = _contextAccessor.HttpContext.User.Identity.Name;
+            var user = await _userService.GetByUsername("Admin");
             var app = await _applicationRepository.GetById(id);
             if (app == null)
                 throw new Exception("Application not found");

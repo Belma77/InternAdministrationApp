@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { ApplicantsService } from 'src/app/services/applicants.service';
 import { Application } from 'src/app/models/application';
 import { Applicants } from 'src/app/models/applicants';
@@ -12,15 +12,16 @@ import { ApplicationComment } from 'src/app/models/applicationComment.model';
   styleUrls: ['./applicant.component.css']
 })
 export class ApplicantComponent implements OnInit {
+  @Output("onSelectApplicant") onSelectApplicant: EventEmitter<any> = new EventEmitter();
   @Input() applicants: Applicants;
   addComment: boolean = true;
   visible: boolean = false;
+  newStatus: string;
 
 
   constructor(private applicantService: ApplicantsService, private service: CommentApplicationServiceService) { }
 
   ngOnInit(): void {
-
   }
 
   openCommentSection() {
@@ -31,10 +32,15 @@ export class ApplicantComponent implements OnInit {
   onComment(commentBody: string) {
     var comment: ApplicationComment = new ApplicationComment();
     console.log(commentBody);
-    comment.Description = commentBody;
-    comment.ApplicationId = this.applicants.id;
+    comment.comments = commentBody;
+    comment.id = this.applicants.id;
     console.log(comment);
     this.service.addComment(comment);
+    this.onSelectApplicant.emit();
+  }
+
+  onUpdateStatus(status: string) {
+
   }
 
 }

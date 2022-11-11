@@ -19,11 +19,11 @@
             </tr>
         </thead>
         <tbody>
-            <tr *ngFor="let editor of editors">
-                <th scope="row">{{ editor.id }}</th>
-                <td>{{ editor.first }}</td>
-                <td>{{ editor.last }}</td>
-                <td>{{ editor.username }}</td>
+            <tr *ngFor="let editor of editors; let i = index">
+                <th scope="row">{{ i + 1 }}</th>
+                <td>{{ editor.firstName }}</td>
+                <td>{{ editor.lastName }}</td>
+                <td>{{ editor.userName }}</td>
                 <td>{{ editor.email }}</td>
                 <td>
                     <button type="button" class="btn btn-danger">Delete</button>

@@ -47,10 +47,10 @@ namespace Backend.Controllers
             return Ok(await _applicationService.GetApplicationById(id));
         }
         [HttpPatch("AddComment")]
-        public async Task<ActionResult<GetAppDto>> AddAppComment(int id, string comments)
+        public async Task<ActionResult<GetAppDto>> AddAppComment([FromBody] AddCommentRequest req)
         {
 
-            return Ok(await _applicationService.AddAppComment(id, comments));
+            return Ok(await _applicationService.AddAppComment(req.Id, req.Comments));
         }
         [HttpPatch("UpdateStatus")]
         public async Task<ActionResult<GetAppDto>> UpdateStatus(int id, Status status)
@@ -58,7 +58,8 @@ namespace Backend.Controllers
             return Ok(await _applicationService.UpdateStatus(id, status));
 
         }
-        
+
+
 
     }
 }
