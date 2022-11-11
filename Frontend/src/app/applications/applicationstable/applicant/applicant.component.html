@@ -68,9 +68,8 @@
                     </div>
                 </div>
             </div> -->
-            <select (ngModelChange)="onUpdateStatus($event)" [(ngModel)]="newStatus" id="inputState"
-                class="form-control" id="educationLevel" name="educationLevel" placeholder="Education Level" required
-                ngModel>
+            <select (ngModelChange)="onUpdateStatus($event)" [(ngModel)]="status" id="inputState" class="form-control"
+                id="educationLevel" name="educationLevel" placeholder="Education Level" required ngModel>
                 <option>Applied</option>
                 <option>Preselection</option>
                 <option>Inselection</option>

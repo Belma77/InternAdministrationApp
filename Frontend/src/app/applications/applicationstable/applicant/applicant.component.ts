@@ -4,6 +4,8 @@ import { Application } from 'src/app/models/application';
 import { Applicants } from 'src/app/models/applicants';
 import { CommentApplicationServiceService } from 'src/app/services/comment-application-service.service';
 import { ApplicationComment } from 'src/app/models/applicationComment.model';
+import { AppUpdateStatus } from 'src/app/models/appUpdateStatus';
+import { Status } from 'src/app/services/statusEnum';
 
 
 @Component({
@@ -12,11 +14,10 @@ import { ApplicationComment } from 'src/app/models/applicationComment.model';
   styleUrls: ['./applicant.component.css']
 })
 export class ApplicantComponent implements OnInit {
-  @Output("onSelectApplicant") onSelectApplicant: EventEmitter<any> = new EventEmitter();
   @Input() applicants: Applicants;
   addComment: boolean = true;
   visible: boolean = false;
-  newStatus: string;
+  status: string;
 
 
   constructor(private applicantService: ApplicantsService, private service: CommentApplicationServiceService) { }
@@ -32,15 +33,19 @@ export class ApplicantComponent implements OnInit {
   onComment(commentBody: string) {
     var comment: ApplicationComment = new ApplicationComment();
     console.log(commentBody);
-    comment.Comments = commentBody;
-    comment.ApplicationId = this.applicants.id;
+    comment.comments = commentBody;
+    comment.id = this.applicants.id;
     console.log(comment);
     this.service.addComment(comment);
-    this.onSelectApplicant.emit();
   }
 
-  onUpdateStatus(status: string) {
-
+  onUpdateStatus(newStatus: string) {
+    console.log(newStatus);
+    var status: AppUpdateStatus = new AppUpdateStatus();
+    status.ApplicationId = this.applicants.id;
+    status.Status = newStatus;
+    console.log(newStatus);
+    this.applicantService.changeStatus(status);
   }
 
 }

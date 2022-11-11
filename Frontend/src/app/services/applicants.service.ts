@@ -5,6 +5,7 @@ import { environment } from 'src/environments/environment';
 import { Applicants } from '../models/applicants';
 import { Application } from '../models/application';
 import { PaginatedResult } from '../models/pagination';
+import { AppUpdateStatus } from '../models/appUpdateStatus'
 
 @Injectable({
   providedIn: 'root'
@@ -50,8 +51,8 @@ export class ApplicantsService {
     return this.http.get<Applicants[]>(this.baseUrl + id);
   }
 
-  public changeStatus(status: Application) {
+  public changeStatus(status: AppUpdateStatus) {
     console.log(status);
-    return this.http.patch<Application>('https://localhost:7156/Application/UpdateStatus', status).subscribe();
+    return this.http.patch<AppUpdateStatus>('https://localhost:7156/Application/UpdateStatus', status).subscribe();
   }
 }
