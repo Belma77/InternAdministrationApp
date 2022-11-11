@@ -60,13 +60,13 @@ namespace Backend.Controllers
         public async Task<ActionResult<GetAppDto>> AddAppComment(int id, string comments)
 
         {
-
+            
             return Ok(await _applicationService.AddAppComment(id, comments));
         }
         [HttpPatch("UpdateStatus")]
-        public async Task<ActionResult<GetAppDto>> UpdateStatus(int id, Status status)
+        public async Task<ActionResult<GetAppDto>> UpdateStatus(AppUpdateStatus updateStatus)
         {
-            return Ok(await _applicationService.UpdateStatus(id, status));
+            return Ok(await _applicationService.UpdateStatus(updateStatus.ApplicationId, updateStatus.Status));
 
         }
         

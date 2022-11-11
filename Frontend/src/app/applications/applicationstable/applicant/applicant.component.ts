@@ -31,7 +31,7 @@ export class ApplicantComponent implements OnInit {
   onComment(commentBody: string) {
     var comment: ApplicationComment = new ApplicationComment();
     console.log(commentBody);
-    comment.Description = commentBody;
+    comment.Comments = commentBody;
     comment.ApplicationId = this.applicants.id;
     console.log(comment);
     this.service.addComment(comment);

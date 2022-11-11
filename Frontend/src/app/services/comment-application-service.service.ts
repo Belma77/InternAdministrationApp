@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Application } from '../models/application';
 import { ApplicationComment } from '../models/applicationComment.model';
@@ -16,7 +16,14 @@ export class CommentApplicationServiceService {
 
   public addComment(comments: ApplicationComment) {
     console.log(comments);
-    return this.http.patch<ApplicationComment>('https://localhost:7156/Application/AddComment', comments).subscribe();
+    let queryParams = new HttpParams();
+    queryParams = queryParams.append("id",1);
+    queryParams = queryParams.append("comments","novi");
+    return this.http.patch('https://localhost:7156/Application/AddComment', {params:queryParams}).subscribe(x=>{
+      console.log(x);
+    }
+
+    );
   }
 
 }
