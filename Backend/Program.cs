@@ -15,6 +15,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
+using SendGrid.Extensions.DependencyInjection;
 using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -29,7 +30,8 @@ builder.Services.AddDbContext<DataContext>(options => options.UseSqlServer(confi
 builder.Services.AddIdentity<User, IdentityRole>()
     .AddEntityFrameworkStores<DataContext>()
     .AddDefaultTokenProviders();
-
+//sendGrid
+builder.Services.AddSendGrid(option => option.ApiKey = configuration.GetSection("SendgridEmailAdress").GetValue<string>("APIKey"));
 // Adding Authentication
 builder.Services.AddAuthentication(options =>
 {

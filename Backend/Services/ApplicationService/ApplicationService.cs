@@ -44,6 +44,16 @@ namespace Backend.Services.ApplicationService
             return await PagedList<GetApplicationsDto>.CreateAsync(apps, userParams.PageNumber, userParams.pageSize);
 
         }
+        public async Task<PagedList<GetApplicationsDto>> GetAppsForSelection(UserParams userParams)
+        {
+            var query = _applicationRepository.GetAll(userParams);
+            query = query.Where(x => x.Status == Status.Preselection);
+            query = FilterApplications.FilterData(query, userParams.filter);
+            query = AppsSorting.SortBy(query, userParams.OrderBy);
+            var apps = query.ProjectTo<GetApplicationsDto>(_mapper.ConfigurationProvider);
+            return await PagedList<GetApplicationsDto>.CreateAsync(apps, userParams.PageNumber, userParams.pageSize);
+
+        }
         public async Task<GetAppDto> GetApplicationById(int id)
         {
             var app = await _applicationRepository.GetById(id);
@@ -59,17 +69,18 @@ namespace Backend.Services.ApplicationService
 
         }
 
-        public async Task<GetAppDto> AddAppComment(int id, string comment)
+        public async Task<GetAppDto> AddAppComment([FromQuery] int id, string comments)
         {
 
             //string username = _contextAccessor.HttpContext.User.Identity.Name;
-            var user = await _userService.GetByUsername("Admin");
+            string username = "Admin";
+            var user = await _userService.GetByUsername(username);
             var app = await _applicationRepository.GetById(id);
             if (app == null)
                 throw new Exception("Application not found");
             var commmentModel = new Comment();
             commmentModel.User = user;
-            commmentModel.Description = comment;
+            commmentModel.Description = comments;
             app.Comments.Add(commmentModel);
             await _applicationRepository.Update(app);
             return _mapper.Map<GetAppDto>(app);

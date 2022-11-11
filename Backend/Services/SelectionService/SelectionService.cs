@@ -42,7 +42,7 @@ namespace Backend.Services.SelectionService
         {
             var selection = await _selectionRepository.GetSelectionById(id);
             return _mapper.Map<GetSelectionDto>(selection);
-            //return selection;
+            
         }
         public async Task<GetSelectionsDto> AddSelection(AddSelectionDto addSelection)
         {
@@ -76,6 +76,7 @@ namespace Backend.Services.SelectionService
             if (selection.Applications.Any(x => x.Id == applicationId))
                 throw new Exception("Applicant already added to selection");
             selection.Applications.Add(app);
+            app.Status = Status.Inselection;
             await _selectionRepository.EditSelection(selection);
              return _mapper.Map<GetSelectionDto>(selection);
         }
@@ -89,6 +90,7 @@ namespace Backend.Services.SelectionService
                 throw new Exception("Application not found");
             if (!selection.Applications.Any(x => x.Id == applicationId))
                 throw new Exception("Applicant isn't in selection");
+            app.Status = Status.Completed;
             var selectionDto= await _selectionRepository.RemoveApplicant(selection, app);
             return _mapper.Map<GetSelectionDto>(selectionDto);
         }
