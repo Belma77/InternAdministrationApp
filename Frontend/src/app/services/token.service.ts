@@ -18,9 +18,7 @@ export class TokenService implements HttpInterceptor {
     return next.handle(token);
   }
   getToken() {
-    console.log(localStorage.getItem('token') || '');
     return localStorage.getItem('token') || '';
-
   }
 }
 

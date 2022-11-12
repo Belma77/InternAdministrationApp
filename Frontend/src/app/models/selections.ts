@@ -1,5 +1,5 @@
 export class Selections {
-    id?: number;
+    id: number;
     name = "";
     startDate: Date;
     endDate: Date;

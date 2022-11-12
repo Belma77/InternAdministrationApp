@@ -65,7 +65,7 @@ namespace Backend.Services.SelectionService
             await _selectionRepository.EditSelection(selection);
             return _mapper.Map<GetSelectionsDto>(selection);
         }
-        public async Task<GetSelectionDto> AddApplicantsToSelection(int selectionId, int applicationId)
+        public async Task<GetSelectionDto> AddApplicantsToSelection([FromQuery] int selectionId, int applicationId)
         {
             var selection = await _selectionRepository.GetSelectionById(selectionId);
             var app = await _applicationRepo.GetById(applicationId);
