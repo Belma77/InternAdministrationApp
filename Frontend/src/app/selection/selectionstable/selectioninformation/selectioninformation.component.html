@@ -56,34 +56,15 @@
             </tr>
         </thead>
         <tbody>
-            <tr>
+            <tr *ngFor="let applicant of selection.applications">
                 <th scope="row">1</th>
-                <td>Tarik</td>
-                <td>Lilic</td>
-                <td>tl@test.com</td>
-                <td>Bachelor</td>
+                <td>{{ applicant.firstName }}</td>
+                <td>{{ applicant.lastName }}</td>
+                <td>{{ applicant.email }}</td>
+                <td>{{ applicant.educationLevel }}</td>
                 <td>
-                    <button type="button" class="btn btn-danger">Remove</button>
-                </td>
-            </tr>
-            <tr>
-                <th scope="row">1</th>
-                <td>Belma</td>
-                <td>Aliman</td>
-                <td>ba@test.com</td>
-                <td>Bachelor</td>
-                <td>
-                    <button type="button" class="btn btn-danger">Remove</button>
-                </td>
-            </tr>
-            <tr>
-                <th scope="row">1</th>
-                <td>Nejla</td>
-                <td>Sabotic</td>
-                <td>na@test.com</td>
-                <td>Bachelor</td>
-                <td>
-                    <button type="button" class="btn btn-danger">Remove</button>
+                    <button type="button" class="btn btn-danger"
+                        (click)="removeApplicantToSelection(applicant.id)">Remove</button>
                 </td>
             </tr>
         </tbody>

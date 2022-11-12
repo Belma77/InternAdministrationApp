@@ -42,7 +42,7 @@ namespace Backend.Services.SelectionService
         {
             var selection = await _selectionRepository.GetSelectionById(id);
             return _mapper.Map<GetSelectionDto>(selection);
-            
+
         }
         public async Task<GetSelectionsDto> AddSelection(AddSelectionDto addSelection)
         {
@@ -78,11 +78,11 @@ namespace Backend.Services.SelectionService
             selection.Applications.Add(app);
             app.Status = Status.Inselection;
             await _selectionRepository.EditSelection(selection);
-             return _mapper.Map<GetSelectionDto>(selection);
+            return _mapper.Map<GetSelectionDto>(selection);
         }
-        public async Task<GetSelectionDto>RemoveApplicantToSelection(int selectionId, int applicationId)
+        public async Task<GetSelectionDto> RemoveApplicantToSelection(int selectionId, int applicationId)
         {
-            var selection=await _selectionRepository.GetSelectionById(selectionId);
+            var selection = await _selectionRepository.GetSelectionById(selectionId);
             var app = await _applicationRepo.GetById(applicationId);
             if (selection == null)
                 throw new Exception("Selection not found");
@@ -91,7 +91,7 @@ namespace Backend.Services.SelectionService
             if (!selection.Applications.Any(x => x.Id == applicationId))
                 throw new Exception("Applicant isn't in selection");
             app.Status = Status.Completed;
-            var selectionDto= await _selectionRepository.RemoveApplicant(selection, app);
+            var selectionDto = await _selectionRepository.RemoveApplicant(selection, app);
             return _mapper.Map<GetSelectionDto>(selectionDto);
         }
         public async Task<GetSelectionDto> AddCommentToSelection(int selectionId, string comment)

@@ -41,7 +41,6 @@ export class SelectionstableComponent implements OnInit {
   loadSelections() {
     this.selectionsService.getSelections(this.PageNumber, this.PageSize, this.selectionName, this.searchName).subscribe(response => {
       this.selections = response.result;
-      console.log(this.selections);
       this.pagination = response.pagination;
     });
   }
@@ -92,7 +91,6 @@ export class SelectionstableComponent implements OnInit {
   loadApplicants(newSearch: string) {
     this.applicantService.getApplicantsPreselection(newSearch).subscribe(response => {
       this.applicants = response.result;
-      console.log(this.applicants);
       this.pagination = response.pagination;
     });
   }
@@ -101,11 +99,6 @@ export class SelectionstableComponent implements OnInit {
     var applicationToSelection: addApplicantToSelection = new addApplicantToSelection();
     applicationToSelection.applicationId = currentApplicantId;
     applicationToSelection.selectionId = this.selection.id;
-    console.log(applicationToSelection.selectionId);
-    console.log(applicationToSelection);
     this.selectionsService.addApplicantToSelection(applicationToSelection);
   }
-
-
-
 }

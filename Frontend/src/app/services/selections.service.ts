@@ -49,4 +49,10 @@ export class SelectionsService {
     // return this.http.patch<addApplicantToSelection>('https://localhost:7156/Selection/AddApplication', addingApplicantToSelection).subscribe();
     return this.http.patch<addApplicantToSelection>('https://localhost:7156/Selection/AddApplication', addingApplicantToSelection).subscribe();
   }
+
+  public removeApplicantFromSelection(removeApplicantFromSelection: addApplicantToSelection) {
+    console.log(removeApplicantFromSelection);
+    // return this.http.patch<addApplicantToSelection>('https://localhost:7156/Selection/AddApplication', addingApplicantToSelection).subscribe();
+    return this.http.patch<addApplicantToSelection>('https://localhost:7156/Selection/RemoveApplication', removeApplicantFromSelection).subscribe();
+  }
 }

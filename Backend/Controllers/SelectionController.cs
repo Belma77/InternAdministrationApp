@@ -32,7 +32,7 @@ namespace Backend.Controllers
 
         }
         [HttpPost("Add")]
-        public async Task<ActionResult<GetSelectionsDto>> AddSelection (AddSelectionDto selectionDto)
+        public async Task<ActionResult<GetSelectionsDto>> AddSelection(AddSelectionDto selectionDto)
         {
             return Ok(await _selectionService.AddSelection(selectionDto));
         }
@@ -46,7 +46,7 @@ namespace Backend.Controllers
         {
             return Ok(await _selectionService.AddApplicantsToSelection(req.selectionId, req.applicationId));
         }
-        [HttpDelete("RemoveApplication")]
+        [HttpPatch("RemoveApplication")]
         public async Task<ActionResult<GetSelectionDto>> RemoveApplicantsToSelection([FromBody] AddApplicationToSelectionReq req)
         {
             return Ok(await _selectionService.RemoveApplicantToSelection(req.selectionId, req.applicationId));
