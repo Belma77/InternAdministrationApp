@@ -4,6 +4,7 @@ namespace Backend.Services.CommentService
 {
     public interface ICommentService
     {
-        Task PostComment(AddAppComment appComment);
+        Task<GetCommentDto> PostAppComment(AddAppComment appComment);
+        Task<GetCommentDto> PostSelectionComment(AddSelectionComment selectionComment);
     }
 }

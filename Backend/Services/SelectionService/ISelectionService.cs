@@ -12,9 +12,8 @@ namespace Backend.Services.SelectionService
         //Task<Selection> GetSelectionById(int id);
 
         Task<GetSelectionsDto> AddSelection(AddSelectionDto addSelection);
-        Task<GetSelectionsDto> EditSelection(int id, AddSelectionDto addSelection);
+        Task<GetSelectionsDto> EditSelection(EditSelectionDto addSelection);
         Task<GetSelectionDto> AddApplicantsToSelection(int selectionId, int applicationId);
         Task<GetSelectionDto> RemoveApplicantToSelection(int selectionId, int applicationId);
-        Task<GetSelectionDto> AddCommentToSelection(int selectionId, string comment);
     }
 }

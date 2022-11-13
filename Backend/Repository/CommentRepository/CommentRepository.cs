@@ -1,5 +1,6 @@
 ﻿using Backend.Data;
 using Backend.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace Backend.Repository.CommentRepository
 {
@@ -14,6 +15,11 @@ namespace Backend.Repository.CommentRepository
         {
             _dataContext.Add(comment);
             await _dataContext.SaveChangesAsync();
+        }
+        public async Task<Comment> GetById(int id)
+        {
+         return await  _dataContext.Comments.FirstOrDefaultAsync(x => x.Id == id);
+            
         }
     }
 }

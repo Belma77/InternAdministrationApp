@@ -12,8 +12,8 @@ namespace Backend.Models
         public DateTime? EditedAt{ get; set; }
 
         public string Description{ get; set; }
-        public List<Applications>? Applications { get; set; }=new List<Applications>();
-        public List<Comment>? Comments { get; set; }=new List<Comment>();
+        public ICollection<Applications>? Applications { get; set; }
+        public ICollection<Comment>? Comments { get; set; }
 
     }
 }

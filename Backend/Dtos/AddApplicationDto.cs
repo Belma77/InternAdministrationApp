@@ -10,7 +10,7 @@ namespace Backend.Dtos
         [Required]
         public string LastName { get; set; }
         [Required]
-        //[DataType(DataType.EmailAddress)]
+        [DataType(DataType.EmailAddress)]
         public string Email { get; set; }
         [Required]
         public EducationLevel EducationLevel { get; set; }

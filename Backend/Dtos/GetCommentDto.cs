@@ -4,10 +4,9 @@ namespace Backend.Dtos
 {
     public class GetCommentDto
     {
-        public string Description { get; set; }
+        public string Comment { get; set; }
         public UserDto User { get; set; }
 
-        //public string Username { get; set; }    
 
 
     }

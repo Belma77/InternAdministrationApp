@@ -56,12 +56,7 @@ namespace Backend.Controllers
         }
 
 
-        [HttpPatch("AddComment")]
-        public async Task<ActionResult<GetAppDto>> AddAppComment([FromBody] AddCommentRequest req)
-        {
-
-            return Ok(await _applicationService.AddAppComment(req.Id, req.Comments));
-        }
+       
         [HttpPatch("UpdateStatus")]
         public async Task<ActionResult<GetAppDto>> UpdateStatus(AppUpdateStatus updateStatus)
         {
