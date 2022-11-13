@@ -36,6 +36,8 @@ namespace Backend.Controllers
             _authService=auth;
         }
         [HttpPost("AddEditor")]
+        //[Authorize(Roles = "Admin")]
+
         public async Task<ActionResult> AddEditor(AddEditorDto user)
         {
             IdentityResult result;

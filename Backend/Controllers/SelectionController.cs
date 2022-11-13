@@ -10,6 +10,8 @@ namespace Backend.Controllers
 {
     [Route("Selection")]
     [ApiController]
+    //[Authorize(Roles = "Admin, Editor")]
+
     public class SelectionController : ControllerBase
     {
         private readonly ISelectionService _selectionService;

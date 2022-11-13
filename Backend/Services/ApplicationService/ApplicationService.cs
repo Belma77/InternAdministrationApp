@@ -14,6 +14,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore.Query.Internal;
 using MimeKit;
 using MimeKit.Text;
+using SendGrid;
+using SendGrid.Helpers.Mail;
 using System.Drawing.Text;
 using System.Security.Claims;
 using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
@@ -26,13 +28,17 @@ namespace Backend.Services.ApplicationService
         private readonly IHttpContextAccessor _contextAccessor;
         private IUserService _userService;
         private UserManager<User> _userManager;
-        public ApplicationService(IApplicationRepository applicationRepository, IMapper mapper, IHttpContextAccessor contextAccessor, IUserService userService, UserManager<User> userManager)
+        private ISendGridClient _sendGridClient;
+        private IConfiguration _configuration;
+        public ApplicationService(IApplicationRepository applicationRepository, IMapper mapper, IHttpContextAccessor contextAccessor, IUserService userService, UserManager<User> userManager, ISendGridClient sendGridClient, IConfiguration configuration)
         {
             _applicationRepository = applicationRepository;
             _mapper = mapper;
             _contextAccessor = contextAccessor;
             _userService = userService;
             _userManager = userManager;
+            _sendGridClient = sendGridClient;
+            _configuration=configuration;
         }
 
         public async Task<PagedList<GetApplicationsDto>> GetAllApplications(UserParams userParams)
@@ -64,13 +70,11 @@ namespace Backend.Services.ApplicationService
         }
         public async Task AddApplication(AddApplicationDto app)
         {
-
             await _applicationRepository.Add(_mapper.Map<Applications>(app));
-
         }
 
        
-        public async Task<GetAppDto> UpdateStatus(int id, Status status)
+        public async Task<string> UpdateStatus(int id, Status status)
         {
 
             var app = await _applicationRepository.GetById(id);
@@ -78,9 +82,11 @@ namespace Backend.Services.ApplicationService
                 throw new Exception("Application not found");
             app.Status = status;
             await _applicationRepository.Update(app);
-            if (status == Status.Inselection)
-                SendEmail();
-            return _mapper.Map<GetAppDto>(app);
+           // if (status == Status.Inselection)
+                //SendEmail();
+                return await SendMail();
+           // else
+           // return _mapper.Map<GetAppDto>(app);
 
         }
         private void SendEmail()
@@ -100,6 +106,25 @@ namespace Backend.Services.ApplicationService
             smtp.Send(email);
             smtp.Disconnect(true);
 
+        }
+        private async  Task<string> SendMail()
+        {
+            string fromEmail = _configuration.GetSection("SendgridEmailAdress")
+            .GetValue<string>("FromEmail");
+            string fromName = _configuration.GetSection("SendgridEmailAdress")
+           .GetValue<string>("FromName");
+
+            var msg = new SendGridMessage()
+            {
+                From = new EmailAddress(fromEmail, fromName),
+                Subject = "Welcome to Internship",
+                PlainTextContent = "Test"
+
+            };
+            msg.AddTo("belmaaliman@gmail.com");
+            var response =  await _sendGridClient.SendEmailAsync(msg);
+            string message = response.IsSuccessStatusCode ? "Email sent" : "Failed";
+            return message;
         }
 
     }
