@@ -293,7 +293,7 @@ namespace Backend.Migrations
                         {
                             Id = "b74ddd14-6340-4840-95c2-db12554843e5",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "8c835cfc-305e-4c95-ac84-c9651c8925e5",
+                            ConcurrencyStamp = "d1169d4c-1af3-495d-b0d5-01f5c31b10ed",
                             Email = "admin@gmail.com",
                             EmailConfirmed = false,
                             FirstName = "admin",
@@ -301,10 +301,10 @@ namespace Backend.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "ADMIN@GMAIL.COM",
                             NormalizedUserName = "ADMIN",
-                            PasswordHash = "AQAAAAEAACcQAAAAEPHtfp63G4I7NTBTcKh6JzB/m/tuPpjJYEwQTjnXz0lDknsbiw4kpCu8xw9aUCakpw==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEFcO56o6zkQTCEOq2tEobYFofcJR4tlW8uvrMiPy0yyub7IkxEZM3GyRvmRkgmUpBg==",
                             PhoneNumber = "1234567890",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "0b48bf0f-6c10-4e79-a562-0cf2a802c3fe",
+                            SecurityStamp = "bce89155-70ba-499a-a8ee-5fd98e4ae2a2",
                             TwoFactorEnabled = false,
                             UserName = "Admin"
                         });

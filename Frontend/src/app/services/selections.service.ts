@@ -5,6 +5,7 @@ import { environment } from 'src/environments/environment';
 import { Selections } from '../models/selections';
 import { PaginatedResult } from '../models/pagination';
 import { addApplicantToSelection } from '../models/addApplicantToSelection';
+import { EditSelection } from '../models/editSelection';
 
 @Injectable({
   providedIn: 'root'
@@ -16,6 +17,10 @@ export class SelectionsService {
   paginatedResult: PaginatedResult<Selections[]> = new PaginatedResult<Selections[]>();
 
   constructor(private http: HttpClient) { }
+
+  public addSelection(addSelection: { name: string, startDate: Date, endDate: Date, description: string }) {
+    this.http.post<Selections>('https://localhost:7156/Selection/Add', addSelection).subscribe();
+  }
 
   public getSelections(page?: number, ItemsPerPage?: number, selectionName?: string, searchName?: string) {
     let params = new HttpParams();
@@ -54,5 +59,9 @@ export class SelectionsService {
     console.log(removeApplicantFromSelection);
     // return this.http.patch<addApplicantToSelection>('https://localhost:7156/Selection/AddApplication', addingApplicantToSelection).subscribe();
     return this.http.patch<addApplicantToSelection>('https://localhost:7156/Selection/RemoveApplication', removeApplicantFromSelection).subscribe();
+  }
+
+  public editSelection(editSelection: { SelectionId?: number, Name?: string, StartDate?: Date, EndDate?: Date, Description?: string }) {
+    return this.http.put<EditSelection>('https://localhost:7156/Selection/Edit', editSelection).subscribe();
   }
 }

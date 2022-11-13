@@ -1,10 +1,12 @@
 import { outputAst } from '@angular/compiler';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { addApplicantToSelection } from 'src/app/models/addApplicantToSelection';
 import { Applicants } from 'src/app/models/applicants';
 import { Pagination } from 'src/app/models/pagination';
 import { Selections } from 'src/app/models/selections';
 import { SelectionsService } from 'src/app/services/selections.service';
+import { EditselectionComponent } from './editselection/editselection.component';
 
 @Component({
   selector: 'app-selectioninformation',
@@ -15,6 +17,8 @@ export class SelectioninformationComponent implements OnInit {
   @Output() loadApplicants: EventEmitter<any> = new EventEmitter();
   @Output() newSearch = new EventEmitter<string>();
   @Output() applicantId = new EventEmitter<number>();
+  @Input()
+  selections: Selections[];
   @Input() selection: Selections;
   @Input() applicants: Applicants[];
   @Input() pagination: Pagination;
@@ -24,7 +28,7 @@ export class SelectioninformationComponent implements OnInit {
   PageSize = 10;
   @Input() search: string;
 
-  constructor(private selectionsService: SelectionsService) { }
+  constructor(private selectionsService: SelectionsService, public dialog: MatDialog) { }
 
   ngOnInit(): void {
 
@@ -53,5 +57,12 @@ export class SelectioninformationComponent implements OnInit {
     applicationToSelection.applicationId = currentApplicantId;
     applicationToSelection.selectionId = this.selection.id;
     this.selectionsService.removeApplicantFromSelection(applicationToSelection);
+  }
+
+  openDialog(): void {
+    this.dialog.open(EditselectionComponent, {
+      width: '30%',
+      data: { selections: this.selection },
+    });
   }
 }

@@ -5,6 +5,9 @@ import { SelectionsService } from 'src/app/services/selections.service';
 import { ApplicantsService } from 'src/app/services/applicants.service';
 import { Applicants } from 'src/app/models/applicants';
 import { addApplicantToSelection } from 'src/app/models/addApplicantToSelection';
+import { MatDialog } from '@angular/material/dialog';
+import { AddselectionComponent } from './addselection/addselection.component';
+
 
 declare var window: any;
 
@@ -24,11 +27,9 @@ export class SelectionstableComponent implements OnInit {
   searchName: string;
   rowSelected: boolean = false;
 
-
   formModal: any;
 
-
-  constructor(private selectionsService: SelectionsService, private applicantService: ApplicantsService) { }
+  constructor(private selectionsService: SelectionsService, private applicantService: ApplicantsService, public dialog: MatDialog) { }
 
   ngOnInit(): void {
     this.loadSelections();
@@ -100,5 +101,12 @@ export class SelectionstableComponent implements OnInit {
     applicationToSelection.applicationId = currentApplicantId;
     applicationToSelection.selectionId = this.selection.id;
     this.selectionsService.addApplicantToSelection(applicationToSelection);
+  }
+
+  openDialog(): void {
+    this.dialog.open(AddselectionComponent, {
+      width: '30%',
+      data: { selections: this.selections },
+    });
   }
 }
