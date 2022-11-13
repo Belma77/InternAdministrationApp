@@ -3,10 +3,12 @@ using Backend.Data;
 using Backend.Models;
 using Backend.Repository.AppRepo;
 using Backend.Repository.Auth;
+using Backend.Repository.CommentRepository;
 using Backend.Repository.SelectionRepo;
 using Backend.Repository.UserRepo;
 using Backend.Services.ApplicationService;
 using Backend.Services.AuthService;
+using Backend.Services.CommentService;
 using Backend.Services.SelectionService;
 using Backend.Services.UserService;
 //using JWTAuthentication.NET6._0.Auth;
@@ -67,6 +69,9 @@ builder.Services.AddScoped<IAuthRepo, AuthRepo>();
 
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<IUserService, UserService>();
+builder.Services.AddScoped<ICommentService, CommentService>();
+builder.Services.AddScoped<ICommentRepository, CommentRepository>();
+
 
 // Add services to the container.
 

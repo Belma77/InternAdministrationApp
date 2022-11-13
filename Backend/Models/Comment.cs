@@ -7,8 +7,10 @@ namespace Backend.Models
     {
         public int Id { get; set; }
         public string Description { get; set; }
-        //[ForeignKey("UserId")]
-        //public string UserId { get; set; }
         public User User { get; set; }
+        public int ApplicationId { get; set; }
+        public int SelectionId { get; set; }
+
+
     }
 }
