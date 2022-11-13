@@ -22,10 +22,11 @@ import { EditorsComponent } from './editors/editors.component';
 import { EditorsformComponent } from './editors/editorsform/editorsform.component';
 import { ApplicantComponent } from './applications/applicationstable/applicant/applicant.component';
 import { SelectioninformationComponent } from './selection/selectionstable/selectioninformation/selectioninformation.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { PaginationModule } from 'ngx-bootstrap/pagination'
 import { FormsModule } from '@angular/forms';
+import { TokenService } from './services/token.service';
 
 const appRoutes: Routes = [
   { path: '', component: ApplyforinternshipComponent },
@@ -73,7 +74,7 @@ const appRoutes: Routes = [
   exports: [
     PaginationModule
   ],
-  providers: [],
+  providers: [{ provide: HTTP_INTERCEPTORS, useClass: TokenService, multi: true }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

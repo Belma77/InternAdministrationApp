@@ -14,11 +14,11 @@ namespace Backend.Controllers
         {
             _commentService = commentService;
         }
-        //[HttpPost]
-        //public async Task<ActionResult> PostComment(AddAppComment commentDto)
-        //{
-        //    await _commentService.PostComment(commentDto);
-        //    return Ok();
-        //}
+        [HttpPost]
+        public async Task<ActionResult> PostComment(AddAppComment commentDto)
+        {
+            await _commentService.PostComment(commentDto);
+            return Ok();
+        }
     }
 }

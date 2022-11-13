@@ -4,6 +4,7 @@ import { map } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { Selections } from '../models/selections';
 import { PaginatedResult } from '../models/pagination';
+import { addApplicantToSelection } from '../models/addApplicantToSelection';
 
 @Injectable({
   providedIn: 'root'
@@ -37,5 +38,21 @@ export class SelectionsService {
         return this.paginatedResult;
       })
     )
+  }
+
+  public getSelection(id: number) {
+    return this.http.get<Selections>("https://localhost:7156/Selection/GetById?id=" + id);
+  }
+
+  public addApplicantToSelection(addingApplicantToSelection: addApplicantToSelection) {
+    console.log(addingApplicantToSelection);
+    // return this.http.patch<addApplicantToSelection>('https://localhost:7156/Selection/AddApplication', addingApplicantToSelection).subscribe();
+    return this.http.patch<addApplicantToSelection>('https://localhost:7156/Selection/AddApplication', addingApplicantToSelection).subscribe();
+  }
+
+  public removeApplicantFromSelection(removeApplicantFromSelection: addApplicantToSelection) {
+    console.log(removeApplicantFromSelection);
+    // return this.http.patch<addApplicantToSelection>('https://localhost:7156/Selection/AddApplication', addingApplicantToSelection).subscribe();
+    return this.http.patch<addApplicantToSelection>('https://localhost:7156/Selection/RemoveApplication', removeApplicantFromSelection).subscribe();
   }
 }

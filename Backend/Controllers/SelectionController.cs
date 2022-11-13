@@ -32,7 +32,7 @@ namespace Backend.Controllers
 
         }
         [HttpPost("Add")]
-        public async Task<ActionResult<GetSelectionsDto>> AddSelection (AddSelectionDto selectionDto)
+        public async Task<ActionResult<GetSelectionsDto>> AddSelection(AddSelectionDto selectionDto)
         {
             return Ok(await _selectionService.AddSelection(selectionDto));
         }
@@ -42,14 +42,14 @@ namespace Backend.Controllers
             return Ok(await _selectionService.EditSelection(id, selectionDto));
         }
         [HttpPatch("AddApplication")]
-        public async Task<ActionResult<GetSelectionDto>> AddApplicantsToSelection(int selectionId, int applicationId)
+        public async Task<ActionResult<GetSelectionDto>> AddApplicantsToSelection([FromBody] ApplicationToSelectionDto req)
         {
-            return Ok(await _selectionService.AddApplicantsToSelection(selectionId, applicationId));
+            return Ok(await _selectionService.AddApplicantsToSelection(req.selectionId, req.applicationId));
         }
-        [HttpDelete("RemoveApplication")]
-        public async Task<ActionResult<GetSelectionDto>> RemoveApplicantsToSelection(int selectionId, int applicationId)
+        [HttpPatch("RemoveApplication")]
+        public async Task<ActionResult<GetSelectionDto>> RemoveApplicantsToSelection([FromBody] ApplicationToSelectionDto req)
         {
-            return Ok(await _selectionService.RemoveApplicantToSelection(selectionId, applicationId));
+            return Ok(await _selectionService.RemoveApplicantToSelection(req.selectionId, req.applicationId));
         }
         [HttpPut("PostComment")]
         public async Task<ActionResult<GetSelectionDto>> PostSelectionComment(int selectionId, string comment)

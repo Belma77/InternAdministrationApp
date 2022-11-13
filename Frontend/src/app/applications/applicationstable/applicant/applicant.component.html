@@ -1,11 +1,4 @@
 <div class="p-4">
-    <div class="row text-end mb-3">
-        <div class="col-9">
-        </div>
-        <div class="col-3">
-            <button type="button" class="btn btn-success" form="commentar-form">Save Changes</button>
-        </div>
-    </div>
     <div class="row text-center mb-5">
         <div class="col">
             <div class="card text-center">
@@ -48,7 +41,7 @@
             </div>
         </div>
         <div class="col">
-            <div class="card text-center">
+            <!-- <div class="card text-center">
                 <div class="card-header card-title">
                     <div class="mt-1">Status</div>
                 </div>
@@ -67,7 +60,15 @@
                         </ul>
                     </div>
                 </div>
-            </div>
+            </div> -->
+            <select (ngModelChange)="onUpdateStatus($event)" [(ngModel)]="status" id="inputState" class="form-control"
+                id="educationLevel" name="educationLevel" placeholder="Education Level" required ngModel>
+                <option>Applied</option>
+                <option>Preselection</option>
+                <option>Inselection</option>
+                <option>Completed</option>
+                <option>Rejected</option>
+            </select>
         </div>
     </div>
     <div class="row">
@@ -108,11 +109,9 @@
         <form class="commentForm" #commentForm="ngForm" (ngSubmit)="onComment( commentInput.value )">
             <div class="form-group mt-2 comment">
                 <label for="exampleFormControlTextarea1">Enter a comment:</label>
-                <input #commentInput type="text" class="form-control" id="exampleFormControlTextarea1" rows="3" required
-                    ngModel>
+                <input #commentInput type="text" class="form-control" id="exampleFormControlTextarea1" rows="3">
             </div>
             <button type="submit" class="btn btn-success">Add Comment</button>
-
         </form>
     </div>
 </div>

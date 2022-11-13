@@ -10,9 +10,10 @@ namespace Backend.Dtos
         public string Email { get; set; }
         public EducationLevel EducationLevel { get; set; }
         public string CoverLetter { get; set; }
-         public string? CV { get; set; }
+        public string? CV { get; set; }
         public Status Status { get; set; }
         public List<GetCommentDto>? Comments { get; set; }
         public List<GetSelectionDto>? Selections { get; set; }
+        public string Username { get; set; }
     }
 }

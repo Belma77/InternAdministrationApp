@@ -30,7 +30,10 @@ namespace Backend.Services.CommentService
             if (app == null)
                 throw new Exception("Application not found");
             var comment = _mapper.Map<Comment>(appComment);
-            _commentRepository.Add(comment);
+            app.Comments.Add(comment);
+
+           await  _commentRepository.Add(comment);
+
             //await _applicationRepository.Update(app);
             
             //_commentRepository.Add(_mapper.Map<Comment>(appComment));

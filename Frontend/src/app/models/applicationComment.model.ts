@@ -5,4 +5,6 @@ export class ApplicationComment {
     ApplicationId: number;
     Comments: string;//Description
     User?: User;
+    id: number;
+    comments: string;
 }

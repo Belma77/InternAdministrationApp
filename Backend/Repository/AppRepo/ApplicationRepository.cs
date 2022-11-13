@@ -32,7 +32,7 @@ namespace Backend.Repository.AppRepo
             return await _dataContext.Applications.
                 Include(x => x.Selections).
                 Include(y => y.Comments).
-                ThenInclude(y=>y.User).
+                ThenInclude(y => y.User).
                 FirstOrDefaultAsync(x => x.Id == id);
 
         }
@@ -47,7 +47,6 @@ namespace Backend.Repository.AppRepo
             app.Status = Status.Applied;
             _dataContext.Applications.Add(app);
             await _dataContext.SaveChangesAsync();
-
         }
     }
 }
