@@ -15,42 +15,8 @@
                 </select>
             </div>
             <div class="col-1">
-                <!-- <div class="dropdown">
-                <button class="btn btnsort dropdown-toggle" type="button" id="dropdownMenuButton1"
-                    data-bs-toggle="dropdown" aria-expanded="false">
-                    Start Date
-                </button>
-                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                    <li><a class="dropdown-item" href="#">Newest</a></li>
-                    <li><a class="dropdown-item" href="#">Oldest</a></li>
-                </ul>
-            </div> -->
-
-
-                <!-- <select id="inputState" class="form-control" id="educationLevel" name="educationLevel" required ngModel>
-                <option value="" disabled selected hidden>Sort</option>
-                <option>Ascending</option>
-                <option>Descending</option>
-            </select> -->
             </div>
             <div class="col-1">
-                <!-- <div class="dropdown">
-                <button class="btn btnsort dropdown-toggle" type="button" id="dropdownMenuButton1"
-                    data-bs-toggle="dropdown" aria-expanded="false">
-                    End Date
-                </button>
-                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                    <li><a class="dropdown-item" href="#">Newest</a></li>
-                    <li><a class="dropdown-item" href="#">Oldest</a></li>
-                </ul>
-            </div> -->
-
-
-                <!-- <select id="inputState" class="form-control" id="educationLevel" name="educationLevel" required ngModel>
-                <option value="" disabled selected hidden>Sort</option>
-                <option>Ascending</option>
-                <option>Descending</option>
-            </select> -->
             </div>
             <div class="col-4"></div>
             <div class="col-2">
@@ -81,19 +47,6 @@
                 </tr>
             </tbody>
         </table>
-        <!-- <nav aria-label="Page navigation example">
-        <ul class="pagination justify-content-center">
-            <li class="page-item disabled">
-                <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a>
-            </li>
-            <li class="page-item active"><a class="page-link" href="#">1</a></li>
-            <li class="page-item"><a class="page-link" href="#">2</a></li>
-            <li class="page-item"><a class="page-link" href="#">3</a></li>
-            <li class="page-item">
-                <a class="page-link" href="#">Next</a>
-            </li>
-        </ul>
-    </nav> -->
         <div class="d-flex justify-content-center" *ngIf="pagination">
             <pagination [boundaryLinks]="true" [totalItems]="pagination.TotalItems"
                 [itemsPerPage]="pagination.ItemsPerPage" [(ngModel)]="pagination.CurrentPage"

@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Backend.Migrations
 {
     /// <inheritdoc />
-    public partial class inital : Migration
+    public partial class initial : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -227,10 +227,10 @@ namespace Backend.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    comment = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     UserId = table.Column<string>(type: "nvarchar(450)", nullable: true),
-                    ApplicationId = table.Column<int>(type: "int", nullable: false),
-                    SelectionId = table.Column<int>(type: "int", nullable: false)
+                    ApplicationId = table.Column<int>(type: "int", nullable: true),
+                    SelectionId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -239,8 +239,7 @@ namespace Backend.Migrations
                         name: "FK_Comments_Applications_ApplicationId",
                         column: x => x.ApplicationId,
                         principalTable: "Applications",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                     table.ForeignKey(
                         name: "FK_Comments_AspNetUsers_UserId",
                         column: x => x.UserId,
@@ -250,8 +249,7 @@ namespace Backend.Migrations
                         name: "FK_Comments_Selections_SelectionId",
                         column: x => x.SelectionId,
                         principalTable: "Selections",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.InsertData(
@@ -277,7 +275,7 @@ namespace Backend.Migrations
             migrationBuilder.InsertData(
                 table: "AspNetUsers",
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "FirstName", "LastName", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
-                values: new object[] { "b74ddd14-6340-4840-95c2-db12554843e5", 0, "2f5628ae-eee1-47be-a2cb-ad0606df5893", "admin@gmail.com", false, "admin", "admin", false, null, "ADMIN@GMAIL.COM", "ADMIN", "AQAAAAEAACcQAAAAEPifz10Zpw3hZKc2w5u0E50cNBXeewpcCtX5ugBYo4jt2nRkeuhhmFg8v3I45NT/cw==", "1234567890", false, "c5fdc2ac-abe6-4021-aa78-a8f3fd4de995", false, "Admin" });
+                values: new object[] { "b74ddd14-6340-4840-95c2-db12554843e5", 0, "d1169d4c-1af3-495d-b0d5-01f5c31b10ed", "admin@gmail.com", false, "admin", "admin", false, null, "ADMIN@GMAIL.COM", "ADMIN", "AQAAAAEAACcQAAAAEFcO56o6zkQTCEOq2tEobYFofcJR4tlW8uvrMiPy0yyub7IkxEZM3GyRvmRkgmUpBg==", "1234567890", false, "bce89155-70ba-499a-a8ee-5fd98e4ae2a2", false, "Admin" });
 
             migrationBuilder.InsertData(
                 table: "Selections",

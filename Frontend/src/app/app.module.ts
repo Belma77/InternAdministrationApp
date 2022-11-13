@@ -25,10 +25,13 @@ import { SelectioninformationComponent } from './selection/selectionstable/selec
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { PaginationModule } from 'ngx-bootstrap/pagination'
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TokenService } from './services/token.service';
 import { MatDialogModule } from '@angular/material/dialog';
 import { AddselectionComponent } from './selection/selectionstable/addselection/addselection.component';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { EditselectionComponent } from './selection/selectionstable/selectioninformation/editselection/editselection.component';
 
 const appRoutes: Routes = [
   { path: '', component: ApplyforinternshipComponent },
@@ -63,6 +66,7 @@ const appRoutes: Routes = [
     ApplicantComponent,
     SelectioninformationComponent,
     AddselectionComponent,
+    EditselectionComponent
   ],
   imports: [
     BrowserModule,
@@ -73,7 +77,10 @@ const appRoutes: Routes = [
     NgxPaginationModule,
     PaginationModule.forRoot(),
     FormsModule,
-    MatDialogModule
+    MatDialogModule,
+    MatDatepickerModule,
+    MatFormFieldModule,
+    ReactiveFormsModule,
   ],
   exports: [
     PaginationModule

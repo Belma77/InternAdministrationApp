@@ -94,7 +94,7 @@ namespace Backend.Services.SelectionService
             var selectionDto = await _selectionRepository.RemoveApplicant(selection, app);
             return _mapper.Map<GetSelectionDto>(selectionDto);
         }
-       
+
 
     }
 }

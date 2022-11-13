@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Backend.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20221113115511_inital")]
-    partial class inital
+    [Migration("20221113135740_initial")]
+    partial class initial
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -133,18 +133,18 @@ namespace Backend.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("ApplicationId")
+                    b.Property<int?>("ApplicationId")
                         .HasColumnType("int");
 
-                    b.Property<string>("Description")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("SelectionId")
+                    b.Property<int?>("SelectionId")
                         .HasColumnType("int");
 
                     b.Property<string>("UserId")
                         .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("comment")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
@@ -296,7 +296,7 @@ namespace Backend.Migrations
                         {
                             Id = "b74ddd14-6340-4840-95c2-db12554843e5",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "2f5628ae-eee1-47be-a2cb-ad0606df5893",
+                            ConcurrencyStamp = "d1169d4c-1af3-495d-b0d5-01f5c31b10ed",
                             Email = "admin@gmail.com",
                             EmailConfirmed = false,
                             FirstName = "admin",
@@ -304,10 +304,10 @@ namespace Backend.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "ADMIN@GMAIL.COM",
                             NormalizedUserName = "ADMIN",
-                            PasswordHash = "AQAAAAEAACcQAAAAEPifz10Zpw3hZKc2w5u0E50cNBXeewpcCtX5ugBYo4jt2nRkeuhhmFg8v3I45NT/cw==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEFcO56o6zkQTCEOq2tEobYFofcJR4tlW8uvrMiPy0yyub7IkxEZM3GyRvmRkgmUpBg==",
                             PhoneNumber = "1234567890",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "c5fdc2ac-abe6-4021-aa78-a8f3fd4de995",
+                            SecurityStamp = "bce89155-70ba-499a-a8ee-5fd98e4ae2a2",
                             TwoFactorEnabled = false,
                             UserName = "Admin"
                         });
@@ -488,15 +488,11 @@ namespace Backend.Migrations
                 {
                     b.HasOne("Backend.Models.Applications", "Application")
                         .WithMany("Comments")
-                        .HasForeignKey("ApplicationId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("ApplicationId");
 
                     b.HasOne("Backend.Models.Selection", "Selection")
                         .WithMany("Comments")
-                        .HasForeignKey("SelectionId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("SelectionId");
 
                     b.HasOne("Backend.Models.User", "User")
                         .WithMany()

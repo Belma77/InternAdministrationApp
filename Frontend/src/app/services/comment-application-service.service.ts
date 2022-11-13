@@ -16,7 +16,7 @@ export class CommentApplicationServiceService {
 
   public addComment(comments: ApplicationComment) {
     console.log(comments);
-    return this.http.patch<ApplicationComment>('https://localhost:7156/Application/AddComment', comments).subscribe();
+    return this.http.post<ApplicationComment>('https://localhost:7156/api/Comment/AddAppComment', comments).subscribe();
   }
 
 }

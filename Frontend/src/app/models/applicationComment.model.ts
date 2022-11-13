@@ -6,5 +6,5 @@ export class ApplicationComment {
     Comments: string;//Description
     User?: User;
     id: number;
-    comments: string;
+    Comment: string;
 }
