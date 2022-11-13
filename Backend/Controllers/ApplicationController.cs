@@ -55,8 +55,6 @@ namespace Backend.Controllers
             return Ok(await _applicationService.GetApplicationById(id));
         }
 
-
-       
         [HttpPatch("UpdateStatus")]
         public async Task<ActionResult<GetAppDto>> UpdateStatus(AppUpdateStatus updateStatus)
         {

@@ -80,7 +80,8 @@ const appRoutes: Routes = [
     MatDialogModule,
     MatDatepickerModule,
     MatFormFieldModule,
-    ReactiveFormsModule,
+    ReactiveFormsModule
+    
   ],
   exports: [
     PaginationModule

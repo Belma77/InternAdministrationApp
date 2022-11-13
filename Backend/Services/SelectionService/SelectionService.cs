@@ -57,10 +57,10 @@ namespace Backend.Services.SelectionService
             var selection = await _selectionRepository.GetSelectionById(editSelection.SelectionId);
             if (selection == null)
                 throw new Exception("Selection not found");
-            selection.Name = editSelection.Name;
-            selection.Description = editSelection.Description;
-            selection.StartDate = editSelection.StartDate;
-            selection.EndDate = editSelection.EndDate;
+            selection.Name = editSelection.Name??selection.Name;
+            selection.Description = editSelection.Description??selection.Description;
+            selection.StartDate = (DateTime)(editSelection.StartDate.HasValue?selection.StartDate:editSelection.StartDate);
+            selection.EndDate = (DateTime)(editSelection.EndDate.HasValue ? selection.EndDate : editSelection.EndDate);
             selection.EditedAt = DateTime.Now;
             await _selectionRepository.EditSelection(selection);
             return _mapper.Map<GetSelectionsDto>(selection);

@@ -12,7 +12,7 @@ namespace Backend.Services.ApplicationService
         Task<PagedList<GetApplicationsDto>> GetAppsForSelection(UserParams userParams);
         Task<GetAppDto> GetApplicationById(int id);
         Task AddApplication(AddApplicationDto app);
-        Task<GetAppDto> UpdateStatus(int id, Status status);
+        Task<string> UpdateStatus(int id, Status status);
 
     }
 }
