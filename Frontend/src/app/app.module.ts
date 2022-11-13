@@ -27,6 +27,8 @@ import { NgxPaginationModule } from 'ngx-pagination';
 import { PaginationModule } from 'ngx-bootstrap/pagination'
 import { FormsModule } from '@angular/forms';
 import { TokenService } from './services/token.service';
+import { MatDialogModule } from '@angular/material/dialog';
+import { AddselectionComponent } from './selection/selectionstable/addselection/addselection.component';
 
 const appRoutes: Routes = [
   { path: '', component: ApplyforinternshipComponent },
@@ -60,6 +62,7 @@ const appRoutes: Routes = [
     EditorsformComponent,
     ApplicantComponent,
     SelectioninformationComponent,
+    AddselectionComponent,
   ],
   imports: [
     BrowserModule,
@@ -69,7 +72,8 @@ const appRoutes: Routes = [
     HttpClientModule,
     NgxPaginationModule,
     PaginationModule.forRoot(),
-    FormsModule
+    FormsModule,
+    MatDialogModule
   ],
   exports: [
     PaginationModule
