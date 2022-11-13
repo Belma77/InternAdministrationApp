@@ -36,26 +36,22 @@ namespace Backend.Controllers
         {
             return Ok(await _selectionService.AddSelection(selectionDto));
         }
-        [HttpPatch("Edit")]
-        public async Task<ActionResult<GetSelectionsDto>> EditSelection(int id, AddSelectionDto selectionDto)
+        [HttpPut("Edit")]
+        public async Task<ActionResult<GetSelectionsDto>> EditSelection(EditSelectionDto selectionDto)
         {
-            return Ok(await _selectionService.EditSelection(id, selectionDto));
+            return Ok(await _selectionService.EditSelection(selectionDto));
         }
         [HttpPatch("AddApplication")]
-        public async Task<ActionResult<GetSelectionDto>> AddApplicantsToSelection([FromBody] AddApplicationToSelectionReq req)
+        public async Task<ActionResult<GetSelectionDto>> AddApplicantsToSelection([FromBody] ApplicationToSelectionDto req)
         {
             return Ok(await _selectionService.AddApplicantsToSelection(req.selectionId, req.applicationId));
         }
         [HttpPatch("RemoveApplication")]
-        public async Task<ActionResult<GetSelectionDto>> RemoveApplicantsToSelection([FromBody] AddApplicationToSelectionReq req)
+        public async Task<ActionResult<GetSelectionDto>> RemoveApplicantsToSelection([FromBody] ApplicationToSelectionDto req)
         {
             return Ok(await _selectionService.RemoveApplicantToSelection(req.selectionId, req.applicationId));
         }
-        [HttpPut("PostComment")]
-        public async Task<ActionResult<GetSelectionDto>> PostSelectionComment(int selectionId, string comment)
-        {
-            return Ok(await _selectionService.AddCommentToSelection(selectionId, comment));
-        }
+        
 
     }
 }

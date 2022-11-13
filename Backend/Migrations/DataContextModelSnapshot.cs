@@ -130,12 +130,8 @@ namespace Backend.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int?>("ApplicationsId")
+                    b.Property<int?>("ApplicationId")
                         .HasColumnType("int");
-
-                    b.Property<string>("Description")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int?>("SelectionId")
                         .HasColumnType("int");
@@ -143,9 +139,13 @@ namespace Backend.Migrations
                     b.Property<string>("UserId")
                         .HasColumnType("nvarchar(450)");
 
+                    b.Property<string>("comment")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.HasKey("Id");
 
-                    b.HasIndex("ApplicationsId");
+                    b.HasIndex("ApplicationId");
 
                     b.HasIndex("SelectionId");
 
@@ -293,8 +293,7 @@ namespace Backend.Migrations
                         {
                             Id = "b74ddd14-6340-4840-95c2-db12554843e5",
                             AccessFailedCount = 0,
-
-                            ConcurrencyStamp = "ef4de086-caab-47e2-b623-15334bbb0ab8",
+                            ConcurrencyStamp = "8c835cfc-305e-4c95-ac84-c9651c8925e5",
                             Email = "admin@gmail.com",
                             EmailConfirmed = false,
                             FirstName = "admin",
@@ -302,10 +301,10 @@ namespace Backend.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "ADMIN@GMAIL.COM",
                             NormalizedUserName = "ADMIN",
-                            PasswordHash = "AQAAAAEAACcQAAAAEGASxusaQwDyulviCrWvZ0e/3M9LfaDZcs7dtxaCfrFwwo+PZEHjBYDP3DwNjPEycQ==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEPHtfp63G4I7NTBTcKh6JzB/m/tuPpjJYEwQTjnXz0lDknsbiw4kpCu8xw9aUCakpw==",
                             PhoneNumber = "1234567890",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "8d595dc7-4c74-461b-8db9-9dd6079a88cb",
+                            SecurityStamp = "0b48bf0f-6c10-4e79-a562-0cf2a802c3fe",
                             TwoFactorEnabled = false,
                             UserName = "Admin"
                         });
@@ -484,17 +483,21 @@ namespace Backend.Migrations
 
             modelBuilder.Entity("Backend.Models.Comment", b =>
                 {
-                    b.HasOne("Backend.Models.Applications", null)
+                    b.HasOne("Backend.Models.Applications", "Application")
                         .WithMany("Comments")
-                        .HasForeignKey("ApplicationsId");
+                        .HasForeignKey("ApplicationId");
 
-                    b.HasOne("Backend.Models.Selection", null)
+                    b.HasOne("Backend.Models.Selection", "Selection")
                         .WithMany("Comments")
                         .HasForeignKey("SelectionId");
 
                     b.HasOne("Backend.Models.User", "User")
                         .WithMany()
                         .HasForeignKey("UserId");
+
+                    b.Navigation("Application");
+
+                    b.Navigation("Selection");
 
                     b.Navigation("User");
                 });

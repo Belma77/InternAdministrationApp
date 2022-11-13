@@ -13,6 +13,9 @@ namespace Backend.Profiles
             CreateMap<AddApplicationDto, Applications>();
             CreateMap<GetAppDto, Applications>();
             CreateMap<Selection, AddSelectionDto>();
+            CreateMap<Selection, EditSelectionDto>();
+            CreateMap<EditSelectionDto, Selection>();
+
             CreateMap<AddSelectionDto, Selection>();
             CreateMap<Selection, GetSelectionDto>();
             CreateMap<Selection, GetSelectionsDto>();
@@ -24,8 +27,10 @@ namespace Backend.Profiles
             CreateMap<UserDto, User>();
             CreateMap<User, GetUsersDto>();
 
-
-
+            CreateMap<AddAppComment, Comment>();
+            CreateMap<Comment, AddAppComment>();
+            CreateMap<Comment, AddSelectionComment>();
+            CreateMap<AddSelectionComment,Comment>();
 
 
 
