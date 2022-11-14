@@ -26,7 +26,7 @@
                 <td>{{ editor.userName }}</td>
                 <td>{{ editor.email }}</td>
                 <td>
-                    <button type="button" class="btn btn-danger">Delete</button>
+                    <button type="button" class="btn btn-danger" (click)="deleteEditor(editor.id)">Delete</button>
                 </td>
             </tr>
         </tbody>

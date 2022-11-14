@@ -48,4 +48,12 @@ export class EditorsformComponent implements OnInit {
     });
   }
 
+  deleteEditor(id: string) {
+    if (id == "b74ddd14-6340-4840-95c2-db12554843e5") {
+      console.log("This user can't be deleted");
+      return;
+    }
+    this.editorsService.deleteEditor(id);
+  }
+
 }
