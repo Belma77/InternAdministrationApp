@@ -76,18 +76,11 @@ export class SelectionstableComponent implements OnInit {
   onSelectSelection(selections: Selections) {
     this.selection = selections;
     this.selectionsService.getSelection(this.selection.id).subscribe(response => {
-      // this.loadApplicantsPreselection();
       this.loadApplicants("");
       this.selection = response;
       this.rowSelected = true;
     })
   }
-
-  // loadApplicantsPreselection() {
-  //   this.applicantService.getApplicantPreselection().subscribe(response => {
-  //     this.applicants = response;
-  //   })
-  // }
 
   loadApplicants(newSearch: string) {
     this.applicantService.getApplicantsPreselection(newSearch).subscribe(response => {

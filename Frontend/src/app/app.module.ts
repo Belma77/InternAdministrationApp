@@ -32,6 +32,7 @@ import { AddselectionComponent } from './selection/selectionstable/addselection/
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { EditselectionComponent } from './selection/selectionstable/selectioninformation/editselection/editselection.component';
+import { EditorsmodalComponent } from './editors/editorsmodal/editorsmodal.component';
 
 const appRoutes: Routes = [
   { path: '', component: ApplyforinternshipComponent },
@@ -66,7 +67,8 @@ const appRoutes: Routes = [
     ApplicantComponent,
     SelectioninformationComponent,
     AddselectionComponent,
-    EditselectionComponent
+    EditselectionComponent,
+    EditorsmodalComponent
   ],
   imports: [
     BrowserModule,

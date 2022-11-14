@@ -71,65 +71,89 @@
             </tr>
         </tbody>
     </table>
-    <div class="row text-center">
-        <div class="col">
-            <p class="h4 font-weight-bold mb-3 mt-5">Add Applicant to Selection</p>
+    <div *ngIf="!visible" class="row text-center mt-3">
+        <div class="col text-center">
+            <button type="button" class="btn btn-dark" (click)="openApplicantsSection()"><i
+                    class="fa-solid fa-plus me-2"></i>Open Applicants</button>
         </div>
     </div>
-    <div class="row text-center mb-3">
-        <div class="col-3">
-            <div class="d-flex"> <input #newSearch name="search" class="form-control mr-2" type="search"
-                    placeholder="Name" aria-label="Search">
-                <button class="btn btnsearch" type="submit"
-                    (click)="onSearchApplicants(newSearch.value)">Search</button>
+    <div *ngIf="visible" class="row text-center mt-3">
+        <div class="col text-center">
+            <button type="button" class="btn btn-dark" (click)="openApplicantsSection()"><i
+                    class="fa-solid fa-minus me-2"></i>Close Applicants</button>
+        </div>
+    </div>
+    <div *ngIf="visible">
+        <div class="row text-center">
+            <div class="col">
+                <p class="h4 font-weight-bold mb-3 mt-5">Add Applicant to Selection</p>
             </div>
         </div>
-        <div class="col-9"></div>
-    </div>
-    <table class="table table-striped table-hover text-center mb-4">
-        <thead class="table-dark">
-            <tr>
-                <th scope="col">#</th>
-                <th scope="col">First</th>
-                <th scope="col">Last</th>
-                <th scope="col">Email</th>
-                <th scope="col">Education</th>
-                <th scope="col">Add to Selection</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr *ngFor="let applicant of applicants">
-                <th scope="row">1</th>
-                <td>{{ applicant.firstName }}</td>
-                <td>{{ applicant.lastName }}</td>
-                <td>{{ applicant.email }}</td>
-                <td>{{ applicant.educationLevel }}</td>
-                <td>
-                    <button type="button" class="btn btn-success" (click)="newApplicantId(applicant.id)">Add</button>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <div class="card text-center mt-5">
-        <div class="card-header card-title">
-            <div class="h5 mt-1">Editor:</div>
+        <div class="row text-center mb-3">
+            <div class="col-3">
+                <div class="d-flex"> <input #newSearch name="search" class="form-control mr-2" type="search"
+                        placeholder="Name" aria-label="Search">
+                    <button class="btn btnsearch" type="submit"
+                        (click)="onSearchApplicants(newSearch.value)">Search</button>
+                </div>
+            </div>
+            <div class="col-9"></div>
         </div>
-        <div class="card-body p-4">
-            <p class="card-text">Editors comment is here</p>
+        <table class="table table-striped table-hover text-center mb-4">
+            <thead class="table-dark">
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">First</th>
+                    <th scope="col">Last</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Education</th>
+                    <th scope="col">Add to Selection</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let applicant of applicants">
+                    <th scope="row">1</th>
+                    <td>{{ applicant.firstName }}</td>
+                    <td>{{ applicant.lastName }}</td>
+                    <td>{{ applicant.email }}</td>
+                    <td>{{ applicant.educationLevel }}</td>
+                    <td>
+                        <button type="button" class="btn btn-success"
+                            (click)="newApplicantId(applicant.id)">Add</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div id="comments" *ngFor="let comment of selection.comments">
+        <div class="card text-center mt-5">
+            <div class="card-header card-title">
+                <div class="h5 mt-1"> {{ comment.user.username }} </div>
+            </div>
+            <div class="card-body p-4">
+                <p class="card-text"> {{ comment.comment }} </p>
+            </div>
         </div>
     </div>
-    <div class="row text-center mt-3">
+    <div *ngIf="!visible" class="row text-center mt-3">
         <div class="col text-center">
             <button type="button" class="btn btnaddnewcomment" (click)="openCommentSection()"><i
                     class="fa-solid fa-plus me-2"></i>Add Comment</button>
         </div>
     </div>
+    <div *ngIf="visible" class="row text-center mt-3">
+        <div class="col text-center">
+            <button type="button" class="btn btnaddnewcomment" (click)="openCommentSection()"><i
+                    class="fa-solid fa-minus me-2"></i>Close Comment</button>
+        </div>
+    </div>
     <div *ngIf="visible">
-        <form>
+        <form class="commentForm" #commentForm="ngForm" (ngSubmit)="onComment( commentInput.value )">
             <div class="form-group mt-2 comment">
                 <label for="exampleFormControlTextarea1">Enter a comment:</label>
-                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                <input #commentInput type="text" class="form-control" id="exampleFormControlTextarea1" rows="3">
             </div>
+            <button type="submit" class="btn btn-success">Add Comment</button>
         </form>
     </div>
 </div>

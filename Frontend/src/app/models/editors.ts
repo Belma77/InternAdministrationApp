@@ -1,8 +1,8 @@
 export interface Editors {
     id: number,
-    first: String,
-    last: String,
-    username: String,
+    firstName: String,
+    lastName: String,
     email: String,
+    userName: String,
     password: String
 }
