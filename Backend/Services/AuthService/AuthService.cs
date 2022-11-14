@@ -14,7 +14,7 @@ using System.Text;
 
 namespace Backend.Services.UserService
 {
-    public class AuthService:IAuthService
+    public class AuthService : IAuthService
     {
 
         private readonly UserManager<User> _userManager;
@@ -28,8 +28,8 @@ namespace Backend.Services.UserService
             _configuration = configuration;
             _mapper = mapper;
         }
-        
-        
+
+
         public async Task<bool> ValidateUserAsync(UserLoginDto loginDto)
         {
             _user = await _userManager.FindByNameAsync(loginDto.Username);
@@ -39,7 +39,7 @@ namespace Backend.Services.UserService
 
         public async Task<string> CreateTokenAsync()
         {
-            
+
             var signingCredentials = GetSigningCredentials();
             var claims = await GetClaims();
             var tokenOptions = GenerateTokenOptions(signingCredentials, claims);
@@ -69,21 +69,21 @@ namespace Backend.Services.UserService
 
         private async Task<List<Claim>> GetClaims()
         {
-             var claims = new List<Claim>
+            var claims = new List<Claim>
              {
                new Claim(ClaimTypes.Name, _user.UserName),
 
              };
-            
+
             var roles = await _userManager.GetRolesAsync(_user);
             foreach (var role in roles)
             {
                 claims.Add(new Claim(ClaimTypes.Role, role));
-               
+
             }
             return claims;
         }
-        
+
         private JwtSecurityToken GenerateTokenOptions(SigningCredentials signingCredentials, List<Claim> claims)
         {
 
@@ -102,4 +102,3 @@ namespace Backend.Services.UserService
     }
 
 }
-

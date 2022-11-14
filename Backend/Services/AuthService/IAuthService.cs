@@ -11,7 +11,7 @@ namespace Backend.Services.AuthService
         Task<bool> ValidateUserAsync(UserLoginDto loginDto);
         Task<string> CreateTokenAsync();
         Task<TokenDto> Login(UserLoginDto user);
-       
+
 
     }
 }
