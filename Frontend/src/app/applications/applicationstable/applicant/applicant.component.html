@@ -99,10 +99,16 @@
             </div>
         </div>
     </div>
-    <div class="row text-center mt-3">
+    <div *ngIf="!visible" class="row text-center mt-3">
         <div class="col text-center">
             <button type="button" class="btn btnaddnewcomment" (click)="openCommentSection()"><i
                     class="fa-solid fa-plus me-2"></i>Add Comment</button>
+        </div>
+    </div>
+    <div *ngIf="visible" class="row text-center mt-3">
+        <div class="col text-center">
+            <button type="button" class="btn btnaddnewcomment" (click)="openCommentSection()"><i
+                    class="fa-solid fa-minus me-2"></i>Close Comment</button>
         </div>
     </div>
     <div *ngIf="visible">

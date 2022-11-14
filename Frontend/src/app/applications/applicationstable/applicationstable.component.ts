@@ -62,6 +62,7 @@ export class ApplicationstableComponent implements OnInit {
 
   onSelectStatus(event) {
     this.status = event;
+    console.log(this.status);
     this.loadApplicants();
   }
 

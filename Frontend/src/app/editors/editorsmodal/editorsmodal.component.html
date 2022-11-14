@@ -1,0 +1,40 @@
+<div class="modal-dialog">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Add new Editor</h5>
+        </div>
+        <div class="modal-body">
+            <form id="signup-form" class="formApplication" #applicationForm="ngForm"
+                (ngSubmit)="onSubmit(applicationForm.value)">
+                <div class="mb-3">
+                    <label class="form-label text-black">First Name</label>
+                    <input type="text" class="form-control" name="firstName" id="firstName"
+                        placeholder="Enter first name" required ngModel />
+                </div>
+                <div class="mb-3">
+                    <label class="form-label text-black">Last Name</label>
+                    <input type="text" class="form-control" name="lastName" id="lastName" placeholder="Enter last name"
+                        required ngModel />
+                </div>
+                <div class="mb-3">
+                    <label class="form-label text-black">Email</label>
+                    <input type="email" class="form-control" name="email" id="email" placeholder="Enter Email" required
+                        ngModel />
+                </div>
+                <div class="mb-3">
+                    <label class="form-label text-black">Username</label>
+                    <input type="text" class="form-control" name="userName" id="userName" placeholder="Enter Username"
+                        required ngModel />
+                </div>
+                <div class="mb-3">
+                    <label class="form-label text-black">Password</label>
+                    <input type="password" class="form-control" name="password" id="password"
+                        placeholder="Enter password" required ngModel />
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-info">Add Editor</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

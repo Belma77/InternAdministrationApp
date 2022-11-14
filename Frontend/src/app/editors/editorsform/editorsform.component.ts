@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { Editors } from 'src/app/models/editors';
 import { EditorsService } from 'src/app/services/editors.service';
+import { EditorsmodalComponent } from '../editorsmodal/editorsmodal.component';
 
 declare var window: any;
 
@@ -15,7 +17,7 @@ export class EditorsformComponent implements OnInit {
   formModal: any;
 
 
-  constructor(private editorsService: EditorsService) { }
+  constructor(private editorsService: EditorsService, public dialog: MatDialog) { }
 
   ngOnInit(): void {
     this.loadEditors();
@@ -37,6 +39,21 @@ export class EditorsformComponent implements OnInit {
     this.editorsService.getEditors().subscribe(response => {
       this.editors = response;
     });
+  }
+
+  openDialog(): void {
+    this.dialog.open(EditorsmodalComponent, {
+      width: '30%',
+      data: {},
+    });
+  }
+
+  deleteEditor(id: string) {
+    if (id == "b74ddd14-6340-4840-95c2-db12554843e5") {
+      console.log("This user can't be deleted");
+      return;
+    }
+    this.editorsService.deleteEditor(id);
   }
 
 }

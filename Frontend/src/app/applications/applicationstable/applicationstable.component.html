@@ -72,7 +72,21 @@
                         <li><a class="dropdown-item" href="#">Rejected</a></li>
                     </ul>
                 </div> -->
-                <select (ngModelChange)="onSelectStatus($event)" [(ngModel)]="status" id="inputState"
+                <div class="dropdown" (ngModelChange)="onSelectStatus($event)" [(ngModel)]="status">
+                    <button class="btn btnsort dropdown-toggle" type="button" id="dropdownMenuButton1"
+                        data-bs-toggle="dropdown" aria-expanded="false">
+                        Status
+                    </button>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                        <li><a class="dropdown-item">Applied</a></li>
+                        <li><a class="dropdown-item">PreSelection</a></li>
+                        <li><a class="dropdown-item">InSelection</a></li>
+                        <li><a class="dropdown-item">Completed</a></li>
+                        <li><a class="dropdown-item">Rejected</a></li>
+                    </ul>
+                </div>
+
+                <!-- <select (ngModelChange)="onSelectStatus($event)" [(ngModel)]="status" id="inputState"
                     class="form-control" id="educationLevel" name="educationLevel" placeholder="Education Level"
                     required ngModel>
                     <option>Applied</option>
@@ -80,7 +94,7 @@
                     <option>Inselection</option>
                     <option>Completed</option>
                     <option>Rejected</option>
-                </select>
+                </select> -->
             </div>
             <div class="col-6"></div>
         </div>
