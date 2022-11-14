@@ -7,11 +7,11 @@ namespace Backend.Helpers
     {
         public string Name { get; set; } = "";
        
-        public static IQueryable<Selection> FilterData(IQueryable<Selection> data, FilterSelections filter)
+        public static IQueryable<Selection> ExtentQueryWithFilter(IQueryable<Selection> query, FilterSelections filter)
         {
             if (filter == null)
-                return data;
-            return data.Where(x => x.Name.ToLower().StartsWith(filter.Name.ToLower()));
+                return query;
+            return query.Where(x => x.Name.ToLower().StartsWith(filter.Name.ToLower()));
   
         }
     }

@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using AutoMapper.QueryableExtensions;
 using Backend.Dtos;
+using Backend.ExceptionHandlers;
 using Backend.Helpers;
 using Backend.Models;
 using Backend.Models.Enums;
@@ -20,6 +21,7 @@ namespace Backend.Services.SelectionService
         private IApplicationRepository _applicationRepo;
         private IHttpContextAccessor _contextAccessor;
         private IUserService _userService;
+
         public SelectionService(ISelectionRepository selectionRepository, IMapper mapper, IApplicationRepository applicationRepo,
             IHttpContextAccessor contextAccessor, IUserService userService)
         {
@@ -28,22 +30,23 @@ namespace Backend.Services.SelectionService
             _applicationRepo = applicationRepo;
             _contextAccessor = contextAccessor;
             _userService = userService;
-
         }
+
         public async Task<PagedList<GetSelectionsDto>> GetAllSelections(UserParams userParams)
         {
             var query = _selectionRepository.GetAllSelections();
-            query = FilterSelections.FilterData(query, userParams.filterSelections);
+            query = FilterSelections.ExtentQueryWithFilter(query, userParams.filterSelections);
             query = SelectionsSorting.SortBy(query, userParams.OrderBy);
             var selections = query.ProjectTo<GetSelectionsDto>(_mapper.ConfigurationProvider);
-            return await PagedList<GetSelectionsDto>.CreateAsync(selections, userParams.PageNumber, userParams.pageSize);
+            return await PagedList<GetSelectionsDto>.CreateAsync(selections, userParams.PageNumber, userParams.PageSize);
         }
+
         public async Task<GetSelectionDto> GetSelectionById(int id)
         {
             var selection = await _selectionRepository.GetSelectionById(id);
             return _mapper.Map<GetSelectionDto>(selection);
-
         }
+
         public async Task<GetSelectionsDto> AddSelection(AddSelectionDto addSelection)
         {
             var selection = _mapper.Map<Selection>(addSelection);
@@ -51,47 +54,66 @@ namespace Backend.Services.SelectionService
             await _selectionRepository.AddSelection(selection);
             return _mapper.Map<GetSelectionsDto>(selection);
         }
+
         public async Task<GetSelectionsDto> EditSelection(EditSelectionDto editSelection)
         {
 
             var selection = await _selectionRepository.GetSelectionById(editSelection.SelectionId);
+
             if (selection == null)
                 throw new Exception("Selection not found");
+
             selection.Name = editSelection.Name??selection.Name;
             selection.Description = editSelection.Description??selection.Description;
             selection.StartDate = (DateTime)(editSelection.StartDate.HasValue?selection.StartDate:editSelection.StartDate);
             selection.EndDate = (DateTime)(editSelection.EndDate.HasValue ? selection.EndDate : editSelection.EndDate);
             selection.EditedAt = DateTime.Now;
+
             await _selectionRepository.EditSelection(selection);
+
             return _mapper.Map<GetSelectionsDto>(selection);
         }
+
         public async Task<GetSelectionDto> AddApplicantsToSelection([FromQuery] int selectionId, int applicationId)
         {
+
             var selection = await _selectionRepository.GetSelectionById(selectionId);
             var app = await _applicationRepo.GetById(applicationId);
+
             if (selection == null)
                 throw new Exception("Selection not found");
+
             if (app == null)
                 throw new Exception("Application not found");
+
             if (selection.Applications.Any(x => x.Id == applicationId))
                 throw new Exception("Applicant already added to selection");
+
             selection.Applications.Add(app);
-            app.Status = Status.Inselection;
+            app.Status = StatusEnum.Inselection;
             await _selectionRepository.EditSelection(selection);
+
             return _mapper.Map<GetSelectionDto>(selection);
         }
+
         public async Task<GetSelectionDto> RemoveApplicantToSelection(int selectionId, int applicationId)
         {
             var selection = await _selectionRepository.GetSelectionById(selectionId);
             var app = await _applicationRepo.GetById(applicationId);
+
             if (selection == null)
-                throw new Exception("Selection not found");
+                throw new NotFoundException("Selection not found");
+
             if (app == null)
-                throw new Exception("Application not found");
+
+                throw new NotFoundException("Application not found");
+
             if (!selection.Applications.Any(x => x.Id == applicationId))
-                throw new Exception("Applicant isn't in selection");
-            app.Status = Status.Completed;
+                throw new NotFoundException("Applicant isn't in selection");
+
+            app.Status = StatusEnum.Completed;
             var selectionDto = await _selectionRepository.RemoveApplicant(selection, app);
+
             return _mapper.Map<GetSelectionDto>(selectionDto);
         }
 

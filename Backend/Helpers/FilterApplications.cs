@@ -8,22 +8,22 @@ namespace Backend.Helpers
     public class FilterApplications
     {
         public string Name { get; set; } = "";
-        public Status? Status { get; set; }
-        public  EducationLevel? EducationLevel { get; set; }
-        public static IQueryable<Applications> FilterData(IQueryable<Applications> data, FilterApplications filter)
+        public StatusEnum? Status { get; set; }
+        public  EducationLevelEnum? EducationLevel { get; set; }
+        public static IQueryable<Applications> ExtentQueryWithFilter (IQueryable<Applications> query, FilterApplications filter)
         {
             if (filter == null)
-                return data;
-            
-            data = data.Where(x => x.FirstName.ToLower().StartsWith(filter.Name.ToLower()) || x.LastName.ToLower().StartsWith(filter.Name.ToLower()) || (x.FirstName.ToLower()+" "+x.LastName.ToLower()).StartsWith(filter.Name.ToLower()));
+                return query;
+
+            query = query.Where(x => x.FirstName.ToLower().StartsWith(filter.Name.ToLower()) || x.LastName.ToLower().StartsWith(filter.Name.ToLower()) || (x.FirstName.ToLower()+" "+x.LastName.ToLower()).StartsWith(filter.Name.ToLower()));
 
             if (filter.EducationLevel.HasValue)
             {
-                data=data.Where(x=>x.EducationLevel==filter.EducationLevel);
+                query = query.Where(x=>x.EducationLevel==filter.EducationLevel);
             }
             if (filter.Status.HasValue)
-                data=data.Where(x=>x.Status==filter.Status);
-            return data;
+                query = query.Where(x=>x.Status==filter.Status);
+            return query;
         }
     }
 }

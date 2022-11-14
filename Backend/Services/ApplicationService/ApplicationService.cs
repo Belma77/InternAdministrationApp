@@ -1,10 +1,12 @@
 ﻿using AutoMapper;
 using AutoMapper.QueryableExtensions;
 using Backend.Dtos;
+using Backend.ExceptionHandlers;
 using Backend.Helpers;
 using Backend.Models;
 using Backend.Models.Enums;
 using Backend.Repository.AppRepo;
+using Backend.Services.NotificationService;
 using Backend.Services.UserService;
 using MailKit.Net.Smtp;
 using MailKit.Security;
@@ -25,107 +27,69 @@ namespace Backend.Services.ApplicationService
     {
         IApplicationRepository _applicationRepository;
         private readonly IMapper _mapper;
-        private readonly IHttpContextAccessor _contextAccessor;
-        private IUserService _userService;
-        private UserManager<User> _userManager;
-        private ISendGridClient _sendGridClient;
-        private IConfiguration _configuration;
-        public ApplicationService(IApplicationRepository applicationRepository, IMapper mapper, IHttpContextAccessor contextAccessor, IUserService userService, UserManager<User> userManager, ISendGridClient sendGridClient, IConfiguration configuration)
+        private IEmailService _emailService;
+
+        public ApplicationService(IApplicationRepository applicationRepository, IMapper mapper, IEmailService emailService)
         {
             _applicationRepository = applicationRepository;
             _mapper = mapper;
-            _contextAccessor = contextAccessor;
-            _userService = userService;
-            _userManager = userManager;
-            _sendGridClient = sendGridClient;
-            _configuration=configuration;
+            _emailService = emailService;
         }
 
         public async Task<PagedList<GetApplicationsDto>> GetAllApplications(UserParams userParams)
         {
             var query = _applicationRepository.GetAll(userParams);
-            query = FilterApplications.FilterData(query, userParams.filter);
+            query = FilterApplications.ExtentQueryWithFilter(query, userParams.filter);
             query = AppsSorting.SortBy(query, userParams.OrderBy);
             var apps = query.ProjectTo<GetApplicationsDto>(_mapper.ConfigurationProvider);
-            return await PagedList<GetApplicationsDto>.CreateAsync(apps, userParams.PageNumber, userParams.pageSize);
-
+            return await PagedList<GetApplicationsDto>.CreateAsync(apps, userParams.PageNumber, userParams.PageSize);
         }
+
         public async Task<PagedList<GetApplicationsDto>> GetAppsForSelection(UserParams userParams)
         {
             var query = _applicationRepository.GetAll(userParams);
-            query = query.Where(x => x.Status == Status.Preselection);
-            query = FilterApplications.FilterData(query, userParams.filter);
+            query = query.Where(x => x.Status == StatusEnum.Preselection);
+            query = FilterApplications.ExtentQueryWithFilter(query, userParams.filter);
             query = AppsSorting.SortBy(query, userParams.OrderBy);
             var apps = query.ProjectTo<GetApplicationsDto>(_mapper.ConfigurationProvider);
-            return await PagedList<GetApplicationsDto>.CreateAsync(apps, userParams.PageNumber, userParams.pageSize);
-
+            return await PagedList<GetApplicationsDto>.CreateAsync(apps, userParams.PageNumber, userParams.PageSize);
         }
+
         public async Task<GetAppDto> GetApplicationById(int id)
         {
             var app = await _applicationRepository.GetById(id);
+
             if (app == null)
                 throw new Exception("Application not found");
-            return _mapper.Map<GetAppDto>(app);
 
+            return _mapper.Map<GetAppDto>(app);
         }
+
         public async Task AddApplication(AddApplicationDto app)
         {
             await _applicationRepository.Add(_mapper.Map<Applications>(app));
         }
 
-       
-        public async Task<string> UpdateStatus(int id, Status status)
+        public async Task<GetAppDto> UpdateStatus(int id, StatusEnum status)
         {
-
             var app = await _applicationRepository.GetById(id);
+
             if (app == null)
-                throw new Exception("Application not found");
+                throw new NotFoundException("Application not found");
+
             app.Status = status;
             await _applicationRepository.Update(app);
-           // if (status == Status.Inselection)
-                //SendEmail();
-                return await SendMail();
-           // else
-           // return _mapper.Map<GetAppDto>(app);
-
-        }
-        private void SendEmail()
-        {
-            var text = "Welcome to internship!";
-            var email = new MimeMessage();
-            email.From.Add(MailboxAddress.Parse("otha.kuhlman@ethereal.email"));
-            email.To.Add(MailboxAddress.Parse("otha.kuhlman@ethereal.email"));
-            email.Subject = "Welcome to internship";
-            email.Body = new TextPart(TextFormat.Text)
+            
+            if (status == StatusEnum.Inselection)
             {
-                Text = text
-            };
-            using var smtp = new SmtpClient();
-            smtp.Connect("smtp.ethereal.email", 587, SecureSocketOptions.StartTls);
-            smtp.Authenticate("otha.kuhlman@ethereal.email", "tvdDh4bdRbvd6eJwYb");
-            smtp.Send(email);
-            smtp.Disconnect(true);
+                string subject = "Welcome to Internship";
+                string body = "Welcome to Mistral Internship " + app.FirstName + " " + app.LastName;
+                await _emailService.SendEmail(subject, body);
+            }
+           
+            return _mapper.Map<GetAppDto>(app);
 
         }
-        private async  Task<string> SendMail()
-        {
-            string fromEmail = _configuration.GetSection("SendgridEmailAdress")
-            .GetValue<string>("FromEmail");
-            string fromName = _configuration.GetSection("SendgridEmailAdress")
-           .GetValue<string>("FromName");
-
-            var msg = new SendGridMessage()
-            {
-                From = new EmailAddress(fromEmail, fromName),
-                Subject = "Welcome to Internship",
-                PlainTextContent = "Test"
-
-            };
-            msg.AddTo("belmaaliman@gmail.com");
-            var response =  await _sendGridClient.SendEmailAsync(msg);
-            string message = response.IsSuccessStatusCode ? "Email sent" : "Failed";
-            return message;
-        }
-
+       
     }
 }

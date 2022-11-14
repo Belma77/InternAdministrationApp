@@ -4,7 +4,7 @@ namespace Backend.Models.Enums
 {
     [JsonConverter(typeof(JsonStringEnumConverter))]
 
-    public enum Status
+    public enum StatusEnum
     {
         Applied, 
         Preselection,

@@ -20,49 +20,48 @@ namespace Backend.Controllers
     public class ApplicationController : ControllerBase
     {
         IApplicationService _applicationService;
+
         public ApplicationController(IApplicationService applicationService)
         {
             _applicationService = applicationService;
         }
+
         [HttpPost]
-        public async Task<ActionResult> AddApplication(AddApplicationDto app)
+        [AllowAnonymous]
+        public async Task<IActionResult> Add(AddApplicationDto app)
         {
             await _applicationService.AddApplication(app);
             return Ok();
         }
 
-
         [HttpGet("GetAll")]
-        public async Task<ActionResult<PagedList<GetApplicationsDto>>> GetAllApplications([FromQuery] UserParams userParams)
+        public async Task<IActionResult> GetAll([FromQuery] UserParams userParams)
         {
             var apps = await _applicationService.GetAllApplications(userParams);
             Response.AddPaginationHeader(apps.CurrentPage, apps.PageSize, apps.TotalCount, apps.TotalPages);
 
             return Ok(apps);
         }
-        [HttpGet("GetAppsForSelection")]
-        public async Task<ActionResult<PagedList<GetApplicationsDto>>> GetAppsForSelection([FromQuery] UserParams userParams)
+
+        [HttpGet("GetForSelection")]
+        public async Task<IActionResult> GetForSelection([FromQuery] UserParams userParams)
         {
             var apps = await _applicationService.GetAppsForSelection(userParams);
             Response.AddPaginationHeader(apps.CurrentPage, apps.PageSize, apps.TotalCount, apps.TotalPages);
-
             return Ok(apps);
         }
-        [HttpGet("{id}")]
-        public async Task<ActionResult<Applications>> GetApplicationById(int id)
-        {
 
+        [HttpGet("{id}")]
+        public async Task<IActionResult> Get(int id)
+        {
             return Ok(await _applicationService.GetApplicationById(id));
         }
 
         [HttpPatch("UpdateStatus")]
-        public async Task<ActionResult<GetAppDto>> UpdateStatus(AppUpdateStatus updateStatus)
+        public async Task<IActionResult> UpdateStatus(AppUpdateStatus updateStatus)
         {
             return Ok(await _applicationService.UpdateStatus(updateStatus.ApplicationId, updateStatus.Status));
-
         }
-
-
 
     }
 }

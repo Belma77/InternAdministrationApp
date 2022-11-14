@@ -5,7 +5,7 @@ namespace Backend.Models.Enums
 {
     [JsonConverter(typeof(JsonStringEnumConverter))]
 
-    public enum UserRole
+    public enum UserRoleEnum
     {
         ADMIN,
         EDITOR

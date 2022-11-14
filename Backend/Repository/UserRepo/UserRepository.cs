@@ -27,9 +27,9 @@ namespace Backend.Repository.UserRepo
         {
             return await _dataContext.Users.FirstOrDefaultAsync(x =>x.Id==Id);
         }
-        public async Task<List<User>> GetAll()
+        public IQueryable<User> GetAll()
         {
-            return await _dataContext.Users.ToListAsync();
+            return _dataContext.Users.AsQueryable();
         }
         public async Task<List<User>> Remove(User u)
         {

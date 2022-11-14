@@ -8,10 +8,9 @@ namespace Backend.Services.AuthService
 {
     public interface IAuthService
     {
-        Task<IdentityResult> RegisterUserAsync(AddEditorDto userRegistration);
         Task<bool> ValidateUserAsync(UserLoginDto loginDto);
         Task<string> CreateTokenAsync();
-        Task<string> Login(UserLoginDto user);
+        Task<TokenDto> Login(UserLoginDto user);
 
 
     }

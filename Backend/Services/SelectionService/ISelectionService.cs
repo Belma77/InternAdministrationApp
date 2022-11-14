@@ -9,8 +9,6 @@ namespace Backend.Services.SelectionService
     {
         Task<PagedList<GetSelectionsDto>> GetAllSelections(UserParams userParams);
         Task<GetSelectionDto> GetSelectionById(int id);
-        //Task<Selection> GetSelectionById(int id);
-
         Task<GetSelectionsDto> AddSelection(AddSelectionDto addSelection);
         Task<GetSelectionsDto> EditSelection(EditSelectionDto addSelection);
         Task<GetSelectionDto> AddApplicantsToSelection(int selectionId, int applicationId);

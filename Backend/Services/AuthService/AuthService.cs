@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Backend.Dtos;
+using Backend.ExceptionHandlers;
 using Backend.Models;
 using Backend.Repository.UserRepo;
 using Backend.Services.AuthService;
@@ -20,21 +21,14 @@ namespace Backend.Services.UserService
         private readonly IConfiguration _configuration;
         private readonly IMapper _mapper;
         private User _user;
-        private SignInManager<User> signInManager;
 
-        public AuthService(UserManager<User> userManager, IConfiguration configuration, IMapper mapper, SignInManager<User> signInManager)
+        public AuthService(UserManager<User> userManager, IConfiguration configuration, IMapper mapper)
         {
             _userManager = userManager;
             _configuration = configuration;
             _mapper = mapper;
         }
 
-        public async Task<IdentityResult> RegisterUserAsync(AddEditorDto userRegistration)
-        {
-            var user = _mapper.Map<User>(userRegistration);
-            var result = await _userManager.CreateAsync(user, userRegistration.Password);
-            return result;
-        }
 
         public async Task<bool> ValidateUserAsync(UserLoginDto loginDto)
         {
@@ -45,18 +39,26 @@ namespace Backend.Services.UserService
 
         public async Task<string> CreateTokenAsync()
         {
+
             var signingCredentials = GetSigningCredentials();
             var claims = await GetClaims();
             var tokenOptions = GenerateTokenOptions(signingCredentials, claims);
             return new JwtSecurityTokenHandler().WriteToken(tokenOptions);
+
         }
-        public async Task<string> Login(UserLoginDto user)
+
+        public async Task<TokenDto> Login(UserLoginDto user)
         {
             if (!await ValidateUserAsync(user))
-                throw new Exception("User not found");
+                throw new NotFoundException("Login failed, username or password incorrect");
 
-            return await CreateTokenAsync();
+            var token = new TokenDto()
+            {
+                Token = await CreateTokenAsync()
+            };
+            return token;
         }
+
         private SigningCredentials GetSigningCredentials()
         {
             var jwtConfig = _configuration.GetSection("jwtConfig");
@@ -68,10 +70,10 @@ namespace Backend.Services.UserService
         private async Task<List<Claim>> GetClaims()
         {
             var claims = new List<Claim>
-        {
-            new Claim(ClaimTypes.Name, _user.UserName),
+             {
+               new Claim(ClaimTypes.Name, _user.UserName),
 
-        };
+             };
 
             var roles = await _userManager.GetRolesAsync(_user);
             foreach (var role in roles)
@@ -84,6 +86,7 @@ namespace Backend.Services.UserService
 
         private JwtSecurityToken GenerateTokenOptions(SigningCredentials signingCredentials, List<Claim> claims)
         {
+
             var jwtSettings = _configuration.GetSection("JwtConfig");
             var tokenOptions = new JwtSecurityToken
             (
@@ -94,8 +97,8 @@ namespace Backend.Services.UserService
             signingCredentials: signingCredentials
             );
             return tokenOptions;
+
         }
     }
 
 }
-

@@ -4,7 +4,7 @@ namespace Backend.Models.Enums
 {
     [JsonConverter(typeof(JsonStringEnumConverter))]
 
-    public enum EducationLevel
+    public enum EducationLevelEnum
     {
         Highschool,
         Bachelor,
