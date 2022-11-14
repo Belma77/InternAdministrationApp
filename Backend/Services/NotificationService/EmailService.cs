@@ -3,13 +3,13 @@ using MimeKit.Text;
 using MimeKit;
 using MailKit.Net.Smtp;
 
-namespace Backend.Services
+namespace Backend.Services.NotificationService
 {
-    public class EmailService
+    public class EmailService:IEmailService
     {
         public async Task SendEmail(string subject, string body)
         {
-            
+
             var email = new MimeMessage();
             email.From.Add(MailboxAddress.Parse("otha.kuhlman@ethereal.email"));
             email.To.Add(MailboxAddress.Parse("otha.kuhlman@ethereal.email"));

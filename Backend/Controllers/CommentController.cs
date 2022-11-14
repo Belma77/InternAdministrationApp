@@ -5,10 +5,9 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Backend.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("Comment")]
     [ApiController]
     //[Authorize(Roles = "Admin, Editor")]
-
     public class CommentController : ControllerBase
     {
         private ICommentService _commentService;
@@ -16,16 +15,16 @@ namespace Backend.Controllers
         {
             _commentService = commentService;
         }
+
         [HttpPost("AddAppComment")]
-        public async Task<ActionResult<GetCommentDto>> PostAppComment(AddAppComment commentDto)
+        public async Task<IActionResult> PostAppComment(AddAppComment commentDto)
         {
-            
             return Ok(await _commentService.PostAppComment(commentDto));
         }
+
         [HttpPost("AddSelectionComment")]
-        public async Task<ActionResult<GetCommentDto>> PostSelectionComment(AddSelectionComment commentDto)
+        public async Task<IActionResult> PostSelectionComment(AddSelectionComment commentDto)
         {
-            
             return Ok(await _commentService.PostSelectionComment(commentDto));
         }
     }

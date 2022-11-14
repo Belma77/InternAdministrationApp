@@ -4,13 +4,11 @@ namespace Backend.Dtos
 {
     public class AddEditorDto
     {
-        public string FirstName { get; set; }
-        public string LastName { get; set; }
-        [EmailAddress]
-        public string Email { get; set; }
-        public string UserName { get; set; }
-        [DataType(DataType.Password)]
-        public string Password { get; set; }
+        public string FirstName { get; set; }=String.Empty;
+        public string LastName { get; set; }=String.Empty;
+        public string Email { get; set; } = String.Empty;
+        public string UserName { get; set; }=String.Empty;
+        public string Password { get; set; }=String.Empty;
 
     }
 }

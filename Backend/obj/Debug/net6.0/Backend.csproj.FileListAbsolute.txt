@@ -626,3 +626,6 @@ C:\Users\BelmaAliman\Desktop\intern_project\InternshipProject\Backend\obj\Debug\
 C:\Users\BelmaAliman\Desktop\intern_project\InternshipProject\Backend\obj\Debug\net6.0\Backend.pdb
 C:\Users\BelmaAliman\Desktop\intern_project\InternshipProject\Backend\obj\Debug\net6.0\Backend.genruntimeconfig.cache
 C:\Users\BelmaAliman\Desktop\intern_project\InternshipProject\Backend\obj\Debug\net6.0\ref\Backend.dll
+C:\Users\BelmaAliman\Desktop\intern_project\InternshipProject\Backend\bin\Debug\net6.0\FluentValidation.dll
+C:\Users\BelmaAliman\Desktop\intern_project\InternshipProject\Backend\bin\Debug\net6.0\FluentValidation.AspNetCore.dll
+C:\Users\BelmaAliman\Desktop\intern_project\InternshipProject\Backend\bin\Debug\net6.0\FluentValidation.DependencyInjectionExtensions.dll
