@@ -37,7 +37,7 @@ namespace Backend.Services.UserService
                 await _signInManager.SignInAsync(editor, isPersistent: false);
                 await _userManager.AddToRoleAsync(editor, "Editor");
                 string subject = "Welome new Editor";
-                string body = "Welcome " + user.UserName;
+                string body = "Welcome! " + "Your username is "+ user.UserName+" and password: "+user.Password;
                 await _emailService.SendEmail(subject, body);
                 return editor;
             }
