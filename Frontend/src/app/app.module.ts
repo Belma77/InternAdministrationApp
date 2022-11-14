@@ -33,17 +33,19 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { EditselectionComponent } from './selection/selectionstable/selectioninformation/editselection/editselection.component';
 import { EditorsmodalComponent } from './editors/editorsmodal/editorsmodal.component';
+import { AuthguardGuard } from './services/authguard.guard';
+import { EditorguardGuard } from './services/editorguard.guard';
 
 const appRoutes: Routes = [
   { path: '', component: ApplyforinternshipComponent },
   { path: 'applyjap', component: ApplyformComponent },
-  { path: 'dashboard', component: DashboardComponent },
+  { path: 'dashboard', component: DashboardComponent, canActivate: [AuthguardGuard] },
   { path: 'login', component: LoginComponent },
-  { path: 'applications', component: ApplicationsComponent },
-  { path: 'selections', component: SelectionComponent },
-  { path: 'editors', component: EditorsComponent },
-  { path: 'applicant', component: ApplicantComponent },
-  { path: 'selection', component: SelectioninformationComponent },
+  { path: 'applications', component: ApplicationsComponent, canActivate: [AuthguardGuard] },
+  { path: 'selections', component: SelectionComponent, canActivate: [AuthguardGuard] },
+  { path: 'editors', component: EditorsComponent, canActivate: [EditorguardGuard] },
+  { path: 'applicant', component: ApplicantComponent, canActivate: [AuthguardGuard] },
+  { path: 'selection', component: SelectioninformationComponent, canActivate: [AuthguardGuard] },
 ];
 
 @NgModule({
@@ -83,7 +85,7 @@ const appRoutes: Routes = [
     MatDatepickerModule,
     MatFormFieldModule,
     ReactiveFormsModule
-    
+
   ],
   exports: [
     PaginationModule

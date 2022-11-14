@@ -13,7 +13,7 @@ using System.Text;
 
 namespace Backend.Services.UserService
 {
-    public class AuthService:IAuthService
+    public class AuthService : IAuthService
     {
 
         private readonly UserManager<User> _userManager;
@@ -28,7 +28,7 @@ namespace Backend.Services.UserService
             _configuration = configuration;
             _mapper = mapper;
         }
-        
+
         public async Task<IdentityResult> RegisterUserAsync(AddEditorDto userRegistration)
         {
             var user = _mapper.Map<User>(userRegistration);
@@ -54,7 +54,7 @@ namespace Backend.Services.UserService
         {
             if (!await ValidateUserAsync(user))
                 throw new Exception("User not found");
-            
+
             return await CreateTokenAsync();
         }
         private SigningCredentials GetSigningCredentials()
@@ -72,16 +72,16 @@ namespace Backend.Services.UserService
             new Claim(ClaimTypes.Name, _user.UserName),
 
         };
-            
+
             var roles = await _userManager.GetRolesAsync(_user);
             foreach (var role in roles)
             {
                 claims.Add(new Claim(ClaimTypes.Role, role));
-               
+
             }
             return claims;
         }
-        
+
         private JwtSecurityToken GenerateTokenOptions(SigningCredentials signingCredentials, List<Claim> claims)
         {
             var jwtSettings = _configuration.GetSection("JwtConfig");
