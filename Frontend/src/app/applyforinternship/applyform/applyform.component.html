@@ -3,37 +3,44 @@
         <img src="../../../assets/Programmer-cuate.png" alt="" class="image-1">
         <form class="formApplication" #applicationForm="ngForm" (ngSubmit)="onSubmit(applicationForm.value)">
             <h3>Apply for JAP</h3>
+
             <div class="form-holder">
                 <input type="text" class="form-control" id="firstName" name="firstName" placeholder="First Name"
                     required ngModel>
             </div>
+
             <div class="form-holder">
                 <input type="text" class="form-control" id="lastName" name="lastName" placeholder="Last Name" required
                     ngModel>
             </div>
+
             <div class="form-holder">
                 <input type="text" class="form-control" id="email" name="email" placeholder="Email" required ngModel
                     email>
             </div>
+
             <div class="form-holder">
-                <select id="inputState" class="form-control" id="educationLevel" name="educationLevel"
-                    placeholder="Education Level" required ngModel>
+                <select id="inputState" class="form-control" required ngModel>
                     <option>Highschool</option>
                     <option>Bachelor</option>
                     <option>Master</option>
                     <option>PhD</option>
                 </select>
             </div>
+
             <div class="form-holder">
                 <input type="text" class="form-control" id="coverLetter" name="coverLetter" placeholder="Cover Letter"
                     required ngModel>
             </div>
+
             <div class="form-holder">
                 <input type="text" class="form-control" id="cv" name="cv" placeholder="CV" required ngModel>
             </div>
+
             <button type="submit" [disabled]="!applicationForm.valid">
                 <span>Apply</span>
             </button>
+
         </form>
         <img src="../../../assets/Programmer-amico.png" alt="" class="image-2">
     </div>

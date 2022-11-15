@@ -16,7 +16,7 @@ export class CommentApplicationServiceService {
 
   public addComment(comments: ApplicationComment) {
     console.log(comments);
-    return this.http.post<ApplicationComment>('https://localhost:7156/api/Comment/AddAppComment', comments).subscribe();
+    return this.http.post<ApplicationComment>('https://localhost:7156/Comment/AddAppComment', comments).subscribe();
   }
 
 }

@@ -1,5 +1,7 @@
-<div class="p-4">
+<div class="p-4" *ngIf="applicants">
+
     <div class="row text-center mb-5">
+
         <div class="col">
             <div class="card text-center">
                 <div class="card-header card-title">
@@ -10,6 +12,7 @@
                 </div>
             </div>
         </div>
+
         <div class="col">
             <div class="card text-center">
                 <div class="card-header card-title">
@@ -30,6 +33,7 @@
                 </div>
             </div>
         </div>
+
         <div class="col">
             <div class="card text-center">
                 <div class="card-header card-title">
@@ -40,6 +44,7 @@
                 </div>
             </div>
         </div>
+
         <div class="col">
             <!-- <div class="card text-center">
                 <div class="card-header card-title">
@@ -70,8 +75,11 @@
                 <option>Rejected</option>
             </select>
         </div>
+
     </div>
+
     <div class="row">
+
         <div class="col-sm-6">
             <div class="card">
                 <div class="card-body">
@@ -80,6 +88,7 @@
                 </div>
             </div>
         </div>
+
         <div class="col-sm-6">
             <div class="card">
                 <div class="card-body">
@@ -88,8 +97,10 @@
                 </div>
             </div>
         </div>
+
     </div>
     <div id="comments" *ngFor="let comment of applicants.comments">
+
         <div class="card text-center mt-5">
             <div class="card-header card-title">
                 <div class="h5 mt-1"> {{ comment.user.username }} </div>
@@ -98,19 +109,23 @@
                 <p class="card-text"> {{ comment.comment }} </p>
             </div>
         </div>
+
     </div>
+
     <div *ngIf="!visible" class="row text-center mt-3">
         <div class="col text-center">
-            <button type="button" class="btn btnaddnewcomment" (click)="openCommentSection()"><i
-                    class="fa-solid fa-plus me-2"></i>Add Comment</button>
+            <button type="button" class="btn btnaddnewcomment" (click)="openCommentSection()">
+                <i class="fa-solid fa-plus me-2"></i>Add Comment</button>
         </div>
     </div>
+
     <div *ngIf="visible" class="row text-center mt-3">
         <div class="col text-center">
-            <button type="button" class="btn btnaddnewcomment" (click)="openCommentSection()"><i
-                    class="fa-solid fa-minus me-2"></i>Close Comment</button>
+            <button type="button" class="btn btnaddnewcomment" (click)="openCommentSection()">
+                <i class="fa-solid fa-minus me-2"></i>Close Comment</button>
         </div>
     </div>
+
     <div *ngIf="visible">
         <form class="commentForm" #commentForm="ngForm" (ngSubmit)="onComment( commentInput.value )">
             <div class="form-group mt-2 comment">
@@ -120,4 +135,5 @@
             <button type="submit" class="btn btn-success">Add Comment</button>
         </form>
     </div>
+
 </div>

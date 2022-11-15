@@ -1,6 +1,8 @@
 <div class="side-nav-content">
+
     <ul class="nav-list" [ngClass]="{'nav-list-open': sideNavStatus}">
-        <div routerLink="/applications" style="cursor: pointer;">
+
+        <div [routerLink]="['/applications']" style="cursor: pointer;">
             <li class="nav-list-item">
                 <i class="fa-solid fa-window-maximize"></i>
                 <span>
@@ -8,6 +10,7 @@
                 </span>
             </li>
         </div>
+
         <div routerLink="/selections" style="cursor: pointer;">
             <li class="nav-list-item">
                 <i class="fa-solid fa-list-check"></i>
@@ -16,6 +19,7 @@
                 </span>
             </li>
         </div>
+
         <div routerLink="/editors" style="cursor: pointer;">
             <li class="nav-list-item">
                 <i class="fa-solid fa-users"></i>
@@ -24,5 +28,25 @@
                 </span>
             </li>
         </div>
+
+        <div routerLink="/login" style="cursor: pointer;">
+            <li class="nav-list-item">
+                <i class="fa-solid fa-arrow-right-to-bracket"></i>
+                <span>
+                    <a>Log in</a>
+                </span>
+            </li>
+        </div>
+
+        <div (click)="signOut()" style="cursor: pointer;">
+            <li class="nav-list-item">
+                <i class="fa-solid fa-arrow-right-from-bracket"></i>
+                <span>
+                    <a>Sign out</a>
+                </span>
+            </li>
+        </div>
+
     </ul>
+
 </div>

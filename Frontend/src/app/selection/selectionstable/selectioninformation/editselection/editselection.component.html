@@ -1,33 +1,36 @@
 <div class="modal-dialog">
     <div class="modal-content">
+
         <div class="modal-header">
             <h5 class="modal-title" id="exampleModalLabel">Add new Selection</h5>
         </div>
+
         <div class="modal-body">
             <form id="signup-form" class="formApplication" #applicationForm="ngForm"
                 (ngSubmit)="onSubmit(applicationForm.value)">
+
                 <div class="mb-3">
                     <label class="form-label text-black" for="name">Selection Name</label>
                     <input type="text" class="form-control" name="name" id="name" placeholder="Enter Selection name"
                         ngModel />
                 </div>
+
                 <div class="mb-3">
-                    <!-- <label class="form-label text-black">Start Date</label>
-                    <input type="text" class="form-control" name="username" placeholder="Enter start date" /> -->
                     <label class="form-label" for="startDate">Start Date:</label>
                     <input class="form-control" type="date" id="startDate" name="startDate" ngModel>
                 </div>
+
                 <div class="mb-3">
-                    <!-- <label class="form-label text-black">End Date</label>
-                    <input type="text" class="form-control" name="username" placeholder="Enter end date" /> -->
                     <label class="form-label" for="endDate">End Date:</label>
                     <input class="form-control" type="date" id="endDate" name="endDate" ngModel>
                 </div>
+
                 <div class="mb-3">
                     <label class="form-label text-black" for="description">Description</label>
                     <input type="text" class="form-control" name="description" id="description"
                         placeholder="Enter description" ngModel />
                 </div>
+
                 <div class="modal-footer">
                     <button type="submit" class="btn btn-info">Add Selection</button>
                 </div>

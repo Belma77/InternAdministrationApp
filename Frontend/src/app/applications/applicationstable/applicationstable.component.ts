@@ -1,10 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Applicants } from 'src/app/models/applicants';
 import { Application } from 'src/app/models/application';
-import { ApplicationComment } from 'src/app/models/applicationComment.model';
 import { Pagination } from 'src/app/models/pagination';
 import { ApplicantsService } from 'src/app/services/applicants.service';
-import { CommentApplicationServiceService } from 'src/app/services/comment-application-service.service';
 
 
 @Component({
@@ -13,7 +12,6 @@ import { CommentApplicationServiceService } from 'src/app/services/comment-appli
   styleUrls: ['./applicationstable.component.css']
 })
 export class ApplicationstableComponent implements OnInit {
-  // applicants: Applicants[] = [];
   applicant: Application;
   applicants: Applicants[];
   pagination: Pagination;
@@ -26,23 +24,22 @@ export class ApplicationstableComponent implements OnInit {
   id: number;
   rowSelected: Boolean = false;
 
-  constructor(private applicantService: ApplicantsService, private service: CommentApplicationServiceService) {
+  constructor(
+    private applicantService: ApplicantsService,
+    private router: Router) {
 
   }
-
-  // ngOnInit(): void {
-  //   this.applicantService.getApplicants()).subscribe((result: Applicants[]) => (this.applicants = result));
-  // }
 
   ngOnInit(): void {
     this.loadApplicants();
   }
 
   loadApplicants() {
-    this.applicantService.getApplicants(this.PageNumber, this.PageSize, this.value, this.education, this.status, this.search).subscribe(response => {
-      this.applicants = response.result;
-      this.pagination = response.pagination;
-    });
+    this.applicantService.getApplicants(this.PageNumber, this.PageSize, this.value, this.education, this.status, this.search)
+      .subscribe(response => {
+        this.applicants = response.result;
+        this.pagination = response.pagination;
+      });
   }
 
   pageChanged(event: any) {
@@ -70,11 +67,8 @@ export class ApplicationstableComponent implements OnInit {
     this.loadApplicants();
   }
 
-  onSelectApplicant(applicant: Application) {
-    this.applicant = applicant;
-    this.applicantService.getApplicant(applicant.id).subscribe(response => {
-      this.applicants = response;
-      this.rowSelected = true;
-    })
+  selectRow(id) {
+    this.router.navigate(["applications/" + id]);
+    this.rowSelected = true;
   }
 }
