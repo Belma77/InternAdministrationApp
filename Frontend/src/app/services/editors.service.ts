@@ -15,7 +15,7 @@ export class EditorsService {
   }
 
   public addEditor(addEditor: { firstName: string, lastName: string, email: string, userName: string, password: string }) {
-    this.http.post<Editors>('https://localhost:7156/api/Auth/AddEditor', addEditor).subscribe();
+    this.http.post<Editors>('https://localhost:7156/Users/Add', addEditor).subscribe();
   }
 
   public deleteEditor(id: string) {

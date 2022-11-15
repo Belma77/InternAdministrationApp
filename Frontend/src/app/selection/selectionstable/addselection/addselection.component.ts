@@ -17,6 +17,5 @@ export class AddselectionComponent implements OnInit {
     console.log(addSelection);
     this.selectionService.addSelection(addSelection);
   }
-
 }
 

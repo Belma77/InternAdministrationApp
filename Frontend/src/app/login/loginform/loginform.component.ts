@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Login } from 'src/app/models/login';
 import { AuthService } from 'src/app/services/auth.service';
 
@@ -9,8 +10,10 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class LoginformComponent implements OnInit {
   token: any;
+  loggedIn: boolean = false;
 
-  constructor(private authService: AuthService) { }
+  constructor(private authService: AuthService,
+    private router: Router) { }
 
   ngOnInit(): void {
   }
@@ -22,8 +25,8 @@ export class LoginformComponent implements OnInit {
         this.token = response;
         console.log(this.token);
         localStorage.setItem('token', this.token.token);
+        this.router.navigate(['/applications']);
       }
     });
   }
-
 }

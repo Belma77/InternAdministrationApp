@@ -2,11 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { Selections } from 'src/app/models/selections';
 import { Pagination } from 'src/app/models/pagination';
 import { SelectionsService } from 'src/app/services/selections.service';
-import { ApplicantsService } from 'src/app/services/applicants.service';
 import { Applicants } from 'src/app/models/applicants';
-import { addApplicantToSelection } from 'src/app/models/addApplicantToSelection';
 import { MatDialog } from '@angular/material/dialog';
 import { AddselectionComponent } from './addselection/addselection.component';
+import { Router } from '@angular/router';
 
 
 declare var window: any;
@@ -26,14 +25,16 @@ export class SelectionstableComponent implements OnInit {
   selectionName: string;
   searchName: string;
   rowSelected: boolean = false;
+  id: number;
 
   formModal: any;
 
-  constructor(private selectionsService: SelectionsService, private applicantService: ApplicantsService, public dialog: MatDialog) { }
+  constructor(private selectionsService: SelectionsService,
+    public dialog: MatDialog,
+    private router: Router) { }
 
   ngOnInit(): void {
     this.loadSelections();
-
     this.formModal = new window.bootstrap.Modal(
       document.getElementById("exampleModal1")
     );
@@ -53,7 +54,6 @@ export class SelectionstableComponent implements OnInit {
 
   openModal() {
     this.formModal.show();
-
   }
 
   onNameSelect(event) {
@@ -73,33 +73,15 @@ export class SelectionstableComponent implements OnInit {
     this.loadSelections();
   }
 
-  onSelectSelection(selections: Selections) {
-    this.selection = selections;
-    this.selectionsService.getSelection(this.selection.id).subscribe(response => {
-      this.loadApplicants("");
-      this.selection = response;
-      this.rowSelected = true;
-    })
-  }
-
-  loadApplicants(newSearch: string) {
-    this.applicantService.getApplicantsPreselection(newSearch).subscribe(response => {
-      this.applicants = response.result;
-      this.pagination = response.pagination;
-    });
-  }
-
-  addApplicantToSelection(currentApplicantId: number) {
-    var applicationToSelection: addApplicantToSelection = new addApplicantToSelection();
-    applicationToSelection.applicationId = currentApplicantId;
-    applicationToSelection.selectionId = this.selection.id;
-    this.selectionsService.addApplicantToSelection(applicationToSelection);
-  }
-
   openDialog(): void {
     this.dialog.open(AddselectionComponent, {
       width: '30%',
       data: { selections: this.selections },
     });
+  }
+
+  selectRow(id) {
+    this.router.navigate(["selections/" + id]);
+    this.rowSelected = true;
   }
 }

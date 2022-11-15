@@ -16,8 +16,8 @@ export class EditorsformComponent implements OnInit {
 
   formModal: any;
 
-
-  constructor(private editorsService: EditorsService, public dialog: MatDialog) { }
+  constructor(private editorsService: EditorsService,
+    public dialog: MatDialog) { }
 
   ngOnInit(): void {
     this.loadEditors();
@@ -28,7 +28,6 @@ export class EditorsformComponent implements OnInit {
 
   openModal() {
     this.formModal.show();
-
   }
 
   addEditor() {
@@ -55,5 +54,4 @@ export class EditorsformComponent implements OnInit {
     }
     this.editorsService.deleteEditor(id);
   }
-
 }

@@ -1,11 +1,10 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ApplicantsService } from 'src/app/services/applicants.service';
-import { Application } from 'src/app/models/application';
 import { Applicants } from 'src/app/models/applicants';
 import { CommentApplicationServiceService } from 'src/app/services/comment-application-service.service';
 import { ApplicationComment } from 'src/app/models/applicationComment.model';
 import { AppUpdateStatus } from 'src/app/models/appUpdateStatus';
-import { Status } from 'src/app/services/statusEnum';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 
 
 @Component({
@@ -14,15 +13,25 @@ import { Status } from 'src/app/services/statusEnum';
   styleUrls: ['./applicant.component.css']
 })
 export class ApplicantComponent implements OnInit {
-  @Input() applicants: Applicants;
+  applicants: Applicants;
   addComment: boolean = true;
   visible: boolean = false;
   status: string;
+  id: number;
 
 
-  constructor(private applicantService: ApplicantsService, private service: CommentApplicationServiceService) { }
+  constructor(private applicantService: ApplicantsService,
+    private service: CommentApplicationServiceService,
+    private route: ActivatedRoute) { }
 
   ngOnInit(): void {
+    this.route.params.subscribe((params: Params) => {
+      this.id = params['id'];
+    })
+    this.applicantService.getApplicant(this.id).subscribe(response => {
+      this.applicants = response;
+      console.log(this.applicants)
+    })
   }
 
   openCommentSection() {
@@ -32,20 +41,15 @@ export class ApplicantComponent implements OnInit {
 
   onComment(commentBody: string) {
     var comment: ApplicationComment = new ApplicationComment();
-    console.log(commentBody);
     comment.Comment = commentBody;
     comment.ApplicationId = this.applicants.id;
-    console.log(comment);
     this.service.addComment(comment);
   }
 
   onUpdateStatus(newStatus: string) {
-    console.log(newStatus);
     var status: AppUpdateStatus = new AppUpdateStatus();
     status.ApplicationId = this.applicants.id;
     status.Status = newStatus;
-    console.log(newStatus);
     this.applicantService.changeStatus(status);
   }
-
 }

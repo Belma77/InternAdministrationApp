@@ -46,7 +46,7 @@ export class SelectionsService {
   }
 
   public getSelection(id: number) {
-    return this.http.get<Selections>("https://localhost:7156/Selection/GetById?id=" + id);
+    return this.http.get<Selections>("https://localhost:7156/Selection/Get?id=" + id);
   }
 
   public addApplicantToSelection(addingApplicantToSelection: addApplicantToSelection) {

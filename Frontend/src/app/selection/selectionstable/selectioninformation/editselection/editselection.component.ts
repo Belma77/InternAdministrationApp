@@ -10,16 +10,14 @@ import { SelectionsService } from 'src/app/services/selections.service';
 })
 export class EditselectionComponent implements OnInit {
 
-  constructor(private selectionService: SelectionsService, @Inject(MAT_DIALOG_DATA) public data: any,) { }
+  constructor(private selectionService: SelectionsService,
+    @Inject(MAT_DIALOG_DATA) public data: any) { }
 
   ngOnInit(): void {
   }
 
   onSubmit(editSelection: { SelectionId: number, Name?: string, StartDate?: Date, EndDate?: Date, Description?: string }) {
     editSelection.SelectionId = this.data.selections.id;
-    console.log(editSelection.SelectionId)
-    console.log(editSelection);
     this.selectionService.editSelection(editSelection);
   }
-
 }

@@ -15,7 +15,7 @@ export class CommentSelectionService {
 
   public addComment(comments: SelectionComment) {
     console.log(comments);
-    return this.http.post<SelectionComment>('https://localhost:7156/api/Comment/AddSelectionComment', comments).subscribe();
+    return this.http.post<SelectionComment>('https://localhost:7156/Comment/AddSelectionComment', comments).subscribe();
   }
 
 }

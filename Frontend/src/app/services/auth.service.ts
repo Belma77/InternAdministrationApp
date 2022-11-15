@@ -10,10 +10,11 @@ export class AuthService {
   constructor(private http: HttpClient) { }
 
   public login(login: { username: string, password: string }) {
-    return this.http.post<Login>('https://localhost:7156/api/Auth/login', login);
+    return this.http.post<Login>('https://localhost:7156/Auth/login', login);
   }
 
   public isLogged() {
+    console.log(localStorage.getItem('token') != null);
     return localStorage.getItem('token') != null;
   }
 

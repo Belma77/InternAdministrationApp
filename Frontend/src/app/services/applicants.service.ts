@@ -47,17 +47,12 @@ export class ApplicantsService {
     )
   }
 
-  // public getApplicantPreselection() {
-  //   return this.http.get<Applicants[]>("https://localhost:7156/Application/GetAll?filter.Status=Preselection");
-  // }
-
   public getApplicantsPreselection(search?: string) {
     let params = new HttpParams();
-    // params = params.append('filter.Status', 'Preselection');
     if (search) {
       params = params.append('filter.Name', search);
     }
-    return this.http.get<Applicants[]>(this.baseUrl + 'GetAppsForSelection', { observe: 'response', params }).pipe(
+    return this.http.get<Applicants[]>(this.baseUrl + 'GetForSelection', { observe: 'response', params }).pipe(
       map(response => {
         this.paginatedResult.result = response.body;
         if (response.headers.get('Pagination') !== null) {
@@ -68,15 +63,12 @@ export class ApplicantsService {
     )
   }
 
-
-
   public getApplicant(id: number) {
-    return this.http.get<Applicants[]>(this.baseUrl + id);
+    return this.http.get<Applicants>(this.baseUrl + id);
   }
 
   public changeStatus(status: AppUpdateStatus) {
     console.log(status);
     return this.http.patch<AppUpdateStatus>('https://localhost:7156/Application/UpdateStatus', status).subscribe();
   }
-
 }
