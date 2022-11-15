@@ -75,7 +75,9 @@ export class SelectionstableComponent implements OnInit {
 
   openDialog(): void {
     this.dialog.open(AddselectionComponent, {
-      width: '30%',
+      width: "60vh",
+      maxWidth: "650px",
+      maxHeight: "900px",
       data: { selections: this.selections },
     });
   }

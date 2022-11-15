@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { Editors } from 'src/app/models/editors';
 import { EditorsService } from 'src/app/services/editors.service';
 import { EditorsmodalComponent } from '../editorsmodal/editorsmodal.component';
@@ -17,7 +18,9 @@ export class EditorsformComponent implements OnInit {
   formModal: any;
 
   constructor(private editorsService: EditorsService,
-    public dialog: MatDialog) { }
+    private dialog: MatDialog,
+    private snackbar: MatSnackBar
+  ) { }
 
   ngOnInit(): void {
     this.loadEditors();
@@ -42,14 +45,16 @@ export class EditorsformComponent implements OnInit {
 
   openDialog(): void {
     this.dialog.open(EditorsmodalComponent, {
-      width: '30%',
+      width: "60vh",
+      maxWidth: "650px",
+      maxHeight: "900px",
       data: {},
     });
   }
 
   deleteEditor(id: string) {
     if (id == "b74ddd14-6340-4840-95c2-db12554843e5") {
-      console.log("This user can't be deleted");
+      this.snackbar.open("Can't delete Admin", null, {});
       return;
     }
     this.editorsService.deleteEditor(id);

@@ -7,7 +7,6 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { ApplyforinternshipComponent } from './applyforinternship/applyforinternship.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { JapnavbarComponent } from './applyforinternship/japnavbar/japnavbar.component';
 import { SectionComponent } from './applyforinternship/section/section.component';
 import { ApplyformComponent } from './applyforinternship/applyform/applyform.component';
 import { LoginComponent } from './login/login.component';
@@ -31,6 +30,7 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { EditselectionComponent } from './selection/selectionstable/selectioninformation/editselection/editselection.component';
 import { EditorsmodalComponent } from './editors/editorsmodal/editorsmodal.component';
+import { MatSnackBarModule, MAT_SNACK_BAR_DEFAULT_OPTIONS } from '@angular/material/snack-bar';
 
 @NgModule({
   declarations: [
@@ -38,7 +38,6 @@ import { EditorsmodalComponent } from './editors/editorsmodal/editorsmodal.compo
     NavbarComponent,
     SidebarComponent,
     ApplyforinternshipComponent,
-    JapnavbarComponent,
     SectionComponent,
     ApplyformComponent,
     LoginComponent,
@@ -66,12 +65,15 @@ import { EditorsmodalComponent } from './editors/editorsmodal/editorsmodal.compo
     MatDialogModule,
     MatDatepickerModule,
     MatFormFieldModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatSnackBarModule,
   ],
   exports: [
     PaginationModule
   ],
-  providers: [{ provide: HTTP_INTERCEPTORS, useClass: TokenService, multi: true }],
+  providers: [{ provide: HTTP_INTERCEPTORS, useClass: TokenService, multi: true },
+  { provide: MAT_SNACK_BAR_DEFAULT_OPTIONS, useValue: { duration: 3000 } }],
+
   bootstrap: [AppComponent]
 })
 export class AppModule { }

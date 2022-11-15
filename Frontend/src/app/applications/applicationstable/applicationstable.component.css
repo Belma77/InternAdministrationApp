@@ -20,3 +20,13 @@
 .custom-select select {
     display: none;
 }
+
+@media screen and (max-width: 500px) {
+    select {
+        padding: 0;
+    }
+
+    .h5 {
+        font-size: 15px;
+    }
+}

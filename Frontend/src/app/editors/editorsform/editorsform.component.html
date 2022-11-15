@@ -12,29 +12,30 @@
 
     </div>
 
-    <table class="table table-striped table-hover text-center">
-        <thead class="table-dark">
-            <tr>
-                <th scope="col">#</th>
-                <th scope="col">First</th>
-                <th scope="col">Last</th>
-                <th scope="col">Username</th>
-                <th scope="col">Email</th>
-                <th scope="col">Delete</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr *ngFor="let editor of editors; let i = index">
-                <th scope="row">{{ i + 1 }}</th>
-                <td>{{ editor.firstName }}</td>
-                <td>{{ editor.lastName }}</td>
-                <td>{{ editor.userName }}</td>
-                <td>{{ editor.email }}</td>
-                <td>
-                    <button type="button" class="btn btn-danger" (click)="deleteEditor(editor.id)">Delete</button>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-
+    <div class="table-responsive">
+        <table class="table table-striped table-hover text-center">
+            <thead class="table-dark">
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">First</th>
+                    <th scope="col">Last</th>
+                    <th scope="col">Username</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Delete</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let editor of editors; let i = index">
+                    <th scope="row">{{ i + 1 }}</th>
+                    <td>{{ editor.firstName }}</td>
+                    <td>{{ editor.lastName }}</td>
+                    <td>{{ editor.userName }}</td>
+                    <td>{{ editor.email }}</td>
+                    <td>
+                        <button type="button" class="btn btn-danger" (click)="deleteEditor(editor.id)">Delete</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 </div>

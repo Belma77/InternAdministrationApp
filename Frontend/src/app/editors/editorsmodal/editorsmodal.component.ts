@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { EditorsService } from 'src/app/services/editors.service';
-import { EditorsformComponent } from '../editorsform/editorsform.component';
 
 @Component({
   selector: 'app-editorsmodal',
@@ -10,13 +9,17 @@ import { EditorsformComponent } from '../editorsform/editorsform.component';
 })
 export class EditorsmodalComponent implements OnInit {
 
-  constructor(private editorsService: EditorsService, public dialog: MatDialog) { }
+  constructor(private editorsService: EditorsService, public dialog: MatDialog, private dialogRef: MatDialogRef<EditorsmodalComponent>) { }
 
   ngOnInit(): void {
   }
 
   onSubmit(addEditor: { firstName: string, lastName: string, email: string, userName: string, password: string }) {
-    console.log(addEditor);
     this.editorsService.addEditor(addEditor);
+  }
+
+  closeDialog() {
+    this.dialogRef.close()
+    window.location.reload();
   }
 }

@@ -4,5 +4,8 @@
 
 .btnaddnewcomment {
     background-color: rgba(134, 207, 235, 1);
+}
 
+.form-control {
+    padding: 0 !important;
 }

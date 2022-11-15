@@ -225,6 +225,7 @@ button:hover:after {
     }
 
     form {
+        z-index: 1;
         padding: 35px;
         box-shadow: none;
         -webkit-box-shadow: none;

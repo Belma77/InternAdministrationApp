@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { SelectionsService } from 'src/app/services/selections.service';
 
 @Component({
@@ -8,7 +9,7 @@ import { SelectionsService } from 'src/app/services/selections.service';
 })
 export class AddselectionComponent implements OnInit {
 
-  constructor(private selectionService: SelectionsService) { }
+  constructor(private selectionService: SelectionsService, public dialog: MatDialog, private dialogRef: MatDialogRef<AddselectionComponent>) { }
 
   ngOnInit(): void {
   }
@@ -16,6 +17,11 @@ export class AddselectionComponent implements OnInit {
   onSubmit(addSelection: { name: string, startDate: Date, endDate: Date, description: string }) {
     console.log(addSelection);
     this.selectionService.addSelection(addSelection);
+  }
+
+  closeDialog() {
+    this.dialogRef.close()
+    window.location.reload();
   }
 }
 

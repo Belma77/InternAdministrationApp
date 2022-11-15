@@ -5,3 +5,17 @@
 .main-section {
     height: calc(100vh - 4rem);
 }
+
+@media screen and (max-width: 500px) {
+    img {
+        width: 250px;
+    }
+
+    #promotext {
+        margin-top: 5%;
+    }
+
+    .h3 {
+        font-size: 20px;
+    }
+}

@@ -17,7 +17,7 @@ export class ApplicationstableComponent implements OnInit {
   pagination: Pagination;
   PageNumber = 1;
   PageSize = 10;
-  value: string;
+  value = null;
   education: string;
   status: string;
   search: string;

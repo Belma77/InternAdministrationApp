@@ -1,72 +1,82 @@
 <div class="p-4">
 
     <div class="row text-center mb-3">
-        <div class="col-3">
+        <div class="col-xs-6 col-lg-3 mb-1 mb-lg-0">
             <div class="d-flex">
-                <input class="form-control mr-2" type="search" placeholder="Name" aria-label="Search"
+                <input class="form-control me-1" type="search" placeholder="Name" aria-label="Search"
                     [(ngModel)]="search">
                 <button class="btn btnsearch" type="button" (click)="onSearch()">Search</button>
             </div>
         </div>
 
-        <div class="col-1">
-            <select (ngModelChange)="onSelect($event)" [(ngModel)]="value" id="inputState" class="form-control" required
-                ngModel>
-                <option>Ascending</option>
-                <option>Descending</option>
-            </select>
+        <div class="col-xs-6 col-lg-1 mb-1 mb-lg-0">
+            <div class="d-flex">
+                <p class="h5 mt-2 me-1">Sort:</p>
+                <select (ngModelChange)="onSelect($event)" [(ngModel)]="value" id="inputState" class="form-control"
+                    required ngModel>
+                    <option class="h5">Ascending</option>
+                    <option class="h5">Descending</option>
+                </select>
+            </div>
         </div>
 
-        <div class="col-1">
-            <select (ngModelChange)="onSelectEducation($event)" [(ngModel)]="education" id="inputState"
-                class="form-control" id="educationLevel" name="educationLevel" placeholder="Education Level" required
-                ngModel>
-                <option>Highschool</option>
-                <option>Bachelor</option>
-                <option>Master</option>
-                <option>PhD</option>
-            </select>
+        <div class="col-xs-6 col-lg-2 mb-1 mb-lg-0">
+            <div class="d-flex">
+                <p class="h5 mt-2 me-1">Education:</p>
+                <select (ngModelChange)="onSelectEducation($event)" [(ngModel)]="education" class="form-control"
+                    id="educationLevel" name="educationLevel" required ngModel>
+                    <option class="h5">Highschool</option>
+                    <option class="h5">Bachelor</option>
+                    <option class="h5">Master</option>
+                    <option class="h5">PhD</option>
+                </select>
+            </div>
         </div>
 
-        <div class="col-1">
-            <select (ngModelChange)="onSelectStatus($event)" [(ngModel)]="status" id="inputState" class="form-control"
-                id="educationLevel" name="educationLevel" placeholder="Education Level" required ngModel>
-                <option>Applied</option>
-                <option>Preselection</option>
-                <option>Inselection</option>
-                <option>Completed</option>
-                <option>Rejected</option>
-            </select>
+        <div class="col-xs-6 col-lg-1 mb-1 mb-lg-0">
+            <div class="d-flex">
+                <p class="h5 mt-2 me-1">Status:</p>
+                <select (ngModelChange)="onSelectStatus($event)" [(ngModel)]="status" class="form-control" id="status"
+                    name="status" required ngModel>
+                    <option class="h5">Applied</option>
+                    <option class="h5">Preselection</option>
+                    <option class="h5">Inselection</option>
+                    <option class="h5">Completed</option>
+                    <option class="h5">Rejected</option>
+                </select>
+            </div>
         </div>
 
-        <div class="col-6"></div>
+        <div class="col-lg-5"></div>
     </div>
 
-    <table class="table table-striped table-hover text-center">
-        <thead class="table-dark">
-            <tr>
-                <th scope="col">#</th>
-                <th scope="col">First</th>
-                <th scope="col">Last</th>
-                <th scope="col">Email</th>
-                <th scope="col">Education</th>
-                <th scope="col">Status</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr [routerLink]="['/applications', applicant.id]" (click)="selectRow(applicant.id)"
-                style="cursor: pointer;" *ngFor="let applicant of applicants; let i = index">
-                <th scope="row">{{ (pagination.ItemsPerPage * pagination.CurrentPage ) + i - pagination.ItemsPerPage
-                    + 1
-                    }}</th>
-                <td>{{ applicant.firstName }}</td>
-                <td>{{ applicant.lastName }}</td>
-                <td>{{ applicant.email }}</td>
-                <td>{{ applicant.educationLevel }}</td>
-                <td>{{ applicant.status }}</td>
-            </tr>
-        </tbody>
-    </table>
+    <div class="table-responsive">
+        <table class="table table-striped table-hover text-center">
+            <thead class="table-dark">
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">First</th>
+                    <th scope="col">Last</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Education</th>
+                    <th scope="col">Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr [routerLink]="['/applications', applicant.id]" (click)="selectRow(applicant.id)"
+                    style="cursor: pointer;" *ngFor="let applicant of applicants; let i = index">
+                    <th scope="row">{{ (pagination.ItemsPerPage * pagination.CurrentPage ) + i - pagination.ItemsPerPage
+                        + 1
+                        }}</th>
+                    <td>{{ applicant.firstName }}</td>
+                    <td>{{ applicant.lastName }}</td>
+                    <td>{{ applicant.email }}</td>
+                    <td>{{ applicant.educationLevel }}</td>
+                    <td>{{ applicant.status }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 
     <div class="d-flex justify-content-center" *ngIf="pagination">
         <pagination [boundaryLinks]="true" [totalItems]="pagination.TotalItems" [itemsPerPage]="pagination.ItemsPerPage"

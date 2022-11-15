@@ -1,4 +1,4 @@
-import { educationLevels } from "../services/educationLevelEnum";
+import { educationLevels } from "./educationLevelEnum";
 import { ApplicationComment } from "./applicationComment.model";
 
 export class Application {

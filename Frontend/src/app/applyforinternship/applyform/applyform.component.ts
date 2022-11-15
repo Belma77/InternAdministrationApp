@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ApplicationService } from 'src/app/services/application.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { ApplicantsService } from 'src/app/services/applicants.service';
 
 @Component({
   selector: 'app-applyform',
@@ -8,14 +9,12 @@ import { ApplicationService } from 'src/app/services/application.service';
 })
 export class ApplyformComponent implements OnInit {
 
-  constructor(private appService: ApplicationService) { }
+  constructor(private appService: ApplicantsService, private snackbar: MatSnackBar) { }
 
   ngOnInit(): void {
   }
 
   onSubmit(applicationData: { firstName: string, lastName: string, email: string, educationLevel: string, coverLetter: string, cv: string }) {
-    console.log(applicationData);
     this.appService.storeApplication(applicationData);
   }
-
 }

@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 
 @Component({
@@ -9,7 +10,7 @@ import { Router } from '@angular/router';
 export class SidebarComponent implements OnInit {
   @Input() sideNavStatus: boolean = false;
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, private snackbar: MatSnackBar) { }
 
   ngOnInit(): void {
   }
@@ -17,6 +18,9 @@ export class SidebarComponent implements OnInit {
   signOut() {
     localStorage.removeItem('token');
     this.router.navigate(['/login']);
+    this.snackbar.open('Sucessfully logged out', null, {
+
+    });
   }
 
 }

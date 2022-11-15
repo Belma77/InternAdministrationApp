@@ -6,6 +6,8 @@ export class Selections {
     name = "";
     startDate: Date;
     endDate: Date;
+    dateCreated: Date;
+    dateEdited: Date;
     description = "";
     applications: Applicants[];
     comments: SelectionComment[];

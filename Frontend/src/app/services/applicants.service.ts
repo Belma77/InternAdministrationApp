@@ -18,6 +18,10 @@ export class ApplicantsService {
 
   constructor(private http: HttpClient) { }
 
+  public storeApplication(postData: { firstName: string, lastName: string, email: string, educationLevel: string, coverLetter: string, cv: string }) {
+    this.http.post<Application>('https://localhost:7156/Application', postData);
+  }
+
   public getApplicants(page?: number, ItemsPerPage?: number, sort?: string, educationSort?: string, status?: string, search?: string) {
     let params = new HttpParams();
     if (page != null && ItemsPerPage !== null) {
@@ -68,7 +72,6 @@ export class ApplicantsService {
   }
 
   public changeStatus(status: AppUpdateStatus) {
-    console.log(status);
     return this.http.patch<AppUpdateStatus>('https://localhost:7156/Application/UpdateStatus', status).subscribe();
   }
 }

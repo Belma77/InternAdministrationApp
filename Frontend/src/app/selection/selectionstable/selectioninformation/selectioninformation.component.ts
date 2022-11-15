@@ -1,14 +1,13 @@
-import { outputAst } from '@angular/compiler';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { ActivatedRoute, Params, Router } from '@angular/router';
+import { ActivatedRoute, Params } from '@angular/router';
 import { addApplicantToSelection } from 'src/app/models/addApplicantToSelection';
 import { Applicants } from 'src/app/models/applicants';
 import { Pagination } from 'src/app/models/pagination';
 import { SelectionComment } from 'src/app/models/selectionComment';
 import { Selections } from 'src/app/models/selections';
 import { ApplicantsService } from 'src/app/services/applicants.service';
-import { CommentSelectionService } from 'src/app/services/comment-selection.service';
+import { CommentService } from 'src/app/services/comment.service';
 import { SelectionsService } from 'src/app/services/selections.service';
 import { EditselectionComponent } from './editselection/editselection.component';
 
@@ -26,19 +25,18 @@ export class SelectioninformationComponent implements OnInit {
   @Input() selection: Selections;
   @Input() applicants: Applicants[];
   @Input() pagination: Pagination;
-  addComment: boolean = true;
-  openApplicants: boolean = true;
+  addComment: boolean = false;
+  openApplicants: boolean = false;
   visible: boolean = false;
   PageNumber = 1;
   PageSize = 10;
   @Input() search: string;
-  id: number
-
+  id: number;
 
   constructor(private applicantService: ApplicantsService,
     private selectionsService: SelectionsService,
     public dialog: MatDialog,
-    private commentService: CommentSelectionService,
+    private commentService: CommentService,
     private route: ActivatedRoute) { }
 
   ngOnInit(): void {
@@ -50,6 +48,14 @@ export class SelectioninformationComponent implements OnInit {
       this.loadApplicantsInSelection("");
       console.log(this.selection)
     })
+  }
+
+  dateEdited() {
+    if (this.selection.dateEdited == null) {
+      return true;
+    } else {
+      return false;
+    }
   }
 
   openApplicantsSection() {
@@ -71,15 +77,15 @@ export class SelectioninformationComponent implements OnInit {
     applicationToSelection.applicationId = currentApplicantId;
     applicationToSelection.selectionId = this.id;
     this.selectionsService.removeApplicantFromSelection(applicationToSelection);
+    window.location.reload();
   }
 
   onComment(commentBody: string) {
     var comment: SelectionComment = new SelectionComment();
-    console.log(commentBody);
     comment.comment = commentBody;
     comment.selectionId = this.id;
-    console.log(comment);
-    this.commentService.addComment(comment);
+    this.commentService.addCommentSelection(comment);
+    window.location.reload();
   }
 
   loadApplicantsInSelection(newSearch: string) {
@@ -94,11 +100,14 @@ export class SelectioninformationComponent implements OnInit {
     applicationToSelection.applicationId = currentApplicantId;
     applicationToSelection.selectionId = this.id;
     this.selectionsService.addApplicantToSelection(applicationToSelection);
+    window.location.reload();
   }
 
   openDialog(): void {
     this.dialog.open(EditselectionComponent, {
-      width: '30%',
+      width: "60vh",
+      maxWidth: "650px",
+      maxHeight: "900px",
       data: { selections: this.selection },
     });
   }

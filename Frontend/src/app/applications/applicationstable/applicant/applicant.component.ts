@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { ApplicantsService } from 'src/app/services/applicants.service';
 import { Applicants } from 'src/app/models/applicants';
-import { CommentApplicationServiceService } from 'src/app/services/comment-application-service.service';
 import { ApplicationComment } from 'src/app/models/applicationComment.model';
 import { AppUpdateStatus } from 'src/app/models/appUpdateStatus';
-import { ActivatedRoute, Params, Router } from '@angular/router';
+import { ActivatedRoute, Params } from '@angular/router';
+import { CommentService } from 'src/app/services/comment.service';
 
 
 @Component({
@@ -21,7 +21,7 @@ export class ApplicantComponent implements OnInit {
 
 
   constructor(private applicantService: ApplicantsService,
-    private service: CommentApplicationServiceService,
+    private commentService: CommentService,
     private route: ActivatedRoute) { }
 
   ngOnInit(): void {
@@ -30,7 +30,6 @@ export class ApplicantComponent implements OnInit {
     })
     this.applicantService.getApplicant(this.id).subscribe(response => {
       this.applicants = response;
-      console.log(this.applicants)
     })
   }
 
@@ -43,7 +42,8 @@ export class ApplicantComponent implements OnInit {
     var comment: ApplicationComment = new ApplicationComment();
     comment.Comment = commentBody;
     comment.ApplicationId = this.applicants.id;
-    this.service.addComment(comment);
+    this.commentService.addCommentApplication(comment);
+    window.location.reload();
   }
 
   onUpdateStatus(newStatus: string) {
@@ -51,5 +51,6 @@ export class ApplicantComponent implements OnInit {
     status.ApplicationId = this.applicants.id;
     status.Status = newStatus;
     this.applicantService.changeStatus(status);
+    window.location.reload();
   }
 }
