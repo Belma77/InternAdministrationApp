@@ -65,8 +65,8 @@ namespace Backend.Services.SelectionService
 
             selection.Name = editSelection.Name??selection.Name;
             selection.Description = editSelection.Description??selection.Description;
-            selection.StartDate = (DateTime)(editSelection.StartDate.HasValue?selection.StartDate:editSelection.StartDate);
-            selection.EndDate = (DateTime)(editSelection.EndDate.HasValue ? selection.EndDate : editSelection.EndDate);
+            selection.StartDate = (DateTime)(editSelection.StartDate.HasValue?editSelection.StartDate: selection.StartDate);
+            selection.EndDate = (DateTime)(editSelection.EndDate.HasValue ? editSelection.EndDate: selection.EndDate);
             selection.EditedAt = DateTime.Now;
 
             await _selectionRepository.EditSelection(selection);
@@ -74,7 +74,7 @@ namespace Backend.Services.SelectionService
             return _mapper.Map<GetSelectionsDto>(selection);
         }
 
-        public async Task<GetSelectionDto> AddApplicantsToSelection([FromQuery] int selectionId, int applicationId)
+        public async Task<GetSelectionDto> AddApplicantsToSelection(int selectionId, int applicationId)
         {
 
             var selection = await _selectionRepository.GetSelectionById(selectionId);

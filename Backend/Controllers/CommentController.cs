@@ -8,6 +8,7 @@ namespace Backend.Controllers
     [Route("Comment")]
     [ApiController]
     //[Authorize(Roles = "Admin, Editor")]
+
     public class CommentController : ControllerBase
     {
         private ICommentService _commentService;

@@ -7,9 +7,9 @@ namespace Backend.Services.NotificationService
 {
     public class EmailService:IEmailService
     {
-        public async Task SendEmail(string subject, string body)
+        public async Task<string> SendEmail(string subject, string body)
         {
-
+            string response = "";
             var email = new MimeMessage();
             email.From.Add(MailboxAddress.Parse("otha.kuhlman@ethereal.email"));
             email.To.Add(MailboxAddress.Parse("otha.kuhlman@ethereal.email"));
@@ -21,8 +21,9 @@ namespace Backend.Services.NotificationService
             using var smtp = new SmtpClient();
             smtp.Connect("smtp.ethereal.email", 587, SecureSocketOptions.StartTls);
             smtp.Authenticate("otha.kuhlman@ethereal.email", "tvdDh4bdRbvd6eJwYb");
-            smtp.Send(email);
+            response=smtp.Send(email);
             smtp.Disconnect(true);
+            return response;    
         }
     }
 }

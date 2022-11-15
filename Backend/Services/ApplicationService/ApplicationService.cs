@@ -60,7 +60,7 @@ namespace Backend.Services.ApplicationService
             var app = await _applicationRepository.GetById(id);
 
             if (app == null)
-                throw new Exception("Application not found");
+                throw new NotFoundException("Application not found");
 
             return _mapper.Map<GetAppDto>(app);
         }
