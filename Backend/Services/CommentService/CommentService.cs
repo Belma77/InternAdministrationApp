@@ -33,6 +33,10 @@ namespace Backend.Services.CommentService
 
             string username = _httpContextAccessor.HttpContext.User.Identity.Name;
             var user = await _userService.GetByUsername(username);
+
+            if (user == null)
+                throw new NotFoundException("User not found");
+
             var app = await _applicationRepository.GetById(appComment.ApplicationId);
 
             if (app == null)
@@ -49,6 +53,10 @@ namespace Backend.Services.CommentService
         {
             string username = _httpContextAccessor.HttpContext.User.Identity.Name;
             var user = await _userService.GetByUsername(username);
+
+            if (user == null)
+                throw new NotFoundException("User not found");
+
             var selection = await _selectionRepository.GetSelectionById(selectionComment.SelectionId);
 
             if (selection == null)

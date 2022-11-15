@@ -14,10 +14,12 @@ namespace Backend.Data
         {
             
         }
+
         public DbSet<Applications> Applications { get; set; }
         public DbSet<Selection> Selections { get; set; }
         public DbSet<User> Users { get; set; }
         public DbSet<Comment> Comments { get; set; }
+
         protected override void OnModelCreating(ModelBuilder builder)
         {
 

@@ -13,6 +13,7 @@ namespace Backend.Controllers
     //[Authorize(Roles = "Admin, Editor")]
     public class SelectionController : ControllerBase
     {
+
         private readonly ISelectionService _selectionService;
         public SelectionController(ISelectionService selectionService)
         {

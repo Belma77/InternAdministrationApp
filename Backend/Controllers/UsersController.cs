@@ -11,6 +11,7 @@ namespace Backend.Controllers
     [Route("Users")]
     [Authorize(Roles = "Admin")]
     [ApiController]
+
     public class UsersController : ControllerBase
     {
         private IUserService _userService;
