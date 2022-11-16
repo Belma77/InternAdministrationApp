@@ -48,7 +48,7 @@
         <div class="col-xs-6 col-lg mb-2 mb-lg-0">
             <div class="card text-center">
                 <div class="card-header card-title h4">
-                    <div class="mt-1">Education: {{ applicants.status }}</div>
+                    <div class="mt-1">Status: {{ applicants.status }}</div>
                 </div>
                 <div class="card-body p-4">
                     <select (ngModelChange)="onUpdateStatus($event)" [(ngModel)]="status" id="inputState"

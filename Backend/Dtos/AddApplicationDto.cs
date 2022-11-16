@@ -9,7 +9,7 @@ namespace Backend.Dtos
         public string FirstName { get; set; }=String.Empty;
         public string LastName { get; set; }=String.Empty;
         public string Email { get; set; } = String.Empty;
-        public EducationLevelEnum EducationLevel { get; set; }
+        public EducationLevelEnum? EducationLevel { get; set; }
         public string CoverLetter { get; set; } = String.Empty;
         public string CV { get; set; } = String.Empty;
     

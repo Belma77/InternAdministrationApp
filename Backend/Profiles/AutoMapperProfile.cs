@@ -17,7 +17,9 @@ namespace Backend.Profiles
             CreateMap<EditSelectionDto, Selection>();
 
             CreateMap<AddSelectionDto, Selection>();
-            CreateMap<Selection, GetSelectionDto>();
+            CreateMap<Selection, GetSelectionDto>()
+                .ForMember(x=>x.DateCreated, y=>y.MapFrom(z=>z.CreatedAt))
+                .ForMember(i=>i.DateEdited, j=>j.MapFrom(k=>k.EditedAt));
             CreateMap<Selection, GetSelectionsDto>();
             CreateMap<GetSelectionsDto, Selection>();
 

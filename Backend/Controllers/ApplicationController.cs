@@ -30,8 +30,8 @@ namespace Backend.Controllers
         [AllowAnonymous]
         public async Task<IActionResult> Add(AddApplicationDto app)
         {
-            await _applicationService.AddApplication(app);
-            return Ok();
+           
+            return Ok(await _applicationService.AddApplication(app));
         }
 
         [HttpGet("GetAll")]

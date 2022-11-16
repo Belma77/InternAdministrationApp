@@ -31,10 +31,7 @@ namespace Backend.Dtos.Validators
         public EditSelectionValidator()
         {
             RuleFor(u => u.SelectionId).NotEmpty().NotNull();
-            RuleFor(u => u.Name).NotEmpty().NotNull();
-            RuleFor(u => u.StartDate).NotEmpty().NotNull();
-            RuleFor(u => u.EndDate).NotEmpty().NotNull().GreaterThan(u=>u.StartDate);
-            RuleFor(u => u.Description).NotEmpty().NotNull();
+            RuleFor(u => u.EndDate).GreaterThan(u=>u.StartDate);
 
         }
     }

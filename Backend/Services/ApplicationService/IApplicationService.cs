@@ -11,7 +11,7 @@ namespace Backend.Services.ApplicationService
         Task<PagedList<GetApplicationsDto>> GetAllApplications(UserParams userParams);
         Task<PagedList<GetApplicationsDto>> GetAppsForSelection(UserParams userParams);
         Task<GetAppDto> GetApplicationById(int id);
-        Task AddApplication(AddApplicationDto app);
+        Task<AddApplicationDto> AddApplication(AddApplicationDto app);
         Task<GetAppDto> UpdateStatus(int id, StatusEnum status);
 
     }
