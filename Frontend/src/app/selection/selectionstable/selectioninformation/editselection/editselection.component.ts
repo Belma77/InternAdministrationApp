@@ -17,6 +17,8 @@ export class EditselectionComponent implements OnInit {
 
   onSubmit(editSelection: { SelectionId: number, Name?: string, StartDate?: Date, EndDate?: Date, Description?: string }) {
     editSelection.SelectionId = this.data.selections.id;
+    console.log(editSelection);
+
     this.selectionService.editSelection(editSelection);
   }
 

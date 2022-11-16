@@ -1,4 +1,5 @@
-﻿using AutoMapper;
+﻿using Abp.Extensions;
+using AutoMapper;
 using AutoMapper.QueryableExtensions;
 using Backend.Dtos;
 using Backend.ExceptionHandlers;
@@ -55,23 +56,25 @@ namespace Backend.Services.SelectionService
             return _mapper.Map<GetSelectionsDto>(selection);
         }
 
-        public async Task<GetSelectionsDto> EditSelection(EditSelectionDto editSelection)
+        public async Task<GetSelectionDto> EditSelection(EditSelectionDto editSelection)
         {
 
             var selection = await _selectionRepository.GetSelectionById(editSelection.SelectionId);
 
             if (selection == null)
-                throw new Exception("Selection not found");
+                throw new NotFoundException("Selection not found");
 
-            selection.Name = editSelection.Name??selection.Name;
-            selection.Description = editSelection.Description??selection.Description;
-            selection.StartDate = (DateTime)(editSelection.StartDate.HasValue?editSelection.StartDate: selection.StartDate);
-            selection.EndDate = (DateTime)(editSelection.EndDate.HasValue ? editSelection.EndDate: selection.EndDate);
+            selection.Name = editSelection.Name;
+            selection.Description = editSelection.Description;
+            selection.StartDate = (DateTime)editSelection.StartDate;
+            selection.EndDate = (DateTime)(editSelection.EndDate);
+           
+
             selection.EditedAt = DateTime.Now;
 
-            await _selectionRepository.EditSelection(selection);
+           var edited= await _selectionRepository.EditSelection(selection);
 
-            return _mapper.Map<GetSelectionsDto>(selection);
+            return _mapper.Map<GetSelectionDto>(edited);
         }
 
         public async Task<GetSelectionDto> AddApplicantsToSelection(int selectionId, int applicationId)
@@ -81,13 +84,13 @@ namespace Backend.Services.SelectionService
             var app = await _applicationRepo.GetById(applicationId);
 
             if (selection == null)
-                throw new Exception("Selection not found");
+                throw new NotFoundException("Selection not found");
 
             if (app == null)
-                throw new Exception("Application not found");
+                throw new NotFoundException("Application not found");
 
             if (selection.Applications.Any(x => x.Id == applicationId))
-                throw new Exception("Applicant already added to selection");
+                throw new NotFoundException("Applicant already added to selection");
 
             selection.Applications.Add(app);
             app.Status = StatusEnum.Inselection;

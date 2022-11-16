@@ -65,9 +65,10 @@ namespace Backend.Services.ApplicationService
             return _mapper.Map<GetAppDto>(app);
         }
 
-        public async Task AddApplication(AddApplicationDto app)
+        public async Task<AddApplicationDto> AddApplication(AddApplicationDto app)
         {
             await _applicationRepository.Add(_mapper.Map<Applications>(app));
+            return app;
         }
 
         public async Task<GetAppDto> UpdateStatus(int id, StatusEnum status)

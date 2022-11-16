@@ -19,7 +19,11 @@ export class ApplicantsService {
   constructor(private http: HttpClient) { }
 
   public storeApplication(postData: { firstName: string, lastName: string, email: string, educationLevel: string, coverLetter: string, cv: string }) {
-    this.http.post<Application>('https://localhost:7156/Application', postData);
+    this.http.post<Application>('https://localhost:7156/Application', postData).subscribe(x=>{
+      console.log(x);
+    }
+
+    )
   }
 
   public getApplicants(page?: number, ItemsPerPage?: number, sort?: string, educationSort?: string, status?: string, search?: string) {

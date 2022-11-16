@@ -19,7 +19,11 @@ export class SelectionsService {
   constructor(private http: HttpClient) { }
 
   public addSelection(addSelection: { name: string, startDate: Date, endDate: Date, description: string }) {
-    this.http.post<Selections>('https://localhost:7156/Selection/Add', addSelection).subscribe();
+    this.http.post<Selections>('https://localhost:7156/Selection/Add', addSelection).subscribe(x=>{
+      console.log(x);
+    }
+      
+    );
   }
 
   public getSelections(page?: number, ItemsPerPage?: number, selectionName?: string, searchName?: string) {
