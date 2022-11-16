@@ -46,7 +46,6 @@ export class SelectioninformationComponent implements OnInit {
     this.selectionsService.getSelection(this.id).subscribe(response => {
       this.selection = response;
       this.loadApplicantsInSelection("");
-      console.log(this.selection)
     })
   }
 

@@ -58,5 +58,6 @@ export class EditorsformComponent implements OnInit {
       return;
     }
     this.editorsService.deleteEditor(id);
+    window.location.reload();
   }
 }

@@ -57,7 +57,7 @@ export class SelectionsService {
     return this.http.patch<addApplicantToSelection>('https://localhost:7156/Selection/RemoveApplication', removeApplicantFromSelection).subscribe();
   }
 
-  public editSelection(editSelection: { SelectionId?: number, Name?: string, StartDate?: Date, EndDate?: Date, Description?: string }) {
+  public editSelection(editSelection: { SelectionId: number, Name?: string, StartDate?: Date, EndDate?: Date, Description?: string }) {
     return this.http.put<EditSelection>('https://localhost:7156/Selection/Edit', editSelection).subscribe();
   }
 }

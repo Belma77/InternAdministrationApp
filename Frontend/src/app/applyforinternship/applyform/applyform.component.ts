@@ -16,5 +16,6 @@ export class ApplyformComponent implements OnInit {
 
   onSubmit(applicationData: { firstName: string, lastName: string, email: string, educationLevel: string, coverLetter: string, cv: string }) {
     this.appService.storeApplication(applicationData);
+    this.snackbar.open('You have applied for Junior Accelerator Program', '', {})
   }
 }
